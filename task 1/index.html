@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="HTML Fundamentals, Task 1">
+    <meta charset="utf-8">
+    <title>Task 1 | HTML Fundamentals</title>    
+    <style type="text/css">
+        table {
+            width: 100%;            
+            text-align: left;
+        }
+        thead, tfoot {
+            background-color: #b1dbaf;
+        }
+        tbody td{
+            background-color: #ebebeb;
+            height: 150px;            
+        }
+        iframe[name="main-frame"]{
+            width: 100%;    
+        }
+    </style>    
+  </head>
+  <body>
+      <table>
+         
+          <thead>
+              <tr>
+                  <th><h1>This is Web Page Main title</h1></th>       
+                  <th><a href="menu1.htm" target="main-frame"><h2>Menu 1</h2></a></th>
+              </tr>
+          </thead>              
+          <tbody>
+              <tr>
+                  <td colspan="2">
+                      <iframe name="main-frame"></iframe>          
+                  </td>
+              </tr>
+          </tbody>          
+          <tfoot>
+              <tr>
+                  <td colspan="2">Copyright &copy; 2017 Pavel Uvarov</td>
+              </tr>
+          </tfoot>
+          
+      </table>      
+  </body>
+</html>
