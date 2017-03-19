@@ -1,0 +1,57 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+/* Main page style */
+table.main-page  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+h1 a{
+    text-decoration: none;
+    color: #000;
+}
+.main-page thead, tfoot {
+    background-color: #ccc;
+}
+.main-page th{
+    padding: 10px;
+}
+.main-page tbody td{
+    background-color: #ebebeb; 
+    background-image: url(http://www.pullman-wa.gov/images/stories/parksrecrandoms/computers2.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.main-page iframe[name="main-frame"]{               
+    height: 100%;    
+    width: 100%; 
+}
+.main-page tfoot td{        
+    padding: 15px;
+}
+
+/* Menu pages style */
+.page-conatiner {    
+    padding: 10px;    
+    height: 100%;
+    width: 100%;
+}
+.side-bar {
+    background-color: #ccc;
+    width: 300px;
+}
+.side-bar ul{
+    padding-left: 50px;
+    font-size: 1.5em;
+}
+.page {
+    background-color: rgba(255,255,255,0.8);        
+}
+.page iframe {    
+    height: 100%;
+    width: 100%;
+}
