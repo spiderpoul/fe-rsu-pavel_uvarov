@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="HTML Advanced, Task 1">
+    <meta charset="utf-8">
+    <title>Task 3 | HTML Advanced</title> 
+    <style type="text/css">
+        .wrapper {
+            width: 1000px;
+        }       
+        /*Form style*/
+        form {
+            width: 500px;
+        }
+        form label {                        
+            padding-top: 7px;
+        }
+        input[type="submit"] {
+            background: none;
+            border: none;
+            outline: 0;            
+            background-image: url(http://s1.iconbird.com/ico/0612/GooglePlusInterfaceIcons/w128h1281338911651zoom.png);
+            background-size: cover;
+            width: 15px;
+            height: 15px;
+        }
+    </style>       
+  </head>
+  <body>
+      <h1>My search</h1>
+      <div class="wrapper">           
+
+          <form action="http://www.yandex.ru/search/?" method="get">
+              <label>I want to find <input name="text" type="search"></label> 
+              <input type="submit" value="">    
+          </form>
+      </div>
+  </body>
+</html>
