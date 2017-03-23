@@ -5,12 +5,46 @@
 		<title>CSS basics | Task 1</title>		
 		<meta name="description" content="CSS basics. EPAM front-end course.">
         <style type="text/css">
+            h1 {
+                color: red;
+            }
+            h2 {
+                color: chocolate;
+            }
+            h3 {
+                color: darkgray;
+            }
             .fun-sized {
                 width: 200px;
                 height: 20px;
                 margin: 10px;
                 padding: 20px;
                 border: 1px solid red;
+            }
+            .background-div {
+                background-image: url("http://www.gettyimages.co.uk/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg");
+                height: 150px;               
+                width: 400px;
+                background-size: cover;
+            }
+            .hex {
+                width: 100px;
+                height: 100px;
+                background-color: #ccc;
+            }
+            .rgb {
+                width: 100px;
+                height: 100px;
+                background-color: rgb(50%, 50%, 50%);
+            }
+            .rgba {
+                background-color: rgba(255, 0, 0, 0.2);
+            }
+            #h3_selector {
+                color: rgba(255, 0, 0, 0.2);
+            }
+            .class_selector {
+                color: rgba(0, 255, 0, 0.2);
             }
         </style>
 	</head>
@@ -20,6 +54,37 @@
         <p class="fun-sized">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <hr>
         <h2>BACKGROUND</h2>
-        <div></div>
+        <div class="background-div"></div>
+        <hr>
+        
+        <h2>CSS UNITS</h2>
+        <h3>RELATIVE LENGTHS</h3>
+        <p style="font-size: 1.5em">em - Relative to the font-size of the element (2em means 2 times the size of the current font)</p>
+        <p style="font-size: 1.2rem">rem - Relative to font-size of the root element</p>
+        <p style="font-size: 3vw">vw - Relative to 1% of the width of the viewport</p>
+        <p style="font-size: 3vh">vh - Relative to 1% of the height of the viewport</p>
+        <p style="font-size: 80%">% - Take length in percent</p>
+        
+        <h3>ABSOLUTE LENGTHS</h3>
+        <p style="font-size: 0.5cm">centimeters</p>
+        <p style="font-size: 5mm">millimeters</p>
+        <p style="font-size: 0.2in">inches (1in = 96px = 2.54cm)</p>
+        <p style="font-size: 14pt">points (1pt = 1/72 of 1in)</p>
+        <p style="font-size: 20px">pixels (1px = 1/96th of 1in). Pixels (px) are relative to the viewing device</p>
+        <hr>
+        <h2>CSS COLORS</h2>
+        <h3>HEXADECIMAL COLORS</h3>
+        <div class="hex"></div>
+        <h3>RGB COLORS</h3>
+        <div class="rgb"></div>
+        <h3>RGBA COLORS</h3>
+        <div class="rgba">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enELEMENT SELECTORim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.</div>
+        <hr>
+        <h2>SELECTORS</h2>
+        <h3>ELEMENT SELECTOR</h3>
+        <h3 id="h3_selector">ID SELECTOR</h3>
+        <h3 class="class_selector">CLASS SELECTOR</h3>
+        <h3>GROUPING SELECTORS</h3>
+        <p class="group1"></p>
 	</body>
 </html>
