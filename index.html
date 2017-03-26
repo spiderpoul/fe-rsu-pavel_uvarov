@@ -46,6 +46,19 @@
             .class_selector {
                 color: rgba(0, 255, 0, 0.2);
             }
+            .group1, .group2, .group3 {
+                background-color: rgba(0, 120, 120, 0.2);
+                padding: 10px;
+            }
+            .serif {
+                font-family: serif;
+            }
+            .sans-serif {
+                font-family: sans-serif;
+            }
+            .monospace {
+                font-family: monospace;
+            }
         </style>
 	</head>
 	<body>	       	
@@ -78,13 +91,76 @@
         <h3>RGB COLORS</h3>
         <div class="rgb"></div>
         <h3>RGBA COLORS</h3>
-        <div class="rgba">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enELEMENT SELECTORim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.</div>
+        <div class="rgba">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.</div>
         <hr>
         <h2>SELECTORS</h2>
         <h3>ELEMENT SELECTOR</h3>
         <h3 id="h3_selector">ID SELECTOR</h3>
         <h3 class="class_selector">CLASS SELECTOR</h3>
         <h3>GROUPING SELECTORS</h3>
-        <p class="group1"></p>
+        <p class="group1">group 1</p>
+        <p class="group2">group 2</p>
+        <p class="group3">group 3</p>
+        <hr>
+        <h2>CSS FONT FAMILIES</h2>
+        <p class="serif">Serif fonts have small lines at the ends on some characters</p>
+        <p class="sans-serif">"Sans" means without - these fonts do not have the lines at the ends of characters</p>
+        <p class="monospace">All monospace characters have the same width</p>
+        <h3>FONT STYLE</h3>
+        <p style="font-style: normal">normal - The text is shown normally</p>
+        <p style="font-style: italic">italic - The text is shown in italics</p>
+        <p style="font-style: italic">oblique - The text is "leaning" (oblique is very similar to italic, but less supported)</p>
+        <h3>FONT VARIANT</h3>
+        <p style="font-variant: normal">Nullam porta ullamcorper nulla nec congue. Praesent mattis vulputate finibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque eget malesuada metus. Proin pretium consequat tincidunt. Nam eget mauris vitae nisi consequat rutrum. Phasellus id elit at nisl gravida scelerisque. Nunc convallis fermentum lacus sit amet facilisis. Etiam vel tristique quam.</p>
+        <p style="font-variant: small-caps">Vestibulum volutpat lacinia lorem mattis suscipit. Nam sollicitudin enim vitae orci venenatis porta eu ac lectus. Nunc quis metus ac mi consequat rhoncus. Duis massa tortor, rutrum ut nunc vel, pellentesque sollicitudin felis. Donec malesuada nec ligula ut congue. Curabitur rhoncus congue eleifend. Mauris a odio tortor. Donec sit amet porttitor erat, rhoncus tincidunt diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi.</p>
+        <h3>FONT WEIGHT</h3>
+        <p style="font-weight: normal">Integer vitae felis sed massa malesuada pulvinar. Morbi laoreet nec nibh ac commodo. Nullam venenatis rhoncus sapien eget pharetra. Maecenas feugiat pulvinar ultrices. Sed elit mi, vulputate eget justo sit amet, tristique viverra nulla. Ut et risus justo. Vestibulum scelerisque facilisis orci. Sed sagittis orci a malesuada fermentum. Praesent non tincidunt sem, vel aliquam nulla. Phasellus convallis risus vel massa fermentum, vel eleifend ligula faucibus. In dapibus nibh blandit nisl interdum tempor.</p>
+        <p style="font-weight: bold">Curabitur rhoncus, mauris et viverra semper, massa nulla egestas lorem, ut pretium quam ante congue purus. Ut mollis vel lorem ac imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis fringilla, tortor quis luctus vulputate, sem nisl aliquam nibh, at finibus lacus risus elementum mauris. Etiam egestas congue orci, et vehicula ex fermentum ac. Pellentesque pellentesque rutrum placerat. Mauris porta metus a sem laoreet maximus sit amet quis est. Vivamus feugiat lectus cursus, lobortis odio eu, congue diam. Donec ac aliquam urna. Etiam suscipit velit aliquam lectus dictum, ut iaculis mi dignissim. Etiam facilisis leo purus, nec ultricies nisi rhoncus sed. Nullam dapibus est purus, et vulputate risus gravida eget. Nullam sagittis elit id accumsan tempor. Praesent nec ante vel sem tincidunt posuere sed ut tellus. Praesent consequat, diam id lacinia dignissim, risus purus aliquet lorem, eget convallis dui turpis sed libero. Donec nec finibus lacus.</p>
+        <p style="font-weight: normal">Maecenas pretium consequat dui at interdum. Nam malesuada at ipsum quis interdum. Proin vehicula turpis nisl, vitae finibus odio fermentum sit amet. Donec purus neque, lacinia in mattis at, porta ac purus. Sed nec velit sed libero placerat pellentesque dictum et nisl. Donec condimentum augue vel lorem porttitor, nec porta magna efficitur. Sed nec lectus facilisis, luctus nisi non, rutrum turpis. Pellentesque at dictum lorem, at ornare lacus. Sed ac dolor sed arcu porttitor dictum. Ut ultrices mi mauris, ut eleifend orci gravida id. Donec ornare sollicitudin tempus. Morbi et sapien lorem. Morbi suscipit eu lacus sit amet malesuada. Fusce eu enim nec mi dignissim facilisis.</p>
+        <p style="font-weight: lighter">Ut ut mattis sapien, nec consectetur diam. Sed tincidunt massa porttitor consequat scelerisque. Nunc aliquam commodo tempus. Nam enim neque, varius a facilisis eu, pulvinar tristique justo. Cras auctor ultrices quam. Maecenas sed neque pretium, laoreet mauris vel, ornare lacus. Mauris ultrices orci quis quam placerat lobortis. Nam et venenatis sem. Ut convallis turpis eros, at ornare libero fermentum nec. Aliquam vel diam non quam lacinia facilisis. Vivamus sem ex, interdum et aliquet nec, hendrerit a mauris. Curabitur vitae pellentesque arcu.</p>
+        <p style="font-weight: 100">Maecenas tincidunt quis ex sit amet laoreet. Donec fermentum consequat leo, et sagittis magna tincidunt in. In orci urna, aliquet id ullamcorper sed, condimentum non nunc. Nullam viverra odio vitae nisi suscipit, ac hendrerit lacus mollis. Vestibulum ante massa, faucibus nec scelerisque sed, luctus vel ipsum. Phasellus varius ut nulla et mattis. Cras at tincidunt est. Maecenas massa ante, tincidunt sed malesuada fringilla, eleifend ut erat. Fusce ac risus tristique, porttitor nunc eget, dapibus eros. Pellentesque ornare, felis et elementum ornare, elit odio hendrerit dui, non aliquet ante felis vitae ipsum. Nulla vestibulum purus sit amet feugiat dapibus. Donec ipsum dui, sollicitudin ut nibh porttitor, pellentesque semper augue. Nullam nec massa ultrices ante iaculis accumsan quis vel nulla.</p>
+        <hr>
+        <h2>CSS TEXT</h2>
+        <h3>TEXT ALIGNMENT</h3>
+        <p style="text-align: left">Curabitur a urna congue, luctus velit ut, ultricies mi. Cras augue lorem, pulvinar tempor placerat at, dictum ut tortor. Proin lacus ante, vehicula eu ullamcorper vel, mollis sit amet neque. Proin a elementum purus. Morbi lacus elit, bibendum sed consequat nec, imperdiet nec urna. Suspendisse sed velit ac turpis ornare tincidunt. Nulla finibus condimentum risus vitae ullamcorper. Curabitur sit amet ullamcorper sapien. Phasellus sit amet tortor tortor. Sed leo est, lacinia elementum dui in, varius porttitor metus. Vivamus vitae enim purus. Integer ac augue felis. Etiam tempus est non sodales accumsan. Sed eu elit a enim mattis lacinia. Suspendisse elit neque, mollis ut maximus sed, interdum et elit. Etiam hendrerit massa eu faucibus accumsan.</p>
+        <p style="text-align: center">Ut at purus mi. Maecenas malesuada venenatis leo vel aliquet. Duis viverra feugiat viverra. Phasellus malesuada velit diam, id convallis lorem accumsan quis. Nam interdum erat ut interdum elementum. Curabitur eget lacinia arcu, eu auctor leo. Nulla vitae ex quis sem suscipit molestie. Duis fermentum mi libero, id malesuada turpis ultrices in.</p>
+        <p style="text-align: right">Vestibulum eu ipsum mauris. Praesent vulputate neque tincidunt vehicula ullamcorper. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed varius lectus tellus, ultrices egestas eros condimentum id. Ut a tortor blandit, volutpat ipsum at, sagittis elit. Nunc sit amet convallis lorem. Maecenas orci nunc, accumsan sit amet ornare eu, condimentum sed nibh. Mauris aliquam, magna vitae aliquam laoreet, purus augue aliquam justo, ac elementum arcu massa non elit. Suspendisse potenti. In rhoncus magna lobortis arcu congue aliquam eu a sem. Quisque pellentesque pharetra ipsum, at hendrerit elit ornare in.</p>
+        <p style="text-align: justify">Sed sed mi luctus, vehicula odio ullamcorper, dapibus lorem. Quisque eu felis diam. Morbi in venenatis tortor. Integer consectetur quam vitae enim dictum, tristique finibus magna condimentum. Ut quis nisl non tellus sollicitudin gravida vitae sed tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ac lobortis massa. Sed aliquam ex ipsum, eu dapibus dolor molestie eget. Nunc sit amet tellus non quam tristique vulputate. Morbi eu faucibus ante, a tempor orci. Sed mauris nunc, molestie sit amet vehicula quis, molestie vitae erat.</p>
+        <h3>TEXT DECORATION</h3>
+        <p><span style="text-decoration: overline">Sed sed mi luctus, vehicula odio ullamcorper, dapibus lorem.</span> Quisque eu felis diam. Morbi in venenatis tortor. Integer consectetur quam vitae enim dictum, tristique finibus magna condimentum. <span style="text-decoration: underline">Ut quis nisl non tellus sollicitudin gravida vitae sed tortor.</span> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ac lobortis massa. Sed aliquam ex ipsum, eu dapibus dolor molestie eget. Nunc sit amet tellus non quam tristique vulputate. <span style="text-decoration: line-through">Morbi eu faucibus ante, a tempor orci. Sed mauris nunc, molestie sit amet vehicula quis, molestie vitae erat.</span></p>
+        <h3>TEXT TRANSFORMATION</h3>
+        <p style="text-transform: uppercase">Sed lacinia tortor elit, a viverra est consectetur ut. Nullam feugiat tempus tortor. Sed vel tempus tellus. In ullamcorper nec massa eget aliquet. Proin tincidunt mi fermentum nulla dapibus lobortis a vel turpis. Mauris finibus dolor eget vulputate rutrum. Maecenas in auctor orci. Proin vitae enim semper, rhoncus metus ut, consequat ex.</p>
+        <p style="text-transform: lowercase">Nulla sagittis faucibus semper. Duis vitae rhoncus libero. Aenean vitae augue sed est hendrerit tempus. Sed quis neque a ante porta facilisis. Donec porttitor sodales magna quis auctor. Sed luctus est erat, vitae congue arcu fermentum non. Curabitur neque quam, venenatis non quam at, hendrerit blandit purus. Integer et elit dapibus, condimentum neque nec, iaculis ex. Donec at dignissim ex, et tempor erat. Sed in leo fermentum libero porttitor vestibulum quis vel nulla. Nullam vel auctor nulla. Suspendisse fringilla urna quis felis viverra bibendum.</p>
+        <p style="text-transform: capitalize">Morbi molestie turpis sed erat eleifend congue in vitae tellus. Suspendisse lobortis justo velit, non ultrices enim lacinia et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin pellentesque congue iaculis. Donec euismod justo massa, eu vehicula elit faucibus a. Ut arcu nibh, congue sit amet ligula sit amet, varius pellentesque nulla. Nullam libero lacus, pellentesque in turpis a, placerat mattis turpis.</p>
+        <h3>TEXT INDENTATION</h3>
+        <p style="text-indent: 2em">Sed lacinia tortor elit, a viverra est consectetur ut. Nullam feugiat tempus tortor. Sed vel tempus tellus. In ullamcorper nec massa eget aliquet. Proin tincidunt mi fermentum nulla dapibus lobortis a vel turpis. Mauris finibus dolor eget vulputate rutrum. Maecenas in auctor orci. Proin vitae enim semper, rhoncus metus ut, consequat ex.</p>
+        <h3>LINE HEIGHT</h3>
+        <p style="line-height: 50px">Morbi molestie turpis sed erat eleifend congue in vitae tellus. Suspendisse lobortis justo velit, non ultrices enim lacinia et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin pellentesque congue iaculis. Donec euismod justo massa, eu vehicula elit faucibus a. Ut arcu nibh, congue sit amet ligula sit amet, varius pellentesque nulla. Nullam libero lacus, pellentesque in turpis a, placerat mattis turpis.</p>
+        <h3>TEXT-SHADOW</h3>
+        <p style="text-shadow: 1px 1px 10px red">TEXT with SHADOW</p>
+        <h3>VERTICAL ALIGN</h3>
+        <p> <span style="vertical-align: baseline">baseline</span>	- Align the baseline of the element with the baseline of the parent element. This is default</p>
+        <p><span style="vertical-align: 20px">length</span>	Raises or lower an element by the specified length. Negative values are allowed</p>
+        <p><span style="vertical-align: 100%">100%</span>	Raises or lower an element in a percent of the "line-height" property. Negative values are allowed</p>
+        <p><span style="vertical-align: sub">sub</span>	Aligns the element as if it was subscript</p>
+        <p><span style="vertical-align: super">super</span>	Aligns the element as if it was superscript</p>
+        <p><span style="vertical-align: top">top</span>	The top of the element is aligned with the top of the tallest element on the line</p>
+        <p><span style="vertical-align: text-top">text-top</span>	The top of the element is aligned with the top of the parent element's font</p>
+        <p><span style="vertical-align: middle">middle</span>	The element is placed in the middle of the parent element</p>
+        <p><span style="vertical-align: bottom">bottom</span>	The bottom of the element is aligned with the lowest element on the line</p>
+        <p><span style="vertical-align: text-bottom">text-bottom</span>	The bottom of the element is aligned with the bottom of the parent element's font</p>
+        <h3>WHITE SPACE</h3>
+        <p style="white-space: normal">normal	
+        Sequences of whitespace will collapse into a single whitespace. Text will wrap when necessary. This is default</p>
+        <p style="white-space: nowrap">nowrap	Sequences of whitespace will collapse into a single whitespace. Text will never wrap to the next line. 
+        The text continues on the same line until a <br> tag is encountered</p>
+        <p style="white-space: pre">pre	Whitespace    is preserved by the browser. Text will only wrap on    line breaks.   
+        Acts like the "pre" tag in HTML</p>
+        <p style="white-space: pre-line">pre-line     	Sequences of whitespace will collapse into a single whitespace. 
+        Text will wrap when necessary, and on line breaks</p>
+        <p style="white-space: pre-wrap">pre-wrap	Whitespace is preserved                   by the browser. 
+        Text will wrap when necessary, and on line breaks</p>
+        <h3 style="word-spacing: 30px">WORD SPACING</h3>
+        <p style="word-spacing: 30px">Pellentesque id ultricies risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 	</body>
 </html>
