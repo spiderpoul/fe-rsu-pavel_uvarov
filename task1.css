@@ -1,0 +1,70 @@
+body {
+    background: repeating-linear-gradient(
+      -45deg,
+      #fff,    
+      #fff 1px,
+      #fff 1px,
+      #ccc 2px
+        );
+}
+#container {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+h1 {
+    font-family: cursive;
+}
+h1:hover:after,
+h1:hover:before {
+    font-size: 0.5em;
+    content: " x ";
+    vertical-align: super;
+}
+button {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 15px;
+    padding: 0px;
+    font-family: cursive;
+    background-color: cadetblue;
+    outline: none;
+    border: 0;    
+    transition: all 1s;    
+    color: #fff;
+}
+button:nth-child(2):hover {
+    background-color: azure;
+    transform: scale(1.2);
+}
+
+button:nth-child(3):hover {
+    transform: scale(2);
+}
+
+button:nth-child(4):hover {
+    transform: rotate3d(5,2,1,180deg);    
+}
+
+button:nth-child(5):hover {
+    transform: skewX(50deg);
+    opacity: 0;
+}
+button:nth-child(6):hover {
+    transform: translate(10px, 10px);
+}
+button:nth-child(7):hover {
+    transform: skew(10deg,10deg);
+}
+button:nth-child(8):hover {
+    transform: scale(-1);
+}
+button:nth-child(9):hover {
+    transform: rotate3d(0,10,5,-105deg);
+    background-color: red;
+}
+button:nth-child(10):hover {
+    transform: rotate(180deg);
+    opacity: 0;
+}

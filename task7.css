@@ -1,0 +1,16 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.adaptive-text {
+    margin: 25px 10px;
+    background: #cad8d0;
+    padding: 15px 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .adaptive-text {
+        padding: 10px 5px;
+        margin: 10px 5px;
+    }
+}

@@ -1,0 +1,114 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.page-loader {
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    border: 10px dotted #ccc;
+    border-radius: 50%;
+    animation-name: rotate-loader;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+@keyframes rotate-loader {
+    0% {
+        transform: rotate(0deg);        
+    }
+    25% {
+        border-top-color: #fff;
+    }
+    50% {
+        border-top-color: #fff;
+        border-right-color: #fff;
+    }
+    75% {
+        border-top-color: #fff;
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-top-color: #fff;
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+        border-left-color: #fff;
+    }
+}
+.container {
+    position: relative;
+    margin: 40px 0 40px 20px;
+    width: 600px;
+    height: 100px;
+}
+.box-left,
+.box-right {
+    width: 20px;
+    height: 100px;
+    background-color: #ccc;
+}
+.box-left {
+    float: left;
+}
+.box-right {
+    float: right;
+}
+.ball {
+    position: absolute;
+    top: 35px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid red;
+    border-radius: 50%;
+    background-color: red;
+    animation-name: bounce;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    animation-direction: alternate;
+}
+@keyframes bounce {
+    0% {        
+        left: 20px;
+    }
+    100% {        
+        left: 549px;
+        top: 20px;
+    }
+}
+.animation {
+    width: 80px;
+    height: 80px;    
+    animation: fancy-animation;
+    animation-iteration-count: infinite;
+    animation-duration: 15s;    
+}
+@keyframes fancy-animation {
+    0% {
+        border-radius: 50%;   
+        background: radial-gradient(#fff, #ccc);
+    }
+    17% {
+        border-radius: 0; 
+    }
+    34% {
+        background: radial-gradient(#fff, #11c);
+    }
+    51% {
+        width: 90px;
+        height: 100px;
+        transform: skewX(20deg);
+    }
+    68% {
+        transform: rotate(90deg);        
+    }
+    85% {
+        background: linear-gradient(to top , #fff, #000);
+    }
+    100% {
+        border-radius: 50%;
+    }
+}

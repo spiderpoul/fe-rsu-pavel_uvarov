@@ -1,0 +1,30 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.container {
+    margin: 10px 5px;
+}
+a {        
+    font-size: 25px;    
+    text-decoration: none;    
+    border-bottom: 5px solid #fff;
+}
+a:last-child {
+    padding-right: 29px;
+}
+a:not(:last-child) {
+    transition: border 0.5s ease-in;
+}
+a:not(:last-child):after {
+    content: "|";
+    font-weight: 600;
+    padding: 0 12px;    
+    color: red;    
+}
+a:hover {
+    border-color: #0506ee;
+}
+a:hover:not(:last-child):after {
+    color: #fff;    
+}

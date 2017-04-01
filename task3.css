@@ -1,0 +1,19 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.container {
+    width: 340px;
+}
+h1, p {
+    margin: 18px 0 0 5px;
+}
+h1 {
+    background-color: #569099;
+    color: #fff;
+    padding: 10px;
+}
+p {
+    background-color: #cad8d0;
+    padding: 11px;
+}
