@@ -1,0 +1,100 @@
+.wrapper {
+    width: 1000px;
+}       
+/*Form style*/
+form {
+    width: 648px;
+    margin: 23px 0 0 3px;
+}
+form label {            
+    display: block;        
+    padding-top: 5px;
+}
+.personal-data {
+    height: 595px;
+}
+.contact-inform {
+    height: 92px;
+}
+
+/*Blocks style for necesary align group of elements*/
+div.fields{
+   padding-left: 3px;
+}
+.form-group-inline > label, 
+.form-group-inline > div, 
+.form-group-inline select {        
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 0px
+}         
+.form-group-inline > div.cities label{
+    display: inline-block;            
+}        
+.form-group-inline > div {
+    margin-left: 68px;
+}
+div.form-group-inline.sex {
+    margin-top: 3px;
+    display: inline-block;
+}
+div.form-group-inline.sex > div {
+    margin-left: 70px;
+}
+.personal-data hr {
+    margin: 5px 0 8px 0px;
+}
+
+/*Blocks style for necesary align of inputs*/
+.inputs input {
+    float: right;
+}       
+.inputs {
+    display: inline-block;
+}        
+.contact-inform label{
+    padding: 5px 0 0 3px;
+}
+.personal-data input[type="text"],
+.personal-data input[type="number"] {
+    margin-left: 5px;
+    width: 167px;
+}
+.contact-inform input{
+    margin-left: 5px;
+    width: 170px;
+}
+.contact-inform .inputs { 
+    min-width: 235px;
+}
+.contact-inform .inputs {            
+    min-width: 220px;
+}
+
+/*Form elements style*/
+input[type="radio"]{
+    float: left;            
+}
+input[type="file"]{            
+   padding-left: 15px;
+}
+input[type="range"] {
+    margin-top: 3px;
+    margin-left: 30px;
+    vertical-align: middle;
+}                        
+select {
+    margin: 3px 0 3px 39px;
+}
+textarea {
+    margin: 5px 0 5px 0;
+    width: 365px;
+    height: 150px;
+}
+.password {
+    padding: 15px 0 9px 0;
+}
+.buttons {
+    margin-top: 8px;
+}        
+

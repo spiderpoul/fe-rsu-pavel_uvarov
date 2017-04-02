@@ -4,94 +4,16 @@
     <meta name="description" content="HTML Advanced, Task 1">
     <meta charset="utf-8">
     <title>Task 4 | HTML Advanced</title> 
-    <style type="text/css">
-        .wrapper {
-            width: 1000px;
-        }       
-        /*Form style*/
-        form {
-            width: 600px;
-        }
-        form label {            
-            display: block;        
-            padding-top: 7px;
-        }
-        
-        /*Blocks style for necesary align group of elements*/
-        div.fields{
-           padding-left: 3px;
-        }
-        .form-group-inline > label, 
-        .form-group-inline > div, 
-        .form-group-inline select {        
-            display: inline-block;
-            vertical-align: middle;
-            padding-top: 0px
-        }         
-        .form-group-inline > div.cities label{
-            display: inline-block;            
-        }        
-        .form-group-inline > div {
-            margin-left: 65px;
-        }
-        div.form-group-inline.sex {
-            display: inline-block;
-        }
-        
-        /*Blocks style for necesary align of inputs*/
-        .inputs input {
-            float: right;
-        }       
-        .inputs {
-            display: inline-block;
-        }        
-        .inputs.personal {             
-            width: 260px;
-        }
-        .inputs.contact {            
-            width: 207px;
-            margin-bottom: 5px;
-            padding-left: 3px;                                    
-        }
-        
-        /*Form elements style*/
-        input[type="radio"]{
-            float: left;            
-        }
-        input[type="number"] {
-            width: 157px;
-        }
-        input[type="file"]{            
-           padding-left: 15px;
-        }
-        input[type="range"] {
-            margin-top: 5px;
-            margin-left: 30px;
-            vertical-align: middle;
-        }                        
-        select {
-            margin: 3px 0 0 41px;
-        }
-        textarea {
-            margin: 5px 0 5px 0;
-            margin: 5px 0;
-        }
-        .password {
-            padding: 15px 0 5px 0;
-        }
-        .buttons {
-            margin-top: 10px;
-        }        
-    </style>       
+    <link rel="stylesheet" href="task4.css">
   </head>
   <body>
       <h1>The Form</h1>
       <div class="wrapper">          
           <form action="http://httpbin.org/get" method="get">
-              <fieldset>
+              <fieldset class="personal-data">
                   <legend>Personal data</legend>
                   <div class="fields">
-                      <div class="inputs personal">
+                      <div class="inputs">
                           <label>First Name <input type="text" name="first-name"></label>                  
                           <label>Middle name <input type="text" name="middle-name"></label>
                           <label>Surname name<input type="text" name="surname"></label>    
@@ -138,14 +60,14 @@
                       </div>
                       <div class="form-group-inline">
                           <label for="salary">Salary</label> 
-                          <input type="range" name="salary" id="salary" min="10000" max="100000" value="60000">
+                          <input type="range" name="salary" id="salary" min="10000" max="100000" value="64000">
                       </div>
-                      <textarea cols="50" rows="10" placeholder="Tell us about yourself..."></textarea> 
+                      <textarea cols="48" rows="10" placeholder="Tell us about yourself..."></textarea> 
                   </div>      
               </fieldset>
-              <fieldset>
-                  <legend>Conact Information</legend>
-                  <div class="inputs contact">
+              <fieldset class="contact-inform">
+                  <legend>Contact Information</legend>
+                  <div class="inputs">
                       <label>Site <input type="text" name="site"></label>
                       <label>E-mail <input type="email" name="email"></label>
                       <label>Phone <input type="tel" name="phone"></label> 
