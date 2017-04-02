@@ -1,0 +1,57 @@
+.wrapper {
+    width: 1000px;
+}       
+/*Form style*/
+form {
+    width: 520px;
+}
+.personal-data {
+    height: 116px;
+}
+.contact-inform {
+    height: 95px;
+}
+form label {            
+    display: block;        
+    padding: 5px 0 0 3px;
+}        
+.form-group-inline > label, .form-group-inline > div{
+    display: inline-block;    
+    vertical-align: middle;
+}   
+.form-group-inline > div label{
+    padding-top: 6px;
+}
+.form-group-inline > div {
+    margin-left: 45px;
+}        
+input {
+    float: right;
+}
+input[type="submit"]{
+    float: left;
+    margin-top: 17px;
+}
+input[type="radio"]{
+    float: left;            
+}
+input[type="text"] {
+    margin-left: 5px;
+    width: 170px;
+}
+.inputs {
+    display: inline-block;
+}
+.contact-inform label{
+    padding-top: 6px;
+}
+.contact-inform input{
+    margin-left: 5px;
+    width: 170px;
+}
+.contact-inform .inputs {            
+    min-width: 235px;
+}
+.contact-inform .inputs {            
+    min-width: 220px;
+}

@@ -1,50 +1,13 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta name="description" content="HTML Advanced, Task 1">
     <meta charset="utf-8">
     <title>Task 2 | HTML Advanced</title> 
+    <link rel="stylesheet" href="task2.css">
     <style type="text/css">
-        .wrapper {
-            width: 1000px;
-        }       
-        /*Form style*/
-        form {
-            width: 500px;
-        }
-        form label {            
-            display: block;        
-            padding-top: 7px;
-        }
-        textarea {                        
-            margin-top: 10px;
-        }
-        .form-group-inline > label, .form-group-inline > div{
-            display: inline-block;
-            vertical-align: middle;
-        }        
-        .form-group-inline > div {
-            margin-left: 40px;
-        }        
-        input {
-            float: right;
-        }
-        input[type="submit"]{
-            float: left;
-            margin-top: 15px;
-        }
-        input[type="radio"]{
-            float: left;            
-        }
-        .inputs {
-            display: inline-block;
-        }
-        .inputs.personal {            
-            width: 235px;
-        }
-        .inputs.contact {            
-            width: 203px;
-        }
+        
     </style>       
   </head>
   <body>
@@ -52,9 +15,9 @@
       <div class="wrapper">          
 
           <form action="http://httpbin.org/get" method="get">
-              <fieldset>
+              <fieldset class="personal-data">
                   <legend>Personal data</legend>
-                  <div class="inputs personal">
+                  <div class="inputs">
                       <label>First Name <input type="text" name="first-name"></label>                  
                       <label>Surname <input type="text" name="surname"></label>
                   </div>                  
@@ -66,11 +29,11 @@
                       </div>           
                   </div>                                                  
               </fieldset>
-              <fieldset>
-                  <legend>Conact Information</legend>
-                  <div class="inputs contact">
+              <fieldset class="contact-inform">
+                  <legend>Contact Information</legend>
+                  <div class="inputs">
                       <label>Site <input type="text" name="site"></label>
-                      <label>Email <input type="email" name="email"></label>
+                      <label>E-mail <input type="email" name="email"></label>
                       <label>Phone <input type="tel" name="phone"></label> 
                   </div>      
               </fieldset>              
