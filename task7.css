@@ -10,6 +10,7 @@
 
 @media screen and (max-width: 500px) {
     .adaptive-text {
+        font-size: 1.2em;
         padding: 10px 5px;
         margin: 10px 5px;
     }

@@ -81,7 +81,8 @@
 }
 .animation {
     width: 80px;
-    height: 80px;    
+    height: 80px; 
+    margin: 40px;
     animation: fancy-animation;
     animation-iteration-count: infinite;
     animation-duration: 15s;    
