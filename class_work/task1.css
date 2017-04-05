@@ -1,0 +1,27 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.panel {
+    height: 10px;
+    background: #adadae;
+    border: 1px solid #e0e1e0;    
+}
+.menu {
+    margin-left: 16px;     
+}
+.menu li {
+    width: 126px;   
+    list-style: none;
+    text-align: center;    
+}
+.top-menu input {
+    display: none;
+}
+.top-menu input:checked + ul.sub-menu{
+    display: block;
+}
+.sub-menu {
+    display: none;
+}

@@ -1,0 +1,35 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.arrow-box {
+    position: relative;
+    margin: 42px 8px;
+    border: 4px solid #c4dbf2;
+    width: 380px;
+    padding: 10px 12px;
+    background: #8db1d1;
+    color: #fff;
+    white-space: ;
+}
+.arrow-box:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -62px;
+    left: 153px;
+    border: 32px solid transparent;
+    border-bottom-color:  #8db1d1;    
+}
+.arrow-box:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -68px;
+    left: 152px;
+    border: 33px solid transparent;
+    border-bottom-color:  #c4dbf2;    
+}
