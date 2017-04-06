@@ -1,0 +1,35 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.nav-panel{
+    padding: 10px;
+    width: 100vw;
+    height: 30px;
+    background-image: url("bg.png");
+}
+.mail {
+    
+}
+.page {
+    
+}
+.user {
+    
+}
+.flag {
+    
+}
+.checked {
+    
+}
+.refresh {
+    
+}
+.widget {
+    
+}
+.exit {
+    
+}
