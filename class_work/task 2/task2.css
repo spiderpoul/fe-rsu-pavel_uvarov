@@ -4,32 +4,50 @@
     box-sizing: border-box;
 }
 .nav-panel{
-    padding: 10px;
+    margin: 7px;
     width: 100vw;
     height: 30px;
     background-image: url("bg.png");
+    border: 1px solid 
+}
+.nav-panel div{
+    height: 100%;
+    padding-left: px;
+    float: left;
+    background-position: left;
+    background-size: 15px;
+    width: 50px;
+}
+.red {
+    background-color: red;
 }
 .mail {
-    
+    background: url(icons/mail.png) no-repeat; 
 }
 .page {
-    
+    background: url(icons/page.png) no-repeat;
 }
 .user {
-    
+    background: url(icons/user.png) no-repeat;
 }
 .flag {
-    
+    background: url(icons/flag.png) no-repeat, red;
 }
 .checked {
-    
+    background: url(icons/checked.png) no-repeat;
 }
+div.refresh,
+div.widget,
+div.exit {
+    float: right;    
+}
+
 .refresh {
-    
+    background: url(icons/refresh.png) no-repeat;
 }
 .widget {
-    
+    background: url(icons/widget.png) no-repeat;
 }
 .exit {
-    
+    background: url(icons/exit.png) no-repeat;
 }
