@@ -1,0 +1,103 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+/* MAIN STYLES */
+body {
+    max-width: 685px;
+}
+h2 {
+    padding: 10px;
+}
+.blocks {
+    margin: 11px 0px;
+}
+.blocks > div {    
+    width: 199px;
+    height: 265px; 
+    margin: 0 0 20px 20px;
+}
+.thumbnail{
+    width: 100%;
+    height: 223px;
+    border: 1px solid #cecece;
+    background-size: 90% 90%;    
+    background-repeat: no-repeat;
+    background-position: center
+}
+.thumbnail p {
+    display: none;
+    color: #fff;
+    margin: 10px;
+    width: 90%;
+    height: 91%;
+    text-align: center;
+    padding-top: 35%
+}
+.thumbnail .theme-by {
+    color: #97a29c;
+}
+.thumbnail .theme-author {
+    color: #71c33a;
+}
+.thumbnail:hover p{
+    display: block;
+    background-color: rgba(0,0,0,0.5);    
+}
+.th1{
+    background-image: url(th1.png);
+}
+.th2{
+    background-image: url(th2.png);
+}
+.thumbnail-buttons button{
+    background-image: linear-gradient(#fefefe, #f1f2eb);
+    border: 1px solid #d3d5cb;
+    padding: 6px 18px;
+    color: #8b8b8b;
+    margin-top: 12px;
+}
+.thumbnail-buttons button:hover {
+    background: #8dc749;
+    color: #fff;
+}
+
+/* BLOCKS USING FLOAT */
+.blocks.float {
+    float: left;
+}
+.blocks.float > div {
+    float: left;    
+}
+.blocks.float .thumbnail-buttons button:first-child {
+    float: left;
+}
+.blocks.float .thumbnail-buttons button:last-child {
+    float: right;
+}
+/* BLOCKS USING INLINE-BLOCK */
+.blocks.inline > div {
+    display: inline-block;
+}
+.blocks.inline .thumbnail-buttons button:last-child {
+    margin-left: 15px;
+}
+
+/* BLOCKS USING FLEX-BOX */
+.blocks.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.blocks.flex > div {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+}
+.blocks.flex .thumbnail-buttons{
+    display: flex;
+    justify-content: space-around;
+}
