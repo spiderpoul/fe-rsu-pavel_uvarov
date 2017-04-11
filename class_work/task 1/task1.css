@@ -25,7 +25,8 @@
 }
 .menu .top-menu,
 .menu li {
-    width: 126px;
+    width: 136px;
+    padding: 2px 0;
     color: #fff;
     font-size: 1.1em;
     background-color: #35baf6;
