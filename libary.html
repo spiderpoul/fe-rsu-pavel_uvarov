@@ -6,7 +6,7 @@
     <title>Libary</title> 
     <link rel="stylesheet" href="libary.css">  
   </head>
-  <body>
+  <body class="container">
     <header class="header">
         <nav class="header__nav">
             <li class="header__item"><a href="#" class="header__link">help venter</a></li>
@@ -18,40 +18,102 @@
     <main class="main">
         <aside class="left-side">
             <button class="add-book">add a book</button>        
-            <nav class="left-side__nav-menu">
-                <li class="left-side__item-menu">now reading</li>
-                <li class="left-side__item-menu">browse</li>
-                <li class="left-side__item-menu">buy books</li>
-                <li class="left-side__item-menu">favourite books</li>
-                <li class="left-side__item-menu">wishlist</li>
-                <li class="left-side__item-menu">history</li>
-            </nav>
-            <nav class="left-side__category">
-                <li class="left-side__item-category">must read titles</li>
-                <li class="left-side__item-category">best of list</li>
-                <li class="left-side__item-category">classic novels</li>
-                <li class="left-side__item-category">non fiction</li>
-            </nav>
-            <div class="left-side__history-list">
-                <li class="left-side__item-history">
-                    <p class="left-side__paragraph">You added <a href="#" class="left-side__link">fight club</a> by <a href="#" class="left-side__link">chuck palahniuk</a> to your <a href="#" class="left-side__link">must read titles</a></p>
-                    <p class="left-side__paragraph">24 minutes ago</p>
-                </li>
-                <li class="left-side__item-history">
-                    <p class="left-side__paragraph">You added <a href="#" class="left-side__link">the trial</a> by <a href="#" class="left-side__link">franz kafka</a> to your <a href="#" class="left-side__link">must read titles</a></p>
-                    <p class="left-side__paragraph">48 minutes ago</p>
-                </li>
+            <ul class="nav-menu">
+                <li class="nav__item">now reading</li>
+                <li class="nav__item">browse</li>
+                <li class="nav__item">buy books</li>
+                <li class="nav__item">favourite books</li>
+                <li class="nav__item">wishlist</li>
+                <li class="nav__item">history</li>
+            </ul>
+            <ul class="category">
+                <li class="category__item">must read titles</li>
+                <li class="category__item">best of list</li>
+                <li class="category__item">classic novels</li>
+                <li class="category__item">non fiction</li>
+            </ul>
+            <div class="history">
+                <div class="history__item">
+                    <p class="history__paragraph">You added <a href="#" class="history__link">fight club</a> by <a href="#" class="history__link">chuck palahniuk</a> to your <a href="#" class="history__link">must read titles</a></p>
+                    <p class="history__paragraph">24 minutes ago</p>
+                </div>
+                <div class="history__item">
+                    <p class="history__paragraph">You added <a href="#" class="history__link">the trial</a> by <a href="#" class="history__link">franz kafka</a> to your <a href="#" class="history__link">must read titles</a></p>
+                    <p class="history__paragraph">48 minutes ago</p>
+                </div>
             </div>
         </aside>
-        <section class="section">
-            <div class="section__search-panel">
-                
+        <section class="content">
+            <div class="search-panel">
+                 <h2 class="content-header">browse available books</h2>
+                 <ul class="filter">
+                     <li class="filter__item">all books</li>
+                     <li class="filter__item">most recent</li>
+                     <li class="filter__item">most popular</li>
+                     <li class="filter__item">free books</li>
+                 </ul>
+                 <div class="search">
+                     <input type="text" class="search__input-search">
+                 </div>
+            </div>
+            <div class="book">
+                <div class="book__item">
+                    <p class="book__name">Jewels of Nizam</p>
+                    <p class="book__author">geeta devi</p>
+                    <p class="book__rating"></p>
+                </div>                                    
+                <div class="book__item">
+                    <p class="book__name">Cakes & Bakes</p>
+                    <p class="book__author">sanjeev kapoor</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Jamie's Kitchen</p>
+                    <p class="book__author">jamie oliver</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">inexpensive family meals</p>
+                    <p class="book__author">simon holst</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Paleo Slow Coking</p>
+                    <p class="book__author">chrissy gower</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Cook like an Italian</p>
+                    <p class="book__author">tobie puttock</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Suneeta Vaswani</p>
+                    <p class="book__author">geeta devi</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Jamie Does</p>
+                    <p class="book__author">jamie oliver</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Jamie's Italy</p>
+                    <p class="book__author">jamie oliver</p>
+                    <p class="book__rating"></p>
+                </div>
+                <div class="book__item">
+                    <p class="book__name">Vegetables Cookbook</p>
+                    <p class="book__author">matthew bliggs</p>
+                    <p class="book__rating"></p>
+                </div>
             </div>
         </section>
     </main>
     
     <footer class="footer">
-        
+        <div class="question"></div>
+        <div class="settings"></div>        
     </footer>
     
   </body>

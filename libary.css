@@ -3,4 +3,57 @@
     margin: 0px;
     box-sizing: border-box;
 }
+html,
+body {
+    height: 100%;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+/*------------------------------------*\
+  #HEADER
+\*------------------------------------*/
 
+.header {
+    background-color: #2f364a;
+}
+
+/*------------------------------------*\
+  #MAIN
+\*------------------------------------*/
+
+.main {
+    display: flex;
+    overflow-y: hidden;
+    flex-basis: auto;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    background-color: #1f2637;
+}
+.search-panel {
+    background-color: #eef1f7;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    width: 100%;
+}
+.book__author {
+    
+}
+
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
+
+.footer {
+    display: flex;
+    flex-basis: 10%;
+    background-color: #181e2c;
+}
