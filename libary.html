@@ -4,27 +4,31 @@
     <meta name="description" content="Libary. CSS Layout. EPAM Front-end external course">
     <meta charset="utf-8">
     <title>Libary</title> 
-    <link rel="stylesheet" href="libary.css">  
+    <link rel="stylesheet" href="libary.css">
+    <link rel="stylesheet" href="font-awesome.min.css">  
   </head>
   <body class="container">
     <header class="header">
         <nav class="header__nav">
-            <li class="header__item"><a href="#" class="header__link">help venter</a></li>
-            <li class="header__item"><a href="#" class="header__link">our support</a></li>
-            <li class="header__profile-link"><a href="#" class="header__link">john doe</a></li>
+            <div class="header__item"><a href="#" class="header__link">help venter</a></div>    
+            <div class="header__dot"></div>
+            <div class="header__item"><a href="#" class="header__link">our support</a></div>
+            <div class="header__profile header__profile_online"><a href="#" class="header__profile-link">john doe</a></div>
         </nav>
     </header>      
     
     <main class="main">
         <aside class="left-side">
-            <button class="add-book">add a book</button>        
+            <div class="add-book">
+                <button class="add-book__button"><i class="fa fa-plus add-book__plus" aria-hidden="true"></i> <span class="add-book__text">add a book</span></button>  
+            </div>
             <ul class="nav-menu">
-                <li class="nav__item">now reading</li>
-                <li class="nav__item">browse</li>
-                <li class="nav__item">buy books</li>
-                <li class="nav__item">favourite books</li>
-                <li class="nav__item">wishlist</li>
-                <li class="nav__item">history</li>
+                <li class="nav__item"><i class="fa fa-book" aria-hidden="true"></i>now reading</li>
+                <li class="nav__item"><i class="fa fa-globe" aria-hidden="true"></i>browse</li>
+                <li class="nav__item"><i class="fa fa-shopping-cart" aria-hidden="true"></i>buy books</li>
+                <li class="nav__item"><i class="fa fa-star" aria-hidden="true"></i>favourite books</li>
+                <li class="nav__item"><i class="fa fa-th-list" aria-hidden="true"></i>wishlist</li>
+                <li class="nav__item"><i class="fa fa-clock-o" aria-hidden="true"></i>history</li>
             </ul>
             <ul class="category">
                 <li class="category__item">must read titles</li>
