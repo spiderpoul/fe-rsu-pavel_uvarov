@@ -17,8 +17,35 @@ body {
 
 .header {
     background-color: #2f364a;
+    flex-basis: 10%;
 }
-
+.header__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+.header__item {
+    padding: 0 12px;
+}
+.header__dot {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: #1f2635;    
+}
+.header__link {
+    color: #78829d;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+.header__profile {
+    
+}
+header__profile_online {
+    background-color: #15a4fa;
+}
 /*------------------------------------*\
   #MAIN
 \*------------------------------------*/
@@ -41,9 +68,11 @@ body {
 .content {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+.book {
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 100%;
 }
 .book__author {
     
