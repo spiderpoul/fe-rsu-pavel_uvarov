@@ -1,3 +1,7 @@
+@font-face {
+    font-family: FontAwesome;
+    src: url(FontAwesome.otf);
+}
 * {
     padding: 0px;
     margin: 0px;
@@ -6,6 +10,7 @@
 html,
 body {
     height: 100%;
+    overflow: hidden;
 }
 .container {
     display: flex;
@@ -17,7 +22,7 @@ body {
 
 .header {
     background-color: #2f364a;
-    flex-basis: 10%;
+    height: 45px;
 }
 .header__nav {
     display: flex;
@@ -40,12 +45,28 @@ body {
     text-decoration: none;
     text-transform: capitalize;
 }
-.header__profile {
-    
+.header__nav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
 }
-header__profile_online {
+.header__profile {
+    display: flex;
+    width: 150px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.header__profile-link {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #fff;
+}
+.header__profile_online {
     background-color: #15a4fa;
 }
+
 /*------------------------------------*\
   #MAIN
 \*------------------------------------*/
@@ -56,15 +77,74 @@ header__profile_online {
     flex-basis: 100%;
 }
 
+/*  LEFT SIDE */
 .left-side {
     display: flex;
     flex-direction: column;
-    flex-basis: 20%;
+    flex-shrink: 0;
+    width: 200px;
+    background-color: #19202e;    
+}
+.add-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 110px;
+    background-color: #1f2637;
+    border-bottom: 1px solid #141824;
+    border-top: 1px solid #141824;
+}
+.add-book__button {
+    align-items: center;
+    width: 160px;
+    height: 40px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: #f2795a;
+    color: #fff;
+    box-shadow: none;
+    border: none;
+}
+.add-book__text {
+    padding-left: 15px;
+}
+.nav-menu {
+    padding-top: 10px;
+    color: #78829d;
+    border-bottom: 1px solid #141824;
+    background-color: #1f2637;
+    margin-bottom: 5px;
+}
+.nav__item {
+    list-style: none;
+    height: 36px;
+    padding: 10px 0 0 20px;
+    text-transform: capitalize;
+}
+.nav__text {
+    padding-left: 10px;
+}
+.category {    
+    border-top: 2px solid #282f41;
+    border-bottom: 1px solid #141824;
+    color: #78829d;
+    background-color: #1f2637;
+    margin-bottom: 5px;
+}
+.category__item {
+    
+}
+.history {
+    border-top: 2px solid #282f41;
     background-color: #1f2637;
 }
+/*  SEARCH PANEL */
 .search-panel {
     background-color: #eef1f7;
 }
+
+/*  CONTENT */
 .content {
     display: flex;
     flex-direction: column;
