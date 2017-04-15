@@ -2,6 +2,14 @@
     font-family: FontAwesome;
     src: url(FontAwesome.otf);
 }
+@font-face {
+    font-family: Proxima Nova Regular;
+    src: url('Proxima Nova Regular.otf');
+}
+@font-face {
+    font-family: Proxima Nova Light;
+    src: url('Proxima Nova Light.otf');
+}
 * {
     padding: 0px;
     margin: 0px;
@@ -21,8 +29,13 @@ body {
 \*------------------------------------*/
 
 .header {
+    display: flex;
+    flex-direction: column;
     background-color: #2f364a;
+    min-height: 20px;
     height: 45px;
+    font-family: Proxima Nova Regular, Arial, sans-serif;
+    font-size: 0.75em;
 }
 .header__nav {
     display: flex;
@@ -83,13 +96,14 @@ body {
     flex-direction: column;
     flex-shrink: 0;
     width: 200px;
-    background-color: #19202e;    
+    /*background-color: #19202e;    */
+    background-color: #1f2637;
 }
-.add-book {
+.add-book {    
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    min-height: 50px;
     height: 110px;
     background-color: #1f2637;
     border-bottom: 1px solid #141824;
@@ -105,15 +119,25 @@ body {
     color: #fff;
     box-shadow: none;
     border: none;
+    font-family: Proxima Nova Regular, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
 }
 .add-book__text {
     padding-left: 15px;
 }
-.nav-menu {
-    padding-top: 10px;
+.nav-menu {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Proxima Nova Regular, Arial, sans-serif;
+    font-size: 0.75em;
     color: #78829d;
+    min-height: 180px;
+    height: 245px;
     border-bottom: 1px solid #141824;
     background-color: #1f2637;
+    box-shadow: 0 7px 2px -2px #19202e;
     margin-bottom: 5px;
 }
 .nav__item {
@@ -122,22 +146,86 @@ body {
     padding: 10px 0 0 20px;
     text-transform: capitalize;
 }
+.nav__item:hover {
+    color: #fff;
+    background-color: #15a4fa;
+}
 .nav__text {
     padding-left: 10px;
 }
 .category {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 120px;
+    height: 180px;    
+    font-family: Proxima Nova Regular, Arial, sans-serif;
+    font-size: 0.75em;
+    margin-bottom: 5px;
     border-top: 2px solid #282f41;
     border-bottom: 1px solid #141824;
     color: #78829d;
     background-color: #1f2637;
-    margin-bottom: 5px;
+    box-shadow: 0 7px 2px -2px #19202e;
 }
 .category__item {
-    
+    list-style: none;
+    height: 35px;
+    padding: 10px 0 0 25px;
+    text-transform: capitalize;
+}
+.category__item:hover {
+    cursor: pointer;
+}
+.category__text:before {
+    content: '';
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;    
+    background-color: #e64c66;
+    margin-right: 13px;
+}
+.category__item:nth-child(2) .category__text:before{
+    background-color: #ffab00;
+}
+.category__item:nth-child(3) .category__text:before{
+    background-color: #00bfdd;
+}
+.category__item:nth-child(4) .category__text:before{
+    background-color: #7874cf;
 }
 .history {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-family: Proxima Nova Regular, Arial, sans-serif;
+    font-size: 0.65em;
+    color: #78829d;
     border-top: 2px solid #282f41;
     background-color: #1f2637;
+}
+.history__item {
+    min-height: 70px;
+    padding: 35px 20px 0 40px;
+}
+.history__item:before {    
+    position: absolute;
+    left: 20px;
+    content: '\f017';
+    font-size: 1.2em;        
+    font-family: FontAwesome;
+}
+.history__paragraph {
+    padding-bottom: 10px;
+}
+.history__link {
+    text-decoration: none;
+    color: #97b3ce;
+    text-transform: capitalize;
+}
+.history__time {
+    font-family: Proxima Nova Light, Arial, sans-serif;    
 }
 /*  SEARCH PANEL */
 .search-panel {
@@ -153,6 +241,7 @@ body {
 .book {
     overflow-y: scroll;
     overflow-x: hidden;
+    height: 100%;
 }
 .book__author {
     
@@ -164,6 +253,7 @@ body {
 
 .footer {
     display: flex;
-    flex-basis: 10%;
+    min-height: 20px;
+    height: 40px;
     background-color: #181e2c;
 }
