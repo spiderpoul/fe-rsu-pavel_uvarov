@@ -1,0 +1,39 @@
+@font-face {
+    font-family: FontAwesome;
+    src: url(../font/FontAwesome.otf);
+}
+@font-face {
+    font-family: Proxima Nova Regular;
+    src: url('../font/Proxima Nova Regular.otf');
+}
+@font-face {
+    font-family: Proxima Nova Light;
+    src: url('../font/Proxima Nova Light.otf');
+}
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+/*------------------------------------*\
+  #SCROLLBAR
+\*------------------------------------*/
+::-webkit-scrollbar {
+    width: 6px; 
+}
+  
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #ccd5e4; 
+}

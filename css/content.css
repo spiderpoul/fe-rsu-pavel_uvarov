@@ -1,0 +1,108 @@
+
+/*  CONTENT */
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+}
+.search-panel {
+    height: 120px;
+    background-color: #eef1f7; 
+    min-width: 600px;
+}
+.content-header {
+    padding: 25px 0 0 23px;
+    font-family: Proxima Nova, Arial, sans-serif; 
+    text-transform: capitalize;
+    color: #444c63;
+    font-weight: normal;
+    font-size: 1.355em;
+}
+.filter {
+    display: flex;
+    height: 50px;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 20px 0 25px;
+}
+.filter__tags {
+    display: flex;
+    flex-shrink: 0;
+    font-family: Proxima Nova, Arial, sans-serif; 
+    text-transform: capitalize;
+}
+.filter__item {
+    color: #8c97b2; 
+    font-size: 0.75em;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.filter__item_selected {
+    background-color: #97b3ce;
+    color: #fff;
+}
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 390px;
+    min-width: 100px;
+    height: 30px;
+    padding: 0 15px;
+    background-color: #fff;
+    border: 2px solid #c7cddb;
+    border-radius: 15px;
+}
+.search__label {
+    font-family: FontAwesome;
+    font-size: 0.9em;
+    color: #8c97b2;
+}
+.search__input {
+    width: 100%;
+    outline: none;
+    border: none;
+    box-shadow: none;    
+}
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;    
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: 8px;
+}
+.books__item {    
+    width: 200px;
+    height: 350px;
+    margin: 30px 20px;
+}
+.books__image {
+    width: 200px;
+    height: 275px;    
+}
+.books__name {
+    height: 20px;
+    margin-top: 15px;
+    font-family: Proxima Nova, Arial, sans-serif; 
+    font-size: 1em;
+    color: #444c63;    
+}
+.books__author {
+    height: 20px;
+    font-family: Proxima Nova, Arial, sans-serif; 
+    text-transform: capitalize;
+    font-size: 1em;
+    color: #6f7d95;
+}
+.books__author:before {
+    content: 'by ';
+    text-transform: lowercase;
+}
+.books__rating{
+    padding-top: 5px;
+    color: #ffab00;
+}

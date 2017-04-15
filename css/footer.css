@@ -1,0 +1,30 @@
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 20px;
+    height: 45px;
+    background-color: #181e2c;
+    z-index: 1;
+}
+.question {  
+    width: 55px;
+    height: 45px;
+    font-size: .8em;
+    text-align: center;
+    padding-top: 15px;
+    color: #fff;
+    background-color: #1f2637;
+}
+.settings {
+    width: 55px;
+    height: 45px;
+    font-size: .8em;
+    padding-top: 15px;
+    text-align: center;
+    color: #fff;
+    background-color: #15a4fa;
+}
