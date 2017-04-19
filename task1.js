@@ -1,22 +1,22 @@
 
-var a = 5;
-var b = 7;
+const a = 5;
+const b = 7;
 console.log(a + " " + b);
 console.log("------------");
 
 //Find triangle area
-function triangle_area(a, b, c) {
+const functionTriangleArea = function triangleArea(a, b, c) {
     var p = (a + b + c) / 2;
     return Math.sqrt(p * (p - a) * (p - b) * (p - c));
 }
 var c = 10;
-console.log("Triangle area with " + "a=" + a + ", " + "b=" + b + ", " + "c=" + c + ", area=" + triangle_area(a, b, c));
+console.log("Triangle area with " + "a=" + a + ", " + "b=" + b + ", " + "c=" + c + ", area=" + functionTriangleArea(a, b, c));
 console.log("------------");
 
 //Reverse array
 var d = [1, 2, 3, 4, 5, 6];
 
-function reverse_arr_for(arr) {
+const functionReverseArrFor = function ReverseArrFor(arr) {
     var i;
     var temp;
     for (i = 0; i < arr.length / 2; i++) {
@@ -27,7 +27,7 @@ function reverse_arr_for(arr) {
     return arr;
 }
 
-function reverse_arr_while(arr) {
+const functionReverseArrWhile = function ReverseArrWhile(arr) {
     var i = 0;
     var temp;
     while (i < arr.length / 2) {
@@ -39,7 +39,7 @@ function reverse_arr_while(arr) {
     return arr;
 }
 
-function reverse_arr_dowhile(arr) {
+const functionReverseArrDowhile = function ReverseArrDowhile(arr) {
     var i = 0;
     var temp;
     do {
@@ -93,8 +93,8 @@ console.log("'a' is", check_number("a"));
 console.log("------------");
 
 // Asking the user his name and alert it back
-var user_name = prompt("Hello! What is your name?");
-console.log("Nice to meet you, " + user_name);
+/*var user_name = prompt("Hello! What is your name?");
+console.log("Nice to meet you, " + user_name);*/
 console.log("------------");
 
 // Calculation fatorial
@@ -109,3 +109,10 @@ function factorial(n) {
 
 var f = 5;
 console.log("Factorial of " + f + " = " + factorial(f));
+/* */
+const foo = [1, 2];
+const bar = foo;
+
+bar[1] = 9;
+
+console.log(foo[1], bar[1]);
