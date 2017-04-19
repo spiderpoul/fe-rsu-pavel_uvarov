@@ -1,20 +1,24 @@
 
+// Declare two variables and show them
+сonsole.log("Declare two variables and show them");
 const a = 5;
 const b = 7;
 console.log(a + " " + b);
-console.log("------------");
 
-//Find triangle area
+
+// Write a function that can find triangle's area
+console.log("Write a function that can find triangle's area");
 const functionTriangleArea = function triangleArea(a, b, c) {
     var p = (a + b + c) / 2;
     return Math.sqrt(p * (p - a) * (p - b) * (p - c));
 }
-var c = 10;
+const c = 10;
 console.log("Triangle area with " + "a=" + a + ", " + "b=" + b + ", " + "c=" + c + ", area=" + functionTriangleArea(a, b, c));
-console.log("------------");
 
-//Reverse array
-var d = [1, 2, 3, 4, 5, 6];
+
+// Write a function that reverse the given array using three kind of loops
+console.log("Write a function that reverse the given array using three kind of loops");
+const d = [1, 2, 3, 4, 5, 6];
 
 const functionReverseArrFor = function ReverseArrFor(arr) {
     var i;
@@ -57,7 +61,7 @@ console.log("Inintial array " + d);
 console.log("Reversed array with while loop " + reverse_arr_while(d));
 console.log("Inintial array " + d);
 console.log("Reversed array with dowhile loop " + reverse_arr_dowhile(d));
-console.log("------------");
+
 
 //Differnce between ++i i++
 console.log("Differnce between ++i i++ is that first one first of all increase value and then return increased value i, and second one firstly return value i and only then increase");
@@ -70,7 +74,7 @@ console.log("j = ++i" + " | j = " + j + " i = " + i);
 console.log("------------");
 
 //Function that checks if the given arguments is positive number or negative number or is 0
-function check_number(arg) {
+const functionCheckNumber = function checkNumber(arg) {
     if (typeof(arg) === "number") {
         if (arg === 0) {
             return "0";
@@ -86,14 +90,14 @@ function check_number(arg) {
     }
 }
 
-console.log("0 is", check_number(0));
-console.log("1 is", check_number(1));
-console.log("-1 is", check_number(-1));
-console.log("'a' is", check_number("a"));
+console.log("0 is", functionCheckNumber(0));
+console.log("1 is", functionCheckNumber(1));
+console.log("-1 is", functionCheckNumber(-1));
+console.log("'a' is", functionCheckNumber("a"));
 console.log("------------");
 
 // Asking the user his name and alert it back
-/*var user_name = prompt("Hello! What is your name?");
+/*const user_name = prompt("Hello! What is your name?");
 console.log("Nice to meet you, " + user_name);*/
 console.log("------------");
 
@@ -109,10 +113,3 @@ function factorial(n) {
 
 var f = 5;
 console.log("Factorial of " + f + " = " + factorial(f));
-/* */
-const foo = [1, 2];
-const bar = foo;
-
-bar[1] = 9;
-
-console.log(foo[1], bar[1]);
