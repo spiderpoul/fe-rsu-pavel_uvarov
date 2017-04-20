@@ -8,9 +8,9 @@ console.log(variableOne + " " + variableTwo);
 
 // Write a function that can find triangle's area
 console.log("2. Write a function that can find triangle's area");
-const functionTriangleArea = function findTriangleArea (a, b, c) {
+const functionTriangleArea = function findTriangleArea(a, b, c) {
     const halfPerimetr = (a + b + c) / 2;    
-    return Math.sqrt(halfPerimetr * (halfPerimetr - a) * (halfPerimetr - b) * (halfPerimetr - c));;
+    return Math.sqrt(halfPerimetr * (halfPerimetr - a) * (halfPerimetr - b) * (halfPerimetr - c));
 }
 const triangeleSideA = 5;
 const triangeleSideB = 7;
@@ -31,7 +31,7 @@ const functionReverseArrFor = function ReverseArrFor(arr) {
         arr[arr.length - i - 1] = temp;
     }
     return arr;
-}
+};
 
 const functionReverseArrWhile = function ReverseArrWhile(arr) {
     var i = 0;
@@ -43,7 +43,7 @@ const functionReverseArrWhile = function ReverseArrWhile(arr) {
         i++;
     }
     return arr;
-}
+};
 
 const functionReverseArrDowhile = function ReverseArrDowhile(arr) {
     var i = 0;
@@ -55,7 +55,7 @@ const functionReverseArrDowhile = function ReverseArrDowhile(arr) {
         i++;
     } while (i < arr.length / 2);
     return arr;
-}
+};
 
 console.log("Inintial array [" + someArr + "]");
 console.log("Reversed array with \"for\" loop [" + functionReverseArrFor(someArr) + "]");
@@ -90,7 +90,7 @@ const functionCheckNumber = function checkNumber(arg) {
     } else {
         return "NaN";
     }
-}
+};
 
 console.log("0 is", functionCheckNumber(0));
 console.log("1 is", functionCheckNumber(1));
@@ -100,7 +100,7 @@ console.log("'a' is", functionCheckNumber("a"));
 
 // Asking the user his name and alert it back
 console.log("5. Asking the user his name and alert it back");
-let user_name = prompt("Hello! What is your name?");
+var user_name = prompt("Hello! What is your name?");
 console.log("Nice to meet you, " + user_name);
 
 // Calculation fatorial
@@ -112,6 +112,6 @@ const functionFactorial = function factorial(n) {
         f *= i;
     }
     return f;
-}
+};
 const calcFactorial = 5;
 console.log("Factorial of " + calcFactorial + " is" + functionFactorial(calcFactorial));
