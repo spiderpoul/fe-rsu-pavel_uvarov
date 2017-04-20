@@ -1,6 +1,6 @@
 
 // Declare two variables and show them
-сonsole.log("Declare two variables and show them");
+console.log("Declare two variables and show them");
 const a = 5;
 const b = 7;
 console.log(a + " " + b);
@@ -56,11 +56,11 @@ const functionReverseArrDowhile = function ReverseArrDowhile(arr) {
 }
 
 console.log("Inintial array " + d);
-console.log("Reversed array with for loop " + reverse_arr_for(d));
+console.log("Reversed array with for loop " + functionReverseArrFor(d));
 console.log("Inintial array " + d);
-console.log("Reversed array with while loop " + reverse_arr_while(d));
+console.log("Reversed array with while loop " + functionReverseArrWhile(d));
 console.log("Inintial array " + d);
-console.log("Reversed array with dowhile loop " + reverse_arr_dowhile(d));
+console.log("Reversed array with dowhile loop " + functionReverseArrDowhile(d));
 
 
 //Differnce between ++i i++
@@ -113,3 +113,11 @@ function factorial(n) {
 
 var f = 5;
 console.log("Factorial of " + f + " = " + factorial(f));
+/* */
+var obj = {"key1":"value1"};
+function myFunction(x) {
+    console.log(x); // undefined
+}
+myFunction(...obj);
+var args = [...obj];
+console.log(args, args.length)
