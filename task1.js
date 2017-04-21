@@ -3,48 +3,48 @@
  * Sample Output: Today is: Friday.
  */
 console.log("1.	Write a JavaScript program to display the current day and time");
-function getCurrentDate() {
-    const now = new Date();
+const funcGetCurrentDateFormat = function getCurrentDateFormat() {
+    const nowDate = new Date();
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const currentDate = {};
-    currentDate.year = now.getFullYear();
-    currentDate.month = months[now.getMonth()];
-    currentDate.date = now.getDate();
-    currentDate.day = days[now.getDay()];
-    currentDate.hours = now.getHours();
-    currentDate.minutes = now.getMinutes();
+    currentDate.year = nowDate.getFullYear();
+    currentDate.month = months[nowDate.getMonth()];
+    currentDate.date = nowDate.getDate();
+    currentDate.day = days[nowDate.getDay()];
+    currentDate.hours = nowDate.getHours();
+    currentDate.minutes = nowDate.getMinutes();
     if (currentDate.minutes < 10)
         currentDate.minutes = "0" + currentDate.minutes;
     return currentDate;
 };
-let currentDate = getCurrentDate();
+let currentDateFormat = funcGetCurrentDateFormat();
 console.log("Today is: " + currentDate.day + " " + currentDate.date + " " + currentDate.month + " " + currentDate.year);
 console.log("Time is: " + currentDate.hours + ":" + currentDate.minutes);
 
 
 // 2.	Write a JavaScript program to get the current date.
 console.log("2.	Write a JavaScript program to get the current date.");
-function getCurrentDate2() {
+const funcGetCurrentDate = function getCurrentDate() {
     const now = new Date();
     return now.toString();
 };
-let current_date2 = getCurrentDate2();
-console.log(current_date2);
+let currentDate = funcGetCurrentDate();
+console.log(currentDate);
 
 
 // 3.	Write a JavaScript program to find 1st January be a Sunday between 2014 and 2050. 
 console.log("3.	Write a JavaScript program to find 1st January be a Sunday between 2014 and 2050.");
-function firstJanuaryIsSunday(dateStart, dateEnd) {
+const funcFirstJanuaryIsSunday = function firstJanuaryIsSunday(dateStart, dateEnd) {
     let year;
-    for (year = dateStart; year < dateEnd; year++) {
+    for (year = dateStart; year < dateEnd; year += 1) {
         const date = new Date(year, 0, 1);
         if (date.getDay() === 0) {
             console.log("In " + year + " 1st January be a Sunday");
         }
     }
 };
-firstJanuaryIsSunday(2014, 2050);
+funcFirstJanuaryIsSunday(2014, 2050);
 
 
 // 4.	Write a JavaScript program to calculate days left until next New Year.
@@ -57,21 +57,21 @@ console.log("Days left until New Year: " + Math.round(daysLeftUntilNewYear));
 
 // 5.	Write a JavaScript function to check whether an `input` is an array or not. 
 console.log("5.	Write a JavaScript function to check whether an `input` is an array or not. ");
-function is_array(arr) {
+const funcIsArray = function isArray(arr) {
     return Array.isArray(arr);
 };
-console.log(is_array("qwe"));
-console.log(is_array([1, 2, 4, 0]));
+console.log(funcIsArray("qwe"));
+console.log(funcIsArray([1, 2, 4, 0]));
 
 
 
 // 6.	Write a JavaScript function to clone an array
 console.log("6.	Write a JavaScript function to clone an array");
-function cloneArray(arr) {
+const funcCloneArray = function cloneArray(arr) {
     return arr = arr.slice();
 };
-var arr = [1, 2, 3, 4, 5, 6];
-var newArr = cloneArray(arr);
+const arr = [1, 2, 3, 4, 5, 6];
+const newArr = funcCloneArray(arr);
 arr[0] = 10;
 console.log(arr);
 console.log(newArr);
@@ -79,15 +79,17 @@ console.log(newArr);
 
 // 7.	Write a JavaScript function to find the most frequent item of an array.
 console.log("7.	Write a JavaScript function to find the most frequent item of an array.");
-function mostFrequentInArray(arr) {
+const funcMostFrequentInArray = function mostFrequentInArray(arr) {
     if (Array.isArray(arr)) {
         const arrFrequency = [];
         let newArr = arr;        
         let maxFrequency = 1;
         let indexOfFrequent;
-        for (var i = 0; i < arr.length; i++) {
+        let i;
+        let j;
+        for (i = 0; i < arr.length; i += 1) {
             arrFrequency[i] = 1;
-            for (var j = i + 1; j < newArr.length; j++) {
+            for (j = i + 1; j < newArr.length; j += 1) {
                 if (arr[i] === newArr[j]) {
                     arrFrequency[i]++;
                 }
@@ -102,16 +104,16 @@ function mostFrequentInArray(arr) {
 
 };
 var arr = [1, 4, 4, 9, 9, 1, 3, 5, 7, 0, 7, 5, 7, 9, 9];
-console.log("Most frequent in array [" + arr + "] is: " + mostFrequentInArray(arr));
+console.log("Most frequent in array [" + arr + "] is: " + funcMostFrequentInArray(arr));
 
 
 // 8.	Write a JavaScript function that inverts the case of the letters of the given string and returns new string
 console.log("8.	Write a JavaScript function that inverts the case of the letters of the given string and returns new string");
 
-function invertCase(str) {
+const funcInvertCase = function invertCase(str) {
     let invertCaseStr = '';
     let i;
-    for (i = 0; i < str.length; i++) {
+    for (i = 0; i < str.length; i += 1) {
         let s = str.charAt(i);
         invertCaseStr += (s === s.toLowerCase() ? s.toUpperCase() : s.toLowerCase());
     }
@@ -119,12 +121,14 @@ function invertCase(str) {
 };
 
 const str = "JavaScript ForEver";
-console.log("Invert case: " + invertCase(str));
+console.log("Invert case: " + funcInvertCase(str));
 
 // 9.	Write a JavaScript program to remove duplicate strings from a string array (ignore case sensitivity)
 console.log("9.	Write a JavaScript program to remove duplicate strings from a string array (ignore case sensitivity)");
 
-function removeDuplicates()
+const funcRemoveDuplicates = function removeDuplicates(arrString) {
+    
+}
 
 // 10.	Write a JavaScript program to shuffle an array
 console.log("10.	Write a JavaScript program to shuffle an array");
