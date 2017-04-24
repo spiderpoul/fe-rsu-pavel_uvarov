@@ -221,16 +221,26 @@ const funcMergeArrays = function mergeArrays(arrOne, arrTwo) {
                     return arrOne.indexOf(item) < 0;
                   });
     const mergedArray = arrOne.concat(arrTwo);        
+    return mergedArray;
     console.log(mergedArray);
 }
 
 const arrForMergeOne = [1, 2, 3, 4];
 const arrForMergeTwo = [3, 4, 5, 6];
-funcMergeArrays(arrForMergeOne, arrForMergeTwo);
+console.log(funcMergeArrays(arrForMergeOne, arrForMergeTwo));
 
 // 14.	Write a JavaScript function to remove a specific element from an array
 console.log("14.	Write a JavaScript function to remove a specific element from an array");
-
+const funcRemoveElement = function removeElement(arr, itemRemove){
+    arr.forEach(function(item, i, arr) {
+        if (item === itemRemove) {
+            arr.splice(i,1)
+        }
+    });
+    return arr;
+}
+const arrRemoveElement = [1, 2, 3, 2, 4, 5, 6];
+console.log(funcRemoveElement(arrRemoveElement, 2));
 
 // 15.	Write a JavaScript function to get a random item from an array
 console.log("15.	Write a JavaScript function to get a random item from an array");
