@@ -229,6 +229,7 @@ const arrForMergeOne = [1, 2, 3, 4];
 const arrForMergeTwo = [3, 4, 5, 6];
 console.log(funcMergeArrays(arrForMergeOne, arrForMergeTwo));
 
+
 // 14.	Write a JavaScript function to remove a specific element from an array
 console.log("14.	Write a JavaScript function to remove a specific element from an array");
 const funcRemoveElement = function removeElement(arr, itemRemove){
@@ -242,58 +243,106 @@ const funcRemoveElement = function removeElement(arr, itemRemove){
 const arrRemoveElement = [1, 2, 3, 2, 4, 5, 6];
 console.log(funcRemoveElement(arrRemoveElement, 2));
 
+
 // 15.	Write a JavaScript function to get a random item from an array
 console.log("15.	Write a JavaScript function to get a random item from an array");
+
+const funcGetRandomItem = function getRandomItem() {
+    
+}
 
 
 // 16.	Write a JavaScript function to move an array element from one position to another
 console.log("16.	Write a JavaScript function to move an array element from one position to another");
 
+const func = function () {
+    
+}
+
 
 // 17.	Write a JavaScript function to get difference between two dates in days
 console.log("17.	Write a JavaScript function to get difference between two dates in days");
+
+const func = function () {
+    
+}
 
 
 // 18.	Write a JavaScript function to get the maximum date from an array of dates
 console.log("18.	Write a JavaScript function to get the maximum date from an array of dates");
 
+const func = function () {
+    
+}
+
 
 // 19.	Write a JavaScript function to split a string and convert it into an array of words
 console.log("19.	Write a JavaScript function to split a string and convert it into an array of words");
+
+const func = function () {
+    
+}
 
 
 // 20.	Write a JavaScript function to capitalize the first letter of a string
 console.log("20.	Write a JavaScript function to capitalize the first letter of a string");
 
+const func = function () {
+    
+}
+
 
 // 21.	Write a JavaScript function to convert a string into camel case
 console.log("21.	Write a JavaScript function to convert a string into camel case");
 
+const func = function () {
+    
+}
 
 
 // 22.	Write a JavaScript function to find the highest value in an array
 console.log("22.	Write a JavaScript function to find the highest value in an array");
 
+const func = function () {
+    
+}
 
 
 // 23.	Write a JavaScript function to find the lowest value in an array
 console.log("23.	Write a JavaScript function to find the lowest value in an array");
 
+const func = function () {
+    
+}
 
 
 // 24.	Write a JavaScript function to check to check whether a variable is numeric or not
 console.log("24.	Write a JavaScript function to check to check whether a variable is numeric or not");
 
+const func = function () {
+    
+}
 
 
 // 25.	Write a JavaScript function to calculate the sum of values in an array
 console.log("25.	Write a JavaScript function to calculate the sum of values in an array");
 
+const func = function () {
+    
+}
 
 
 // 26.	Write a JavaScript program to get the length of a JavaScript object
 console.log("26.	Write a JavaScript program to get the length of a JavaScript object");
 
+const func = function () {
+    
+}
+
 
 // 27.	Write a JavaScript program to list the properties of a JavaScript object
 console.log("27.	Write a JavaScript program to list the properties of a JavaScript object");
+
+const func = function () {
+    
+}
