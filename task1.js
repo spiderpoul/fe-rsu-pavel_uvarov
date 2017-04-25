@@ -277,78 +277,137 @@ console.log("Difference between two dates in days: " + funcGetDiffBetweenDates(d
 // 18.	Write a JavaScript function to get the maximum date from an array of dates
 console.log("18.	Write a JavaScript function to get the maximum date from an array of dates");
 
-const funcMaxDate = function maxDate(arrDates) {
-    
+function maxDate(arr) {
+    const arrDates = [];
+    let max = 0;
+    let positionOfMax;
+    arr.forEach(function(item, i, arr) {
+        arrDates.push(new Date(item));
+        if (max < arrDates[i]) {
+            max = arrDates[i];
+            positionOfMax = i;
+        }
+    });
+    return arr[positionOfMax];
 }
+console.log(maxDate(['2015/02/01', '2015/02/02', '2015/01/03']));
 
-/*
 // 19.	Write a JavaScript function to split a string and convert it into an array of words
 console.log("19.	Write a JavaScript function to split a string and convert it into an array of words");
 
-const func = function () {
-    
+function getArrayOfWords(str) {
+    str = str.split(" ");
+    return str;
 }
+
+console.log(getArrayOfWords("Lorem ipsum ammet"));
+
 
 
 // 20.	Write a JavaScript function to capitalize the first letter of a string
 console.log("20.	Write a JavaScript function to capitalize the first letter of a string");
 
-const func = function () {
-    
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
-
+console.log(capitalizeFirstLetter("lorem ipsum ammet"));
 
 // 21.	Write a JavaScript function to convert a string into camel case
 console.log("21.	Write a JavaScript function to convert a string into camel case");
 
-const func = function () {
-    
+function camelize(str) {
+    const arrOfWords = str.split();
+    arrOfWords.forEach(function (item, i, arr) {
+        item = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        //console.log(item);
+    });
+    return arrOfWords.join()
 }
 
+console.log(camelize("Java Script"));
+
+console.log(camelize("java-script"));
+
+console.log(camelize("Java Script Exercises"));
 
 // 22.	Write a JavaScript function to find the highest value in an array
 console.log("22.	Write a JavaScript function to find the highest value in an array");
 
-const func = function () {
-    
+const funcFindHighestValue = function findHighestValue(arr) {
+    let max = arr[0];
+    arr.forEach( function(item, i, arr) {
+        if (max < item)            
+            max = item
+    });
+    return max;
 }
-
+const arrFindHighestValue = [1, 2, 3, 4, 5, 6];
+console.log("Highest value in an array: " + funcFindHighestValue(arrFindHighestValue));
 
 // 23.	Write a JavaScript function to find the lowest value in an array
 console.log("23.	Write a JavaScript function to find the lowest value in an array");
 
-const func = function () {
-    
+const funcFindLowestValue = function findLowestValue(arr) {
+    let min = arr[0];
+    arr.forEach( function(item, i, arr) {
+        if (min > item)            
+            max = item
+    });
+    return min;
 }
+const arrFindLowestValue = [1, 2, 3, 4, 5, 6];
+console.log("Lowest value in an array: " + funcFindLowestValue(arrFindLowestValue));
 
 
 // 24.	Write a JavaScript function to check to check whether a variable is numeric or not
 console.log("24.	Write a JavaScript function to check to check whether a variable is numeric or not");
 
-const func = function () {
-    
+const funcIsNumeric = function isNumeric(variable) {
+    return !isNaN(parseFloat(variable)) && isFinite(variable)
 }
+const valueIsNumeric = "15a";
+console.log("isNumeric: " + valueIsNumeric + " - " + funcIsNumeric(valueIsNumeric));
 
 
 // 25.	Write a JavaScript function to calculate the sum of values in an array
 console.log("25.	Write a JavaScript function to calculate the sum of values in an array");
 
-const func = function () {
-    
+const funcCalcSumArr = function calcSumArr(arr) {
+    let sum = 0;
+    arr.forEach( function(item, i, arr){
+        sum += item;                
+    });
+    return sum;
 }
-
+console.log(funcCalcSumArr([1, 2, 3, 4, 5, 6]));
 
 // 26.	Write a JavaScript program to get the length of a JavaScript object
 console.log("26.	Write a JavaScript program to get the length of a JavaScript object");
 
-const func = function () {
-    
+function getLengthOfObject(obj) {
+    let objLength = 0;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) 
+            objLength += 1
+    }
+    return objLength;
 }
+const favoriteBook = {title: "Book",
+                      id: "12",
+                      author: "Author",
+                      date: "date"
+                     }
+console.log(getLengthOfObject(favoriteBook));
 
 
 // 27.	Write a JavaScript program to list the properties of a JavaScript object
 console.log("27.	Write a JavaScript program to list the properties of a JavaScript object");
 
-const func = function () {
-    
-}*/
+function getListPropertiesOfObject(obj) {
+    const listProperties = [];
+    for (key in obj) {
+        listProperties.push(key);
+    }
+    return listProperties;
+}
+console.log(getListPropertiesOfObject(favoriteBook));
