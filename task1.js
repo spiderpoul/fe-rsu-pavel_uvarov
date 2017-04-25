@@ -195,21 +195,15 @@ const funcCompareByTitle = function compareByTitle(a, b) {
     return 0;
 }
 
-const arrayOfObject = [{id: 1, title: "Book 3"},
-                       {id: 2, title: "Book 1"},
-                       {id: 3, title: "Book 2"},
-                       {id: 4, title: "Book 4"}];
+var library = [ { author: 'Bill Gates', title: 'The Road Ahead', libraryID: 1254},
+                { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264},
+                { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245}
+              ];
 
-console.log("Before sort:");
-arrayOfObject.forEach(function(item, i, arrayOfObject){
-    console.log(item.title + ", id: " + item.id);
-});
-
-arrayOfObject.sort(funcCompareByTitle);
-
+library.sort(funcCompareByTitle);
 console.log("After sort:");
-arrayOfObject.forEach(function (item, i, arrayOfObject){
-    console.log(item.title + ", id: " + item.id);
+library.forEach(function(item, i, arrayOfObject){
+    console.log(item.title + ", id: " + item.author);
 });
 
 
@@ -247,35 +241,47 @@ console.log(funcRemoveElement(arrRemoveElement, 2));
 // 15.	Write a JavaScript function to get a random item from an array
 console.log("15.	Write a JavaScript function to get a random item from an array");
 
-const funcGetRandomItem = function getRandomItem() {
-    
-}
+const funcGetRandomItem = function getRandomItem(arr) {    
+    const i = Math.round(Math.random()*(arr.length - 1));
+    return arr[i]
+};
+
+const arrRandomItem = [1, 2, 3, 4, 5, 6];
+console.log("Random item: " + funcGetRandomItem(arrRandomItem));
 
 
 // 16.	Write a JavaScript function to move an array element from one position to another
 console.log("16.	Write a JavaScript function to move an array element from one position to another");
 
-const func = function () {
-    
+const funcMoveItem = function moveItem(arr, currPosition, newPosition) {
+    const item = arr[currPosition];
+    arr.splice(currPosition, 1);
+    arr.splice(newPosition, 0, item);
+    return arr;
 }
 
+const arrMoveItem = [1, 2, 3, 4, 5, 6];
+console.log(funcMoveItem(arrMoveItem, 0, 5));
 
 // 17.	Write a JavaScript function to get difference between two dates in days
 console.log("17.	Write a JavaScript function to get difference between two dates in days");
 
-const func = function () {
-    
+const funcGetDiffBetweenDates = function getDiffBetweenDates(dateOne, dateTwo) {    
+    return Math.round(Math.abs((dateTwo - dateOne) / (1000 * 3600 * 24)));    
 }
 
+const dateOne = new Date(2018, 0 , 1);
+const dateTwo = new Date();
+console.log("Difference between two dates in days: " + funcGetDiffBetweenDates(dateOne , dateTwo));
 
 // 18.	Write a JavaScript function to get the maximum date from an array of dates
 console.log("18.	Write a JavaScript function to get the maximum date from an array of dates");
 
-const func = function () {
+const funcMaxDate = function maxDate(arrDates) {
     
 }
 
-
+/*
 // 19.	Write a JavaScript function to split a string and convert it into an array of words
 console.log("19.	Write a JavaScript function to split a string and convert it into an array of words");
 
@@ -345,4 +351,4 @@ console.log("27.	Write a JavaScript program to list the properties of a JavaScri
 
 const func = function () {
     
-}
+}*/
