@@ -3,6 +3,7 @@
  * Sample Output: Today is: Friday.
  */
 console.log("1.	Write a JavaScript program to display the current day and time");
+
 function getCurrentDateFormat() {
     const nowDate = new Date();
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -17,7 +18,8 @@ function getCurrentDateFormat() {
     if (currentDate.minutes < 10)
         currentDate.minutes = "0" + currentDate.minutes;
     return currentDate;
-};
+}
+
 let currentDateFormat = getCurrentDateFormat();
 console.log("Today is: " + currentDateFormat.day + " " + currentDateFormat.date + " " + currentDateFormat.month + " " + currentDateFormat.year);
 console.log("Time is: " + currentDateFormat.hours + ":" + currentDateFormat.minutes);
@@ -25,25 +27,27 @@ console.log("Time is: " + currentDateFormat.hours + ":" + currentDateFormat.minu
 
 // 2.	Write a JavaScript program to get the current date.
 console.log("2.	Write a JavaScript program to get the current date.");
+
 function getCurrentDate() {
     const now = new Date();
     return now.toString();
-};
+}
 let currentDate = getCurrentDate();
 console.log(currentDate);
 
 
 // 3.	Write a JavaScript program to find 1st January be a Sunday between 2014 and 2050. 
 console.log("3.	Write a JavaScript program to find 1st January be a Sunday between 2014 and 2050.");
+
 function firstJanuaryIsSunday(dateStart, dateEnd) {
     let year;
     for (year = dateStart; year < dateEnd; year += 1) {
         const date = new Date(year, 0, 1);
         if (date.getDay() === 0) {
             console.log("In " + year + " 1st January be a Sunday");
-        }        
-    }    
-};
+        }
+    }
+}
 firstJanuaryIsSunday(2014, 2050);
 
 
@@ -57,18 +61,22 @@ console.log("Days left until New Year: " + Math.round(daysLeftUntilNewYear));
 
 // 5.	Write a JavaScript function to check whether an `input` is an array or not. 
 console.log("5.	Write a JavaScript function to check whether an `input` is an array or not. ");
+
 function isArray(arr) {
     return Array.isArray(arr);
-};
+}
+
 console.log(isArray("qwe"));
 console.log(isArray([1, 2, 4, 0]));
 
 
 // 6.	Write a JavaScript function to clone an array
 console.log("6.	Write a JavaScript function to clone an array");
+
 function cloneArray(arr) {
-    return arr = arr.slice();
-};
+    return arr.slice();
+}
+
 const arr = [1, 2, 3, 4, 5, 6];
 const newArr = cloneArray(arr);
 arr[0] = 10;
@@ -78,9 +86,10 @@ console.log(newArr);
 
 // 7.	Write a JavaScript function to find the most frequent item of an array.
 console.log("7.	Write a JavaScript function to find the most frequent item of an array.");
+
 function mostFrequentInArray(arr) {
     if (Array.isArray(arr)) {
-        const arrFrequency = [];      
+        const arrFrequency = [];
         let maxFrequency = 1;
         let indexOfFrequent;
         let i;
@@ -94,13 +103,14 @@ function mostFrequentInArray(arr) {
             }
             if (arrFrequency[i] > maxFrequency) {
                 maxFrequency = arrFrequency[i];
-                indexOfFrequent = i
+                indexOfFrequent = i;
             }
         }
         return arr[indexOfFrequent];
-    } else return "Error. It's not an array"
+    } else
+        return "Error. It's not an array";
+}
 
-};
 const arrFreq = [1, 4, 4, 9, 9, 1, 3, 5, 7, 0, 7, 5, 7, 9, 9];
 console.log("Most frequent in array [" + arrFreq + "] is: " + mostFrequentInArray(arrFreq));
 
@@ -116,10 +126,10 @@ function invertCase(str) {
         invertCaseStr += (s === s.toLowerCase() ? s.toUpperCase() : s.toLowerCase());
     }
     return invertCaseStr;
-};
+}
 
 const str = "JavaScript ForEver";
-console.log("Invert case: " + funcInvertCase(str));
+console.log("Invert case: " + invertCase(str));
 
 
 // 9.	Write a JavaScript program to remove duplicate strings from a string array (ignore case sensitivity)
@@ -129,13 +139,13 @@ function removeDuplicates(arrString) {
     let i;
     for (i = 0; i < arrString.length; i += 1) {
         let j;
-        for (j = i + 1; j < arrString.length; j += 1) {                    
+        for (j = i + 1; j < arrString.length; j += 1) {
             if (arrString[i].toLowerCase() === arrString[j].toLowerCase()) {
-                arrString.splice(i,1);
+                arrString.splice(i, 1);
                 j -= 1;
-            };
-        };
-    };
+            }
+        }
+    }
     return arrString;
 }
 
@@ -146,17 +156,18 @@ console.log("Remove duplicates [" + removeDuplicates(arrString) + "]");
 
 // 10.	Write a JavaScript program to shuffle an array
 console.log("10.	Write a JavaScript program to shuffle an array");
+
 function shuffleArray(arr) {
     let j;
     let temp;
     arr.forEach(function(item, i, arr) {
-        j = Math.round(Math.random()*i);
+        j = Math.round(Math.random() * i);
         temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     });
     return arr;
-};
+}
 const arrShuffle = [1, 2, 3, 4, 5];
 console.log("Initial array: [" + arrShuffle + "]");
 console.log("Shuffled array: [" + shuffleArray(arrShuffle) + "]");
@@ -168,18 +179,18 @@ console.log("11.	Write a JavaScript function to remove. \'null\', \'0\', \'\"\"\
 function removeValues(arr) {
     const removedValues = [null, 0, "", false, undefined, NaN];
     let i;
-    for(i = 0; i < arr.length; i += 1) {
-        let j;             
-        for(j = 0; j < removedValues.length; j += 1)            
+    for (i = 0; i < arr.length; i += 1) {
+        let j;
+        for (j = 0; j < removedValues.length; j += 1)
             if (arr[i] == removedValues[j]) {
-                arr.splice(i,1);            
+                arr.splice(i, 1);
                 if (!i) {
-                    i -= 1
+                    i -= 1;
                 }
-            } 
-    };
+            }
+    }
     return arr;
-};
+}
 
 const arrWithRemoveValues = [null, 1, null, 2, 0, "", 3, false, 4, undefined, 5, NaN];
 console.log("Initial array: [" + arrWithRemoveValues + "]");
@@ -190,21 +201,33 @@ console.log("Filtered array: [" + removeValues(arrWithRemoveValues) + "]");
 console.log("12.	Write a JavaScript function to sort the following array of objects by title value using ‘sort’ method");
 
 function compareByTitle(a, b) {
-    if (a.title < b.title) 
+    if (a.title < b.title)
         return -1;
-    if (a.title > b.title) 
+    if (a.title > b.title)
         return 1;
     return 0;
 }
 
-var library = [ { author: 'Bill Gates', title: 'The Road Ahead', libraryID: 1254},
-                { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264},
-                { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245}
-              ];
+var library = [{
+        author: 'Bill Gates',
+        title: 'The Road Ahead',
+        libraryID: 1254
+    },
+    {
+        author: 'Steve Jobs',
+        title: 'Walter Isaacson',
+        libraryID: 4264
+    },
+    {
+        author: 'Suzanne Collins',
+        title: 'Mockingjay: The Final Book of The Hunger Games',
+        libraryID: 3245
+    }
+];
 
 library.sort(compareByTitle);
 console.log("After sort:");
-library.forEach(function(item, i, arrayOfObject){
+library.forEach(function(item, i, arrayOfObject) {
     console.log(item.title + ", id: " + item.author);
 });
 
@@ -213,12 +236,11 @@ library.forEach(function(item, i, arrayOfObject){
 console.log("13.	Write a JavaScript function to merge two arrays and removes all duplicates elements");
 
 function mergeArrays(arrOne, arrTwo) {
-    arrTwo = arrTwo.filter(function (item) {
-                    return arrOne.indexOf(item) < 0;
-                  });
-    const mergedArray = arrOne.concat(arrTwo);        
+    arrTwo = arrTwo.filter(function(item) {
+        return arrOne.indexOf(item) < 0;
+    });
+    const mergedArray = arrOne.concat(arrTwo);
     return mergedArray;
-    console.log(mergedArray);
 }
 
 const arrForMergeOne = [1, 2, 3, 4];
@@ -228,10 +250,11 @@ console.log(mergeArrays(arrForMergeOne, arrForMergeTwo));
 
 // 14.	Write a JavaScript function to remove a specific element from an array
 console.log("14.	Write a JavaScript function to remove a specific element from an array");
-function removeElement(arr, itemRemove){
+
+function removeElement(arr, itemRemove) {
     arr.forEach(function(item, i, arr) {
         if (item === itemRemove) {
-            arr.splice(i,1)
+            arr.splice(i, 1);
         }
     });
     return arr;
@@ -243,10 +266,10 @@ console.log(removeElement(arrRemoveElement, 2));
 // 15.	Write a JavaScript function to get a random item from an array
 console.log("15.	Write a JavaScript function to get a random item from an array");
 
-function getRandomItem(arr) {    
-    const i = Math.round(Math.random()*(arr.length - 1));
-    return arr[i]
-};
+function getRandomItem(arr) {
+    const i = Math.round(Math.random() * (arr.length - 1));
+    return arr[i];
+}
 
 const arrRandomItem = [1, 2, 3, 4, 5, 6];
 console.log("Random item: " + getRandomItem(arrRandomItem));
@@ -269,13 +292,13 @@ console.log(moveItem(arrMoveItem, 0, 5));
 // 17.	Write a JavaScript function to get difference between two dates in days
 console.log("17.	Write a JavaScript function to get difference between two dates in days");
 
-function getDiffBetweenDates(dateOne, dateTwo) {    
-    return Math.round(Math.abs((dateTwo - dateOne) / (1000 * 3600 * 24)));    
+function getDiffBetweenDates(dateOne, dateTwo) {
+    return Math.round(Math.abs((dateTwo - dateOne) / (1000 * 3600 * 24)));
 }
 
-const dateOne = new Date(2018, 0 , 1);
+const dateOne = new Date(2018, 0, 1);
 const dateTwo = new Date();
-console.log("Difference between two dates in days: " + funcGetDiffBetweenDates(dateOne , dateTwo));
+console.log("Difference between two dates in days: " + getDiffBetweenDates(dateOne, dateTwo));
 
 
 // 18.	Write a JavaScript function to get the maximum date from an array of dates
@@ -312,7 +335,7 @@ console.log(getArrayOfWords("Lorem ipsum ammet"));
 console.log("20.	Write a JavaScript function to capitalize the first letter of a string");
 
 function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1)
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 console.log(capitalizeFirstLetter("lorem ipsum ammet"));
 
@@ -322,12 +345,12 @@ console.log("21.	Write a JavaScript function to convert a string into camel case
 
 function camelize(str) {
     let arrOfWords = [];
-    str = str.replace(/-/g, ' ')
-    arrOfWords = str.split(' ');    
-    arrOfWords.forEach(function (item, i, arr) {        
-        arr[i] = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();                    
-    });   
-    return arrOfWords.join('')
+    str = str.replace(/-/g, ' ');
+    arrOfWords = str.split(' ');
+    arrOfWords.forEach(function(item, i, arr) {
+        arr[i] = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
+    });
+    return arrOfWords.join('');
 }
 
 console.log(camelize("Java Script"));
@@ -341,9 +364,9 @@ console.log("22.	Write a JavaScript function to find the highest value in an arr
 
 function findHighestValue(arr) {
     let max = arr[0];
-    arr.forEach( function(item, i, arr) {
-        if (max < item)            
-            max = item
+    arr.forEach(function(item, i, arr) {
+        if (max < item)
+            max = item;
     });
     return max;
 }
@@ -356,9 +379,9 @@ console.log("23.	Write a JavaScript function to find the lowest value in an arra
 
 function findLowestValue(arr) {
     let min = arr[0];
-    arr.forEach( function(item, i, arr) {
-        if (min > item)            
-            max = item
+    arr.forEach(function(item, i, arr) {
+        if (min > item)
+            min = item;
     });
     return min;
 }
@@ -370,7 +393,7 @@ console.log("Lowest value in an array: " + findLowestValue(arrFindLowestValue));
 console.log("24.	Write a JavaScript function to check to check whether a variable is numeric or not");
 
 function isNumeric(variable) {
-    return !isNaN(parseFloat(variable)) && isFinite(variable)
+    return !isNaN(parseFloat(variable)) && isFinite(variable);
 }
 const valueIsNumeric = "15a";
 console.log("isNumeric: " + valueIsNumeric + " - " + isNumeric(valueIsNumeric));
@@ -381,8 +404,8 @@ console.log("25.	Write a JavaScript function to calculate the sum of values in a
 
 function calcSumArr(arr) {
     let sum = 0;
-    arr.forEach( function(item, i, arr){
-        sum += item;                
+    arr.forEach(function(item, i, arr) {
+        sum += item;
     });
     return sum;
 }
@@ -394,17 +417,20 @@ console.log("26.	Write a JavaScript program to get the length of a JavaScript ob
 
 function getLengthOfObject(obj) {
     let objLength = 0;
+    let key;
     for (key in obj) {
-        if (obj.hasOwnProperty(key)) 
-            objLength += 1
+        if (obj.hasOwnProperty(key))
+            objLength += 1;
     }
     return objLength;
 }
-const favoriteBook = {title: "Book",
-                      id: "12",
-                      author: "Author",
-                      date: "date"
-                     }
+const favoriteBook = {
+    title: "Book",
+    id: "12",
+    author: "Author",
+    date: "date"
+};
+
 console.log(getLengthOfObject(favoriteBook));
 
 
@@ -413,8 +439,10 @@ console.log("27.	Write a JavaScript program to list the properties of a JavaScri
 
 function getListPropertiesOfObject(obj) {
     const listProperties = [];
+    let key;
     for (key in obj) {
-        listProperties.push(key);
+        if (obj.hasOwnProperty(key))
+            listProperties.push(key);
     }
     return listProperties;
 }
