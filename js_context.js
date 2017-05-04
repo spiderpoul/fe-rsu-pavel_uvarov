@@ -36,8 +36,10 @@ Calculator.prototype.reset = function() {
  * Method for calculator which emulates request to a server and sets the state of Calculator 
  * when we get a response
  */
-Calculator.prototype.getInitialState = function(callback) {
-    setTimeout(function() {
+Calculator.prototype.getInitialState = function(callback) {        
+    const that = this;
+    setTimeout(function() {  
+        that.result = 5;
         callback();
     }, 500);
     return this;
@@ -53,12 +55,14 @@ console.log(calc.getResult());
 calc.reset();
 
 console.log(calc.add(4).reset().add(1).getResult());
+calc.reset();
 
-calc.getInitialState(function() {
-    calc.reset().add(1).multiply(6).divide(2);
+const calcAddAndReturnResult = function() {
+    calc.add(1);
     console.log(calc.getResult());
-});
+};
 
+calc.getInitialState(calcAddAndReturnResult);
 
 // Bind method
 function bind(func, context) {
