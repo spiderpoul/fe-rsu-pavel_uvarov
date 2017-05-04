@@ -1,6 +1,5 @@
 // Recursive output of array's elements
 function consoleRec(arr) {
-    let i = 0;
 
     function getElement(i) {
         if (i < arr.length) {
@@ -10,7 +9,7 @@ function consoleRec(arr) {
             return i;
     }
 
-    getElement(i);
+    getElement(0);
 }
 
 consoleRec(['я', 'умею', 'писать', 'рекурсивные', 'функции']);

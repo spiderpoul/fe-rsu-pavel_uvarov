@@ -1,6 +1,12 @@
 // Filter array using filter function
-function isAllTrue(source, filterFn) {
-    return source.every(filterFn);
+function isAllTrue(source, filterFn) {    
+    let i = 0;
+    for(i; i < source.length; i += 1) {
+       if (!filterFn(source[i])) {
+           return false;
+       }    
+    }; 
+    return true;
 }
 
 const allNumbers = [1, 2, 4, 5, 6, 7, 8];
