@@ -1,0 +1,46 @@
+@font-face {
+    font-family: FontAwesome;
+    src: url(../font/FontAwesome.otf);
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+.accordion {
+    margin: 20px;
+    max-width: 600px;
+}
+.accordion__section {
+    margin-bottom: 5px;
+}
+.accordion__title {
+    padding: 10px;
+    background: linear-gradient(to bottom, rgba(219,219,219,0.65) 0%,rgba(0,0,0,0) 100%);
+    border: solid 1px #ccc;        
+}
+.accordion__title:hover,
+.accordion__title_selected{
+    color: #fff;
+    background: #5fba7d;
+    user-select: none;
+    cursor: pointer;
+}
+
+.accordion__content {
+    transition: all .5s;
+    position: relative;
+    border: solid 1px #ccc;
+    border-top: none;
+    padding: 0 20px 0 20px;    
+    max-height: 0;
+    overflow: hidden;
+}
+.accordion__content_opened {
+    max-height: 500px;
+    background: #fff;
+    padding: 20px;
+}
+.accordion__text {
+    
+}
