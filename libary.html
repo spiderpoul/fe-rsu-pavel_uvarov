@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/content.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">  
+    <script src="js/libary.js"></script>
   </head>
   <body class="container">
     <header class="header">
@@ -27,14 +28,27 @@
     
     <main class="main">
         <aside class="left-side">
-            <div class="add-book">
-                <button class="add-book__button"><i class="fa fa-plus add-book__plus" aria-hidden="true"></i> <span class="add-book__text">add a book</span></button>  
+            <div class="add-book">                                 
+                <button class="add-book__button" id="add-book-button"><i class="fa fa-plus add-book__plus" aria-hidden="true"></i> <span class="add-book__text">add a book</span></button>  
             </div>
+            <div class="add-book-window" id="add-book-window">                
+                <div class="add-book-window__content">
+                    <span class="add-book-window__close" id="add-book-window-close">&times;</span>
+                    <form class="add-book-window__form" name="addNewBookForm" id="addNewBookForm" method="POST" encType="multipart/form-data">
+                        <label for="bookTitle" class="add-book-window__label">Title</label>
+                        <input type="text" class="add-book-window__input" id="bookTitle" name="bookTitle" placeholder="Enter Book Name">
+                        <label for="bookAuthor" class="add-book-window__label">Author</label>
+                        <input type="text" class="add-book-window__input" id="bookAuthor" name="bookAuthor" placeholder="Enter Author">
+                        <label for="BookCover" class="add-book-window__label">Image</label>
+                        <input type="file" class="add-book-window__input-file" id="bookCover" name="bookCover">        <button class="add-book-window__button" type="submit"><i class="fa fa-plus add-book__plus" aria-hidden="true"></i> <span class="add-book-window__text">add a book</span></button>
+                    </form>
+                </div>    
+            </div> 
             <ul class="nav-menu">
                 <li class="nav__item"><i class="fa fa-book" aria-hidden="true"></i><span class="nav__text">now reading</span></li>
                 <li class="nav__item nav__item_selected"><i class="fa fa-globe" aria-hidden="true"></i><span class="nav__text">browse</span></li>
                 <li class="nav__item"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="nav__text">buy books</span></li>
-                <li class="nav__item"><i class="fa fa-star" aria-hidden="true"></i><span class="nav__text">favourite books</span></li>
+                <li class="nav__item"><i class="fa fa-star-o" aria-hidden="true"></i><span class="nav__text">favourite books</span></li>
                 <li class="nav__item"><i class="fa fa-th-list" aria-hidden="true"></i><span class="nav__text">wishlist</span></li>
                 <li class="nav__item"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="nav__text">history</span></li>
             </ul>
@@ -62,7 +76,7 @@
                      <div class="filter__tags">
                          <div class="filter__item filter__item_selected">all books</div>
                          <div class="filter__item">most recent</div>
-                         <div class="filter__item">most popular</div>
+                         <div class="filter__item" id="most-popular-filter">most popular</div>
                          <div class="filter__item">free books</div>
                      </div>                             
                      <div class="search">
@@ -72,127 +86,7 @@
                  </div>
                  
             </div>
-            <div class="books">
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-1.png">
-                    <p class="books__name">Jewels of Nizam</p>
-                    <p class="books__author">geeta devi</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </p>
-                </div>                                    
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-2.png">
-                    <p class="books__name">Cakes & Bakes</p>
-                    <p class="books__author">sanjeev kapoor</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-3.png">
-                    <p class="books__name">Jamie's Kitchen</p>
-                    <p class="books__author">jamie oliver</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-4.png">
-                    <p class="books__name">Inexpensive family meals</p>
-                    <p class="books__author">simon holst</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-5.png">
-                    <p class="books__name">Paleo Slow Coking</p>
-                    <p class="books__author">chrissy gower</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-6.png">
-                    <p class="books__name">Cook like an Italian</p>
-                    <p class="books__author">tobie puttock</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-7.png">
-                    <p class="books__name">Suneeta Vaswani</p>
-                    <p class="books__author">geeta devi</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-8.png">
-                    <p class="books__name">Jamie Does</p>
-                    <p class="books__author">jamie oliver</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-9.png">
-                    <p class="books__name">Jamie's Italy</p>
-                    <p class="books__author">jamie oliver</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="books__item">
-                    <img alt="book about food" class="books__image" src="img/book-10.png">
-                    <p class="books__name">Vegetables Cookbook</p>
-                    <p class="books__author">matthew bliggs</p>
-                    <p class="books__rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
+            <div class="books">                     
             </div>
         </section>
     </main>

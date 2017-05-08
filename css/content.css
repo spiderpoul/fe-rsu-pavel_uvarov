@@ -39,6 +39,7 @@
     margin-right: 5px;
     border-radius: 10px;
     cursor: pointer;
+    user-select: none;
 }
 .filter__item_selected {
     background-color: #97b3ce;
@@ -81,6 +82,7 @@
     margin: 30px 20px;
 }
 .books__image {
+    object-fit: cover;
     width: 200px;
     height: 275px;    
 }
@@ -105,4 +107,5 @@
 .books__rating{
     padding-top: 5px;
     color: #ffab00;
+    cursor: pointer;
 }
