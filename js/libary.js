@@ -25,8 +25,13 @@ function init() {
     const addBookWindow = document.getElementById("add-book-window");
     const addBookButton = document.getElementById("add-book-button");
     const addBookWindowClose = document.getElementById("add-book-window-close");
-    const AddBookWindowButton = document.getElementsByClassName("add-book-window__button")[0];   
+    const AddBookWindowButton = document.getElementsByClassName("add-book-window__button")[0];
+    const bookAddSuccess = addBookWindow.getElementsByClassName("add-book-window__text-success")[0];
+    const bookAddError = addBookWindow.getElementsByClassName("add-book-window__text-success")[0];
     const formAddBook = document.forms.namedItem("addNewBookForm");
+    
+    const bookInfoWindow = document.getElementById("book-info");
+    const bookInfoWindowClose = document.getElementById("book-info-close");
     
     const books = [];
     const maxRating = 5;    
@@ -116,7 +121,9 @@ function init() {
         bookItem.appendChild(bookName);
         bookItem.appendChild(bookAuthor);
         bookItem.appendChild(bookRating);   
-
+        
+        bookImage.addEventListener('click', bookInfoHandler);
+        
         // Add stars rating elements
         function addRating() {
             let j = 0;
@@ -184,6 +191,7 @@ function init() {
         thisBook.style.display = "none";
     } 
     
+    // Is this book most popular
     Book.prototype.isMostPopular = function() {
         return (this.rating == maxRating - 1)
     }
@@ -224,6 +232,7 @@ function init() {
         }
     }
     
+    // Find most popular books
     function mostPopularFilterHandler(event) {
         const target = event.target;
         if (!target.classList.contains("filter__item_selected")) {             
@@ -251,9 +260,13 @@ function init() {
         }            
     }
     
+    // Add new book handler
     function addNewBookHandler(event) {        
         const bookTitle = document.getElementById("bookTitle").value;
         const bookAuthor = document.getElementById("bookAuthor").value;                
+        
+        bookAddSuccess.style.display = "none";
+        bookAddError.style.display = "none";
         
         let bookCover = document.getElementById('bookCover').files[0].name;
         let oData = new FormData(formAddBook);
@@ -266,10 +279,11 @@ function init() {
                 console.log("success");
                 books.push(new Book(books.length, bookTitle, bookAuthor, -1, bookCover));
                 console.log(books[books.length - 1]);
-                books[books.length - 1].showBook();
-                addBookWindow.style.display = "none";
+                books[books.length - 1].showBook();                
+                bookAddSuccess.style.display = "block";
             } else {
               console.log("error " + oReq.status);
+              bookAddError.style.display = "block";
             }
         };
 
@@ -277,23 +291,39 @@ function init() {
         event.preventDefault();
     }
     
+    function bookInfoHandler(event) {
+        const target = event.targetl
+        bookInfoWindow.style.display = "block"; 
+    }
+    
+    // Show add book window
     addBookButton.addEventListener('click', function() {
-        addBookWindow.style.display = "block";
+        bookAddSuccess.style.display = "none";
+        bookAddError.style.display = "none";
+        addBookWindow.style.display = "block";        
     });
     
+    // Close add book window by close button
     addBookWindowClose.addEventListener('click', function() {
         addBookWindow.style.display = "none";
     });
     
+    // Close modal window by clicking around
     window.addEventListener('click', function(event) {
         if (event.target == addBookWindow) {
             addBookWindow.style.display = "none";
         }
+        if (event.target == bookInfoWindow) {
+            bookInfoWindow.style.display = "none";
+        }
+    });
+    
+    // Close book info window by close button
+    bookInfoWindowClose.addEventListener('click', function() {
+        bookInfoWindow.style.display = "none";
     });
     
     formAddBook.addEventListener('submit', addNewBookHandler, false);
-    
-    //AddBookWindowButton.addEventListener('click', addNewBookHandler);
     
     searchInput.addEventListener('input', searchHandler);        
     mostPopularElement.addEventListener('click', mostPopularFilterHandler);        

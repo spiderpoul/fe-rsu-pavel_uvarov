@@ -15,7 +15,7 @@
   <body class="container">
     <header class="header">
         <nav class="header__nav">
-            <div class="header__item"><a href="#" class="header__link">help venter</a></div>    
+            <div class="header__item"><a href="#" class="header__link">help venter</a></div> 
             <div class="header__dot"></div>
             <div class="header__item"><a href="#" class="header__link">our support</a></div>
             <div class="header__profile header__profile_online">
@@ -33,16 +33,30 @@
             </div>
             <div class="add-book-window" id="add-book-window">                
                 <div class="add-book-window__content">
-                    <span class="add-book-window__close" id="add-book-window-close">&times;</span>
+                    <div class="add-book-window__header">
+                        <span class="add-book-window__title">add a book</span>
+                        <span class="add-book-window__close" id="add-book-window-close">&times;</span>
+                    </div>                    
                     <form class="add-book-window__form" name="addNewBookForm" id="addNewBookForm" method="POST" encType="multipart/form-data">
-                        <label for="bookTitle" class="add-book-window__label">Title</label>
-                        <input type="text" class="add-book-window__input" id="bookTitle" name="bookTitle" placeholder="Enter Book Name">
-                        <label for="bookAuthor" class="add-book-window__label">Author</label>
-                        <input type="text" class="add-book-window__input" id="bookAuthor" name="bookAuthor" placeholder="Enter Author">
-                        <label for="BookCover" class="add-book-window__label">Image</label>
-                        <input type="file" class="add-book-window__input-file" id="bookCover" name="bookCover">        <button class="add-book-window__button" type="submit"><i class="fa fa-plus add-book__plus" aria-hidden="true"></i> <span class="add-book-window__text">add a book</span></button>
+                        <div class="add-book-window__inputs-fields">
+                            <div class="add-book-window__row">
+                                <label for="bookTitle" class="add-book-window__label">Name of the book:</label>
+                                <input type="text" class="add-book-window__input" id="bookTitle" name="bookTitle" placeholder="Enter name of the book">
+                            </div>
+                            <div class="add-book-window__row">
+                                <label for="bookAuthor" class="add-book-window__label">Author:</label>
+                                <input type="text" class="add-book-window__input" id="bookAuthor" name="bookAuthor" placeholder="Enter an author of the book">
+                            </div>                            
+                            <label for="BookCover" class="add-book-window__label">Select an image:</label>
+                        </div>
+                        <input type="file" class="add-book-window__input-file" id="bookCover" name="bookCover">
+                        <div class="add-book-window__button-field">
+                            <button class="add-book-window__button" type="submit"><i class="fa fa-plus add-book__plus" aria-hidden="true"></i> <span class="add-book-window__text">add a book</span></button>
+                        </div>                        
                     </form>
-                </div>    
+                </div> 
+                <div class="add-book-window__text-success">Successfuly added</div>
+                <div class="add-book-window__text-error">Something went wrong</div>
             </div> 
             <ul class="nav-menu">
                 <li class="nav__item"><i class="fa fa-book" aria-hidden="true"></i><span class="nav__text">now reading</span></li>
@@ -87,6 +101,21 @@
                  
             </div>
             <div class="books">                     
+            </div>
+            <div class="book-info" id="book-info">
+                <div class="book-info__content">
+                    <div class="book-info__header">
+                        <span class="book-info__title">book info</span>
+                        <span class="book-info__close" id="book-info-close">&times;</span>
+                    </div>
+                    <div class="book-info__body">                       
+                        <img src="" alt="">      
+                        <div class="book-info__about">
+                            <div class="book-info__book-name"></div>
+                            <div class="book-info__book-author"></div>
+                        </div>                  
+                    </div>
+                </div>
             </div>
         </section>
     </main>
