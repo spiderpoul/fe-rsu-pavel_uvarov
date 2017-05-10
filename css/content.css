@@ -124,11 +124,10 @@
 .book-info__content {
     position: relative;
     background-color: #fefefe;
-    margin: 10% auto;
-    width: 400px;
-    min-width: 200px;
-    max-width: 500px;
-    height: 250px;
+    margin: 10% auto;    
+    min-width: 500px;
+    max-width: 600px;
+    height: 370px;
     min-height: 200px;    
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.8);
     animation-name: animatetop;
@@ -148,7 +147,7 @@
     color: #fff;
     float: right;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: bold;    
 }
 .book-info__close:hover {
     color: #ccc;
@@ -161,4 +160,83 @@
     float: left;
     color: #fff;
     text-transform: uppercase;
+}
+.book-info__body {
+    display: flex;
+    padding: 10px;
+}
+.book-info__book-cover {
+    object-fit: cover;
+    width: 230px;
+    height: 310px;     
+    margin: 0 10px 5px 0;
+}
+.book-info__about {
+    font-family: Proxima Nova, Arial, sans-serif; 
+}
+.book-info__book-name {
+    height: 20px;
+    margin-top: 15px;    
+    font-size: 1em;
+    color: #444c63;  
+}
+.book-info__book-author {
+    height: 20px;        
+    text-transform: capitalize;
+    font-size: 1em;
+    color: #6f7d95;
+}
+.book-info__book-author:before {
+    content: 'by ';
+    text-transform: lowercase;
+}
+.book-info__add-tag {
+   margin: 10px 0 5px 0; 
+}
+.book-info__label {
+    font-size: 0.9em;
+}
+.book-info__input {
+    width: 160px;
+}
+.book-info__button {        
+    width: 100px;
+    height: 20px;    
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: #f2795a;
+    color: #fff;
+    box-shadow: none;
+    border: none;
+    font-family: Proxima Nova Regular, Arial, sans-serif;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background .4s;
+}
+.book-info__button:hover {
+    background-color: #15a4fa;
+    cursor: pointer;
+}
+
+.tags {
+    min-height: 0px;
+    max-height: 100px;
+    min-width: 50px;
+    max-width: 300px;
+    margin: 5px 0; 
+    font-family: Proxima Nova, Arial, sans-serif;
+}
+.tags__item {
+    display: inline-block;
+    border: 1px solid #6f7d95;
+    border-radius: 5px;
+    padding: 2px 5px;    
+    font-size: .8em;
+    color: #6f7d95;
+}
+.tags__text {
+    
+}
+.tags__remove {
+    
 }

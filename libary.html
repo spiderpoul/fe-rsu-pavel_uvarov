@@ -109,11 +109,27 @@
                         <span class="book-info__close" id="book-info-close">&times;</span>
                     </div>
                     <div class="book-info__body">                       
-                        <img src="" alt="">      
+                        <img class="book-info__book-cover" src="" alt="">      
                         <div class="book-info__about">
                             <div class="book-info__book-name"></div>
                             <div class="book-info__book-author"></div>
-                        </div>                  
+                            <div class="tags">
+                                <div class="tags__item">
+                                    <span class="tags__text">Best of List</span>
+                                    <span class="tags__remove" id="tag-remove">&times;</span>
+                                </div>
+                                <div class="tags__item">
+                                    <span class="tags__text">Classic Novels</span>
+                                    <span class="tags__remove" id="tag-remove">&times;</span>
+                                </div>
+                            </div>
+                            <div class="book-info__add-tag">
+                                <label for="new-tag-name" class="book-info__label">Add tag:</label>
+                                <input type="text" class="book-info__input" id="new-tag-name-input" name="new-tag-name" placeholder="Enter tag name">        
+                                <button class="book-info__button" id="book-info-add-tag-btn">add tag</button>
+                            </div> 
+                        </div>
+                                         
                     </div>
                 </div>
             </div>

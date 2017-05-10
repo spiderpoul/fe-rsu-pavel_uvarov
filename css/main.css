@@ -41,6 +41,7 @@
     font-size: 1em;
     font-weight: bold;
     transition: background .4s;
+    cursor: pointer;
 }
 .add-book__text {
     padding-left: 15px;
@@ -250,6 +251,7 @@
     font-size: 1em;
     font-weight: bold;
     transition: background .4s;
+    cursor: pointer;
 }
 .add-book-window__text {
     padding-left: 15px;

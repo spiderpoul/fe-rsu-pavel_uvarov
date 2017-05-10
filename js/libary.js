@@ -291,9 +291,20 @@ function init() {
         event.preventDefault();
     }
     
+    // Show book info
     function bookInfoHandler(event) {
-        const target = event.targetl
-        bookInfoWindow.style.display = "block"; 
+        const bookId = event.target.parentElement.getAttribute("book-id");        
+        const thisBook = books[bookId];        
+        const bookCover = bookInfoWindow.getElementsByClassName("book-info__book-cover")[0];
+        const bookName = bookInfoWindow.getElementsByClassName("book-info__book-name")[0];
+        const bookAuthor = bookInfoWindow.getElementsByClassName("book-info__book-author")[0];
+        
+        //console.log(thisBook.bookImage);
+        bookCover.setAttribute("src", imagePath + thisBook.image);
+        bookCover.setAttribute("alt", thisBook.title);
+        bookName.innerHTML = thisBook.title;
+        bookAuthor.innerHTML = thisBook.author;
+        bookInfoWindow.style.display = "block";         
     }
     
     // Show add book window
