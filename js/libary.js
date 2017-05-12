@@ -32,11 +32,40 @@ function init() {
     
     const bookInfoWindow = document.getElementById("book-info");
     const bookInfoWindowClose = document.getElementById("book-info-close");
+    const addTagButton = document.getElementById("book-info-add-tag-btn");
+    const inputTagElement = document.getElementById("new-tag-name-input");
     
     const books = [];
     const maxRating = 5;    
     const imagePath = "img/";
+    
+    let allBooksTags = new TagsClass(["Must Read Titles","Best Of List","Classic Novels","Non Fiction"]);
 
+    // Tags class constructor
+    function TagsClass(defaultTags) {
+        this.tags = defaultTags;
+    }
+    
+    TagsClass.prototype.addTag = function (newTags) {
+        if (Array.isArray(newTags))
+            Array.prototype.push.apply(this.tags, newTags);
+        else 
+            this.tags.push(newTags);
+        this.tags = uniqueArray(this.tags);
+    }
+    
+    TagsClass.prototype.updateTagsList = function () {
+        const tagList = document.getElementById("default-tags");
+        while (tagList.firstChild) {
+            tagList.removeChild(tagList.firstChild);
+        }        
+        this.tags.forEach( function(item, i, arr) {
+            const tag = document.createElement("option"); 
+            tag.value = item;
+            tagList.appendChild(tag);
+        });        
+    }
+    
     // Book constructor
     function Book(id, title, author, rating, image){
         this.id = id;
@@ -44,6 +73,7 @@ function init() {
         this.author = author;
         this.rating = rating;
         this.image = image;
+        this.tags = [];
     }
     
     // Function for searching
@@ -87,6 +117,9 @@ function init() {
         if (rating > -2) {
             this.rating = rating;
             this.updateRating(this.rating);
+            if (document.getElementById("most-popular-filter").classList.contains("filter__item_selected")) {
+                showMostPopularBooks();
+            }
         }             
     } 
     
@@ -196,33 +229,122 @@ function init() {
         return (this.rating == maxRating - 1)
     }
     
+    // Show book tags
+    Book.prototype.showAllTags = function() {
+        const tags = document.getElementById("tags");        
+        let i = 0;
+        
+        while (tags.firstChild) {
+            tags.removeChild(tags.firstChild);
+        }
+        
+        for (i; i < this.tags.length; i += 1) {
+            this.appendTag(this.tags[i]);
+        }
+    }
+    
+    Book.prototype.appendTag = function(tagName) {
+        const tags = document.getElementById("tags");
+        
+        const newTag = document.createElement('div');
+        const newTagName = document.createElement('span');
+        const newTagClose = document.createElement('span');
+        
+        newTag.classList.add("tags__item");
+        newTagName.classList.add("tags__text");
+        newTagClose.classList.add("tags__remove");
+        
+        newTagClose.innerHTML = "&times;";
+        newTagClose.addEventListener('click', removeTagHandler);
+        newTagName.innerHTML = tagName;
+        
+        newTag.appendChild(newTagName);
+        newTag.appendChild(newTagClose);
+        
+        tags.appendChild(newTag);
+    }
+    
+    // Add new tag
+    Book.prototype.addNewTag = function(newTag) {
+        if (newTag !== "") {
+            this.tags.push(newTag);
+            this.tags = uniqueArray(this.tags);
+            this.showAllTags();    
+        }
+    }
+    
+    // Set tags
+    Book.prototype.setTags = function(arrTags) {
+        this.tags = arrTags;
+    }
+    
+    // Remove tag
+    Book.prototype.removeTag = function(removedTag) {
+        const indexOfTag = this.tags.indexOf(removedTag);
+        if (indexOfTag > -1) {
+            this.tags.splice(indexOfTag, 1);
+            this.showAllTags();
+        }
+        
+    }
+    
     //Show books
     function showBooks(){
         let i = 0;
         while (booksElement.firstChild) {
             booksElement.removeChild(booksElement.firstChild);
         }
+        
         for (i; i < booksData.length; i += 1) {              
             
             let title = booksData[i].title;
             let author = booksData[i].author;
             let rating = booksData[i].rating;
-            let image = booksData[i].image;                        
-                                    
+            let image = booksData[i].image;                                    
+            let bookTags = booksData[i].tags.split(",");                    
+            
             books[i] = new Book(i, title, author, rating, image);
+            
+            bookTags = uniqueArray(bookTags);
+            
+            allBooksTags.addTag(bookTags);                                    
+            
+            books[i].setTags(bookTags);            
             books[i].showBook();
-        }    
-    }
-    
-    showBooks();        
+        }
+        allBooksTags.updateTagsList();
+    }    
+    showBooks();   
     
     // Search handler for input
     function searchHandler() {        
+        const isMostPopularSelected = document.getElementById("most-popular-filter").classList.contains("filter__item_selected");
         let filter = searchInput.value.toLowerCase();
         let i = 0;        
         for (i; i < books.length; i += 1) {            
             if (books[i].isExist()) {                
                 if (books[i].searchBy(filter)) {
+                    if (!isMostPopularSelected)
+                        books[i].show();
+                    else
+                        if (books[i].isMostPopular()) {
+                            books[i].show();
+                        } else 
+                             books[i].hide();
+                }
+                else {
+                    books[i].hide();
+                }
+            }            
+        }
+    }
+    
+    // Show only most popular books 
+    function showMostPopularBooks() {
+        let i = 0;
+        for (i; i < books.length; i += 1) {            
+            if (books[i].isExist()) {                
+                if (books[i].isMostPopular()) {
                     books[i].show();
                 }
                 else {
@@ -232,31 +354,26 @@ function init() {
         }
     }
     
+    // Show all books
+    function showAllBooks() {
+        let i = 0;
+        for (i; i < books.length; i += 1) {            
+            if (books[i].isExist()) {                                    
+                books[i].show();
+            }            
+         }
+    }
+    
     // Find most popular books
     function mostPopularFilterHandler(event) {
         const target = event.target;
-        if (!target.classList.contains("filter__item_selected")) {             
-             let i = 0; 
-             target.classList.add("filter__item_selected");
-             for (i; i < books.length; i += 1) {            
-                if (books[i].isExist()) {                
-                    if (books[i].isMostPopular()) {
-                        books[i].show();
-                    }
-                    else {
-                        books[i].hide();
-                    }
-                }            
-             }           
+        if (!target.classList.contains("filter__item_selected")) { 
+            target.classList.add("filter__item_selected");
+            showMostPopularBooks();       
         }
-        else {
-            let i = 0;
+        else {            
             target.classList.remove("filter__item_selected");
-            for (i; i < books.length; i += 1) {            
-                if (books[i].isExist()) {                                    
-                    books[i].show();
-                }            
-             }
+            showAllBooks();
         }            
     }
     
@@ -298,13 +415,50 @@ function init() {
         const bookCover = bookInfoWindow.getElementsByClassName("book-info__book-cover")[0];
         const bookName = bookInfoWindow.getElementsByClassName("book-info__book-name")[0];
         const bookAuthor = bookInfoWindow.getElementsByClassName("book-info__book-author")[0];
+        const tagInput = document.getElementById("new-tag-name-input");
         
-        //console.log(thisBook.bookImage);
+        
         bookCover.setAttribute("src", imagePath + thisBook.image);
         bookCover.setAttribute("alt", thisBook.title);
         bookName.innerHTML = thisBook.title;
         bookAuthor.innerHTML = thisBook.author;
+        bookInfoWindow.setAttribute("book-id", bookId);
+        
+        tagInput.value = "";
+        thisBook.showAllTags();
+        
         bookInfoWindow.style.display = "block";         
+    }
+    
+    // Return unique array of elements
+    function uniqueArray(arr) {
+        const obj = {};
+        let i = 0;     
+        
+        for (i; i < arr.length; i += 1) {
+            let item = arr[i].trim();
+            obj[item] = true;
+        }        
+        return Object.keys(obj);
+    }
+    
+    // Add new tag handler
+    function AddTagHandler() {
+        const tagInput = document.getElementById("new-tag-name-input");                
+        const i = bookInfoWindow.getAttribute("book-id");
+
+        books[i].addNewTag(tagInput.value); 
+        
+        allBooksTags.addTag(tagInput.value);
+        allBooksTags.updateTagsList();
+        
+        tagInput.value = "";
+    }
+    
+    function removeTagHandler(event) {
+        const tagName = event.target.parentNode.getElementsByClassName("tags__text")[0].innerHTML;        
+        const bookId = bookInfoWindow.getAttribute("book-id");        
+        books[bookId].removeTag(tagName);
     }
     
     // Show add book window
@@ -332,6 +486,15 @@ function init() {
     // Close book info window by close button
     bookInfoWindowClose.addEventListener('click', function() {
         bookInfoWindow.style.display = "none";
+    });
+    
+    addTagButton.addEventListener('click', AddTagHandler);
+    
+    //Add tag on press Enter
+    inputTagElement.addEventListener('keypress', function(event) {
+       if  (event.keyCode == 13) {
+           AddTagHandler();
+       }
     });
     
     formAddBook.addEventListener('submit', addNewBookHandler, false);

@@ -113,19 +113,13 @@
                         <div class="book-info__about">
                             <div class="book-info__book-name"></div>
                             <div class="book-info__book-author"></div>
-                            <div class="tags">
-                                <div class="tags__item">
-                                    <span class="tags__text">Best of List</span>
-                                    <span class="tags__remove" id="tag-remove">&times;</span>
-                                </div>
-                                <div class="tags__item">
-                                    <span class="tags__text">Classic Novels</span>
-                                    <span class="tags__remove" id="tag-remove">&times;</span>
-                                </div>
+                            <div class="tags" id="tags">                                
                             </div>
                             <div class="book-info__add-tag">
                                 <label for="new-tag-name" class="book-info__label">Add tag:</label>
-                                <input type="text" class="book-info__input" id="new-tag-name-input" name="new-tag-name" placeholder="Enter tag name">        
+                                <input type="text" class="book-info__input" id="new-tag-name-input" name="new-tag-name" placeholder="Enter tag name" list="default-tags">  
+                                <datalist id="default-tags">                                    
+                                </datalist>
                                 <button class="book-info__button" id="book-info-add-tag-btn">add tag</button>
                             </div> 
                         </div>
