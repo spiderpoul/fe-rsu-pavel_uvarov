@@ -37,11 +37,10 @@ Calculator.prototype.reset = function() {
  * when we get a response
  */
 Calculator.prototype.getInitialState = function(callback) {        
-    const that = this;
     setTimeout(function() {  
-        that.result = 5;
+        this.result = 5;
         callback();
-    }, 500);
+    }.bind(this), 500);
     return this;
 };
 
