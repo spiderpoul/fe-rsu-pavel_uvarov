@@ -284,8 +284,7 @@ function init() {
         if (indexOfTag > -1) {
             this.tags.splice(indexOfTag, 1);
             this.showAllTags();
-        }
-        
+        }        
     }
     
     //Show books
@@ -378,7 +377,8 @@ function init() {
     }
     
     // Add new book handler
-    function addNewBookHandler(event) {        
+    function addNewBookHandler(event) {  
+        debugger;
         const bookTitle = document.getElementById("bookTitle").value;
         const bookAuthor = document.getElementById("bookAuthor").value;                
         
@@ -404,7 +404,7 @@ function init() {
             }
         };
 
-        oReq.send(oData);
+        oReq.send(formAddBook);
         event.preventDefault();
     }
     

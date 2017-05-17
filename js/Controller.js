@@ -3,30 +3,33 @@ function Controller() {
     this.view = new View(this.model, this);
 }
 
-// Most popular filter
-Controller.prototype.mostPopularFilterHandler = function(event) {
-    this.view.mostPopularFilter(event);
-}
-
-// Update rating
-Controller.prototype.updateRatingHandler = function(bookId, rating, maxRating) {
-    this.view.updateRating(bookId, rating, maxRating);
+// Load all books from JSON file
+Controller.prototype.loadBooksData = function() {
+    return this.model.loadBooksData();
 }
 
 //Event for star rating on click
 Controller.prototype.changeRatingHandler = function(bookId, rating) {
+    this.model.setRating(bookId, rating);
     this.view.changeRating(bookId, rating);
 }
-/*
-Controller.prototype.increase = function () {
-    this.model.increment();
+
+//Create new book
+Controller.prototype.createNewBook = function(bookTitle, bookAuthor, bookCover) {
+    return this.model.addNewBook(bookTitle, bookAuthor, bookCover);
 }
 
-Controller.prototype.decrease = function () {
-    this.model.decrement();
+// Add new tag to a book
+Controller.prototype.addNewTag = function(bookId, tagName) {
+    this.model.addNewTagToBook(bookId, tagName);
+    this.model.allBooksTags.addTag(tagName);
 }
-*/
+
+// Remove tag from a book
+Controller.prototype.removeTag = function(bookId, tagName) {
+    this.model.removeTagFromBook(bookId, tagName);
+}
+
 Controller.prototype.start = function () {
     this.view.init();
-    //this.model.setInitialValue(0);
 }

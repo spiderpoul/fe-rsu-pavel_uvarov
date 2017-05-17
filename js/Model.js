@@ -8,6 +8,9 @@ function Model() {
     
     this.booksDataFile = 'booksData.json'; 
     
+    //Create default tags
+    this.allBooksTags = new TagsClass(["Must Read Titles","Best Of List","Classic Novels","Non Fiction"]);
+    
     /*this.onIncrement = new EventEmitter();
     this.onDecrement = new EventEmitter();*/
 }
@@ -32,9 +35,9 @@ Model.prototype.loadBooksData = function () {
 
                 that.bookTags = uniqueArray(bookTags);
 
-                //allBooksTags.addTag(bookTags);                                    
+                that.allBooksTags.addTag(bookTags);                                    
 
-                //that.books[i].setTags(bookTags);                            
+                that.books[i].setTags(bookTags);                            
             }                        
         };
     };
@@ -44,6 +47,44 @@ Model.prototype.loadBooksData = function () {
     return that.books;
 }
 
+// Tags class constructor
+function TagsClass(defaultTags) {
+    this.tags = defaultTags;
+}
+
+// Add new tag in tags list
+TagsClass.prototype.addTag = function (newTags) {
+    if (Array.isArray(newTags))
+        Array.prototype.push.apply(this.tags, newTags);
+    else 
+        this.tags.push(newTags);
+    this.tags = uniqueArray(this.tags);
+}
+
+/*// Add new tag to a book
+Model.prototype.addNewTag = function(newTag) {
+    if (newTag !== "") {
+        this.books[bookId].tags.push(newTag);
+        this.books[bookId].tags = uniqueArray(this.tags);
+        //this.showAllTags();    
+    }
+}
+
+// Set tags to a book
+Model.prototype.setTags = function(arrTags) {
+    this.tags = arrTags;
+}
+
+// Remove tag from the book
+Model.prototype.removeTag = function(removedTag) {
+    const indexOfTag = this.tags.indexOf(removedTag);
+    if (indexOfTag > -1) {
+        this.tags.splice(indexOfTag, 1);
+        this.showAllTags();
+    }        
+}
+*/
+
 // Book constructor
 function Book(id, title, author, rating, image){
     this.id = id;
@@ -52,6 +93,69 @@ function Book(id, title, author, rating, image){
     this.rating = rating;
     this.image = image;
     this.tags = [];
+}
+
+// Set tags
+Book.prototype.setTags = function(arrTags) {
+    this.tags = arrTags;
+}
+
+// Add new tag to a book
+Model.prototype.addNewTagToBook = function(bookId, newTag) {
+    if (newTag !== "") {
+        this.books[bookId].tags.push(newTag);
+        this.books[bookId].tags = uniqueArray(this.books[bookId].tags);
+    }
+}
+
+// Remove tag from a book
+Model.prototype.removeTagFromBook = function(bookId, removedTag) {
+    const indexOfTag = this.books[bookId].tags.indexOf(removedTag);
+    if (indexOfTag > -1) {
+        this.books[bookId].tags.splice(indexOfTag, 1);
+    }        
+}
+
+// Get book's tags array by id
+Model.prototype.getBookTags = function(bookId) {
+    return this.books[bookId].tags;
+}
+
+// Is this book most popular
+Model.prototype.isMostPopular = function(book) {
+    return (book.rating == this.maxRating - 1)
+}
+
+// Search filter by title and author
+Model.prototype.searchByFilter = function(book, filter) {
+        return (book.title.toLowerCase().indexOf(filter) > -1 || book.author.toLowerCase().indexOf(filter) > -1)
+}
+
+// Get new rating and update
+Model.prototype.getRating = function(bookId) {
+    return this.books[bookId].rating;             
+} 
+
+// Set new rating and update
+Model.prototype.setRating = function(bookId, rating) {
+    if (rating > -2) {
+        this.books[bookId].rating = rating;
+    }
+    console.log(this.books[bookId]);
+} 
+
+// Add new book
+Model.prototype.addNewBook = function(bookTitle, bookAuthor, bookCover) {
+    const that = this;
+    this.books.push(new Book(that.books.length, bookTitle, bookAuthor, -1, this.imagePath + bookCover));
+    console.log(that.books[that.books.length - 1]);
+    
+    return this.books[that.books.length - 1];                            
+}
+
+// Get new rating and update
+Model.prototype.getBookById = function(bookId) {
+    return this.books[bookId];             
 }
 
 // Return unique array of elements
@@ -66,28 +170,6 @@ function uniqueArray(arr) {
     return Object.keys(obj);
 }
 
-// Is this book most popular
-Model.prototype.isMostPopular = function(book) {
-    return (book.rating == this.maxRating - 1)
-}
-
-// Search filter by title and author
-Model.prototype.searchByFilter = function(book, filter) {
-        return (book.title.toLowerCase().indexOf(filter) > -1 || book.author.toLowerCase().indexOf(filter) > -1)
-}
-
-// Set new rating and update
-Model.prototype.getRating = function(bookId) {
-    return this.books[bookId].rating;             
-} 
-
-// Set new rating and update
-Model.prototype.setRating = function(bookId, rating) {
-    if (rating > -2) {
-        this.books[bookId].rating = rating;
-    }
-    console.log(this.books[bookId]);
-} 
 /*Model.prototype.increment = function () {
     this.currentValue++;
     this.onIncrement.notify(this.currentValue);
