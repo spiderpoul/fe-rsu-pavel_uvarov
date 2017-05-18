@@ -14,8 +14,8 @@
     flex-direction: column;
     flex-shrink: 0;
     width: 200px;
-    /*background-color: #19202e;    */
     background-color: #1f2637;
+    overflow-y: auto;
 }
 .add-book {    
     display: flex;
@@ -70,6 +70,10 @@
     text-transform: capitalize;
     cursor: pointer;
 }
+.nav__item:not(.nav__item_selected):hover {
+    color: #fff;
+    background-color: #566b95;
+}
 .nav__item_selected {
     color: #fff;
     background-color: #15a4fa;
@@ -119,7 +123,7 @@
 .category__item:nth-child(4) .category__text:before{
     background-color: #7874cf;
 }
-.history {
+.notification {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -129,26 +133,31 @@
     border-top: 2px solid #282f41;
     background-color: #1f2637;
 }
-.history__item {
-    min-height: 70px;
+.notification__item {
+    position: relative;
     padding: 35px 20px 0 40px;
 }
-.history__item:before {    
+.notification__item:before {    
     position: absolute;
     left: 20px;
     content: '\f017';
     font-size: 1.2em;        
     font-family: FontAwesome;
 }
-.history__paragraph {
+.notification__paragraph {
     padding-bottom: 10px;
 }
-.history__link {
+
+.notification__action {
     text-decoration: none;
     color: #97b3ce;
     text-transform: capitalize;
 }
-.history__time {
+.notification__action:hover {
+    text-decoration: underline;
+    cursor: pointer;    
+}
+.notification__time {
     font-family: Proxima Nova Light, Arial, sans-serif;    
 }
 .add-book-window {

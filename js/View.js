@@ -10,7 +10,10 @@ function View(model, controller) {
     this.addBookWindow = document.getElementById("add-book-window");
     this.bookAddSuccess = this.addBookWindow.getElementsByClassName("add-book-window__text-success")[0];
     this.bookAddError = this.addBookWindow.getElementsByClassName("add-book-window__text-success")[0];
-    
+
+    this.browseBookPage = document.getElementById("browse-book");
+    this.historyPage = document.getElementById("history-book");
+
     this.defaultCover = "defaultCover.jpg";
     
     this.bookInfoWindow = document.getElementById("book-info");
@@ -79,12 +82,23 @@ View.prototype.init = function () {
            that.AddTagHandler();
        }
     });
+
+    this.historyPage.addEventListener('click', function() {
+        that.showHistoryPage(that.model.allHistory);
+    }.bind(this));
+
+    this.browseBookPage.addEventListener('click', function() {
+        that.showBooks(books);
+    }.bind(this))     
 }
 
 // Show all book
-View.prototype.showBooks = function(books){
-       
+View.prototype.showBooks = function(books) {
     let i = 0;
+
+    this.historyPage.classList.remove("nav__item_selected");
+    this.browseBookPage.classList.add("nav__item_selected");
+    
     while (this.booksElement.firstChild) {
         this.booksElement.removeChild(this.booksElement.firstChild);
     }
@@ -202,8 +216,8 @@ View.prototype.showMostPopularBooks = function(books) {
     }
 }
 
-// Show all books
-View.prototype.showAllBooks = function (books) {
+// Display all books
+View.prototype.displayAllBooks = function (books) {
     let i = 0;
     for (i; i < books.length; i += 1) {                                               
         this.displayBook(books[i]);          
@@ -220,11 +234,12 @@ View.prototype.mostPopularFilter = function(event) {
         else {
             this.searchBook(this.model.books)
         }
+        this.ctrl.historyFilter("Most Popular");
     }
     else {            
         target.classList.remove("filter__item_selected");
         if (this.searchInput.value === "")
-            this.showAllBooks(this.model.books);
+            this.displayAllBooks(this.model.books);
         else 
             this.searchBook(this.model.books)
     }
@@ -251,20 +266,25 @@ View.prototype.searchBook = function(books) {
     }
 }
 
-// Change rating
-View.prototype.changeRating = function(bookId, rating) {
+View.prototype.updateViewIfFilters = function () {
     const isMostPopularSelected = document.getElementById("most-popular-filter").classList.contains("filter__item_selected");
     const isSerchFilterEmpty = this.searchInput.value === "";
     
-    this.updateRating(bookId, rating, this.model.maxRating);
-    
+    // If filter and search is active update books list
     if (isMostPopularSelected && isSerchFilterEmpty) {
         this.showMostPopularBooks(this.model.books);
     } 
     else if (isMostPopularSelected && !isSerchFilterEmpty) {
         this.searchBook(this.model.books);
     }
-    
+
+    return isMostPopularSelected || !isSerchFilterEmpty;
+}
+
+// Change rating
+View.prototype.changeRating = function(bookId, rating) {
+    this.updateRating(bookId, rating, this.model.maxRating);
+    this.updateViewIfFilters();
 }
 
 // Add events for stars rating
@@ -334,12 +354,13 @@ View.prototype.addNewBookForm = function(event) {
         createNewBook();
     }        
     
-    
     // Create new book
     function createNewBook() {
         const newBook = that.ctrl.createNewBook(bookTitle, bookAuthor, bookCover);
         that.showBook(newBook);
-        that.bookAddSuccessMsg();
+        that.updateViewIfFilters();
+        that.bookAddSuccessMsg();        
+        that.ctrl.historyAddBook(newBook.getId(), bookTitle, bookAuthor);
     }           
 }
 
@@ -356,15 +377,22 @@ View.prototype.bookAddErrorMsg = function() {
     
 }
 
-// Show book info
-View.prototype.bookInfoHandler = function (event) {
-    const bookId = event.target.parentElement.getAttribute("book-id");        
+// Show book info when user click on image
+View.prototype.bookInfoHandler = function (event, id) {
+    let bookId;
+
+    if (arguments.length > 1) {
+        bookId = id;    
+    }        
+    else {
+        bookId = event.target.parentElement.getAttribute("book-id");        
+    }        
+
     const thisBook = this.model.getBookById(bookId);        
     const bookCover = this.bookInfoWindow.getElementsByClassName("book-info__book-cover")[0];
     const bookName = this.bookInfoWindow.getElementsByClassName("book-info__book-name")[0];
     const bookAuthor = this.bookInfoWindow.getElementsByClassName("book-info__book-author")[0];
     const tagInput = document.getElementById("new-tag-name-input");
-
 
     bookCover.setAttribute("src", thisBook.image);
     bookCover.setAttribute("alt", thisBook.title);
@@ -445,4 +473,143 @@ View.prototype.removeTagHandler = function(event) {
     const bookId = this.bookInfoWindow.getAttribute("book-id");        
     this.ctrl.removeTag(bookId, tagName);
     this.showAllBookTags(bookId);
+}
+
+/*//Create notification item
+View.prototype.createNotificationItem = function(parentElement) {
+    const notificationItem = document.createElement("div");
+    const notificationParagraph = document.createElement("p");
+    const notificationTime = document.createElement("p");
+    
+    notificationItem.classList.add("notification__item");
+    notificationParagraph.classList.add("notification__paragraph");
+    notificationTime.classList.add("notification__time");
+    
+    parentElement.insertBefore(notificationItem, notificationBar.firstChild);
+    notificationItem.appendChild(notificationParagraph);
+    notificationItem.appendChild(notificationTime);
+}*/
+
+//Append notification item
+View.prototype.appendNotificationItem = function() {
+    const notificationBar = document.getElementById("notification");
+    const notificationItem = document.createElement("div");
+    const notificationParagraph = document.createElement("p");
+    const notificationTime = document.createElement("p");
+    
+    notificationItem.classList.add("notification__item");
+    notificationParagraph.classList.add("notification__paragraph");
+    notificationTime.classList.add("notification__time");
+    
+    while (notificationBar.children.length > 3) {
+        notificationBar.removeChild(notificationBar.lastChild);
+    }
+    
+    notificationBar.insertBefore(notificationItem, notificationBar.firstChild);
+    notificationItem.appendChild(notificationParagraph);
+    notificationItem.appendChild(notificationTime);
+    notificationTime.innerHTML = "Just now";
+    
+    return notificationParagraph;
+}
+
+// Show notification when user added book
+View.prototype.showNotificationAddBook = function(bookId) {
+    const that = this;
+    const notificationText = this.appendNotificationItem();          
+    let notificationAction;
+    let i = 0;
+    
+    notificationText.innerHTML = 'You added <span class="notification__action">' + 
+        this.model.getBookTitle(bookId) + "</span>" + " by " + '<span class="notification__action">' + 
+        this.model.getBookAuthor(bookId) + "</span>";
+        
+    notificationAction = notificationText.getElementsByClassName("notification__action");
+    
+    for (i; i < notificationAction.length; i += 1) {
+        notificationAction[i].addEventListener("click", function(event) {
+            that.bookInfoHandler(event, bookId);
+        })
+    }   
+}
+
+// Show notification when user used filter
+View.prototype.showNotificationFilter = function(filterName) {
+    const notificationText = this.appendNotificationItem();
+    notificationText.innerHTML = 'You used <span class="notification__action">' + 
+        filterName + "</span>" + " filter";
+}
+
+// Show notification when user change rating of a book
+View.prototype.showNotificationChangeRating = function(bookId) {
+    const that = this;
+    const notificationText = this.appendNotificationItem();          
+    const rating = parseInt(this.model.getRating(bookId)) + 1;
+    let notificationAction;
+    let i = 0;    
+    
+    notificationText.innerHTML = 'You change rating of the book <span class="notification__action">' + 
+        this.model.getBookTitle(bookId) + "</span>" + " by " + '<span class="notification__action">' + 
+        this.model.getBookAuthor(bookId) + "</span> to " + rating;
+        
+    notificationAction = notificationText.getElementsByClassName("notification__action");
+    
+    for (i; i < notificationAction.length; i += 1) {
+        notificationAction[i].addEventListener("click", function(event) {
+            that.bookInfoHandler(event, bookId);
+        })
+    }
+}
+
+// HISTORY PAGE 
+
+// Show history page
+View.prototype.showHistoryPage = function(history) {
+    let i = 0;
+
+    this.browseBookPage.classList.remove("nav__item_selected")
+    this.historyPage.classList.add("nav__item_selected");
+    
+    while (this.booksElement.firstChild) {
+        this.booksElement.removeChild(this.booksElement.firstChild);
+    }
+
+    for (i; i < history.length; i += 1) {                                                
+        this.showHistoryItem(history[i]);
+    }
+}
+
+// Show history page
+View.prototype.showHistoryItem = function(historyItem) {    
+    const historyActions = this.model.historyActions;
+    const bookId = historyItem.getBookId();
+    
+    const notificationItem = document.createElement("div");
+    const notificationParagraph = document.createElement("p");
+    const notificationTime = document.createElement("p");
+    
+    notificationItem.classList.add("notification__item");
+    notificationParagraph.classList.add("notification__paragraph");
+    notificationTime.classList.add("notification__time");
+    
+    this.booksElement.appendChild(notificationItem);
+    notificationItem.appendChild(notificationParagraph);
+    notificationItem.appendChild(notificationTime);
+
+    if (historyItem.getAction() === historyActions.addNewBook) {
+        notificationParagraph.innerHTML = 'You added <span class="notification__action">' + 
+        this.model.getBookTitle(bookId) + "</span>" + " by " + '<span class="notification__action">' + 
+        this.model.getBookAuthor(bookId) + "</span>";
+    }
+    else if (historyItem.getAction() === historyActions.filter) {
+        notificationParagraph.innerHTML = 'You used <span class="notification__action">' + 
+        historyItem.getFilter() + "</span>" + " filter";
+    } else if (historyItem.getAction() === historyActions.rating) {
+        const rating = parseInt(this.model.getRating(bookId)) + 1;
+        notificationParagraph.innerHTML = 'You change rating of the book <span class="notification__action">' + 
+        this.model.getBookTitle(bookId) + "</span>" + " by " + '<span class="notification__action">' + 
+        this.model.getBookAuthor(bookId) + "</span> to " + rating;
+    }
+    
+    notificationTime.innerHTML = historyItem.getDateAdd();
 }

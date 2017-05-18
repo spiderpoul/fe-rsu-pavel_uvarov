@@ -60,11 +60,11 @@
             </div> 
             <ul class="nav-menu">
                 <li class="nav__item"><i class="fa fa-book" aria-hidden="true"></i><span class="nav__text">now reading</span></li>
-                <li class="nav__item nav__item_selected"><i class="fa fa-globe" aria-hidden="true"></i><span class="nav__text">browse</span></li>
+                <li class="nav__item nav__item_selected" id="browse-book"><i class="fa fa-globe" aria-hidden="true"></i><span class="nav__text">browse</span></li>
                 <li class="nav__item"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="nav__text">buy books</span></li>
                 <li class="nav__item"><i class="fa fa-star-o" aria-hidden="true"></i><span class="nav__text">favourite books</span></li>
                 <li class="nav__item"><i class="fa fa-th-list" aria-hidden="true"></i><span class="nav__text">wishlist</span></li>
-                <li class="nav__item"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="nav__text">history</span></li>
+                <li class="nav__item" id="history-book"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="nav__text">history</span></li>
             </ul>
             <ul class="category">
                 <li class="category__item"><span class="category__text">must read titles</span></li>
@@ -72,15 +72,7 @@
                 <li class="category__item"><span class="category__text">classic novels</span></li>
                 <li class="category__item"><span class="category__text">non fiction</span></li>
             </ul>
-            <div class="history">
-                <div class="history__item">                    
-                    <p class="history__paragraph">You added <a href="#" class="history__link">fight club</a> by <a href="#" class="history__link">chuck palahniuk</a> to your <a href="#" class="history__link">must read titles</a></p>
-                    <p class="history__time">24 minutes ago</p>
-                </div>
-                <div class="history__item">                    
-                    <p class="history__paragraph">You added <a href="#" class="history__link">the trial</a> by <a href="#" class="history__link">franz kafka</a> to your <a href="#" class="history__link">must read titles</a></p>
-                    <p class="history__time">48 minutes ago</p>
-                </div>
+            <div class="notification" id="notification">
             </div>
         </aside>
         <section class="content">

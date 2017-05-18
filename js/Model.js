@@ -1,18 +1,17 @@
 function Model() {
-    this.currentValue = null;    
     this.booksData = []; 
-    
     this.books = [];
     this.maxRating = 5;    
     this.imagePath = "img/";
-    
     this.booksDataFile = 'booksData.json'; 
-    
+    this.allHistory = [];
+    this.historyActions = {
+        "addNewBook": "add new book", 
+        "filter": "filter", 
+        "rating": "rating"};
     //Create default tags
     this.allBooksTags = new TagsClass(["Must Read Titles","Best Of List","Classic Novels","Non Fiction"]);
     
-    /*this.onIncrement = new EventEmitter();
-    this.onDecrement = new EventEmitter();*/
 }
 
 Model.prototype.loadBooksData = function () {
@@ -61,30 +60,6 @@ TagsClass.prototype.addTag = function (newTags) {
     this.tags = uniqueArray(this.tags);
 }
 
-/*// Add new tag to a book
-Model.prototype.addNewTag = function(newTag) {
-    if (newTag !== "") {
-        this.books[bookId].tags.push(newTag);
-        this.books[bookId].tags = uniqueArray(this.tags);
-        //this.showAllTags();    
-    }
-}
-
-// Set tags to a book
-Model.prototype.setTags = function(arrTags) {
-    this.tags = arrTags;
-}
-
-// Remove tag from the book
-Model.prototype.removeTag = function(removedTag) {
-    const indexOfTag = this.tags.indexOf(removedTag);
-    if (indexOfTag > -1) {
-        this.tags.splice(indexOfTag, 1);
-        this.showAllTags();
-    }        
-}
-*/
-
 // Book constructor
 function Book(id, title, author, rating, image){
     this.id = id;
@@ -98,6 +73,11 @@ function Book(id, title, author, rating, image){
 // Set tags
 Book.prototype.setTags = function(arrTags) {
     this.tags = arrTags;
+}
+
+// Set tags
+Book.prototype.getId = function(arrTags) {
+    return this.id;
 }
 
 // Add new tag to a book
@@ -153,9 +133,19 @@ Model.prototype.addNewBook = function(bookTitle, bookAuthor, bookCover) {
     return this.books[that.books.length - 1];                            
 }
 
-// Get new rating and update
+// Get book object by id
 Model.prototype.getBookById = function(bookId) {
     return this.books[bookId];             
+}
+
+// Get name of the book by id
+Model.prototype.getBookTitle = function(bookId) {
+    return this.books[bookId].title;             
+}
+
+// Get author of the book by id
+Model.prototype.getBookAuthor = function(bookId) {
+    return this.books[bookId].author;             
 }
 
 // Return unique array of elements
@@ -166,21 +156,72 @@ function uniqueArray(arr) {
     for (i; i < arr.length; i += 1) {
         let item = arr[i].trim();
         obj[item] = true;
-    }        
+    }   
+    
     return Object.keys(obj);
 }
 
-/*Model.prototype.increment = function () {
-    this.currentValue++;
-    this.onIncrement.notify(this.currentValue);
+// HISTORY
+
+// History item consructor
+function History() {
+    this.dateAdd = new Date();
+    this.action;
 }
 
-Model.prototype.decrement = function () {
-    this.currentValue--;
-    this.onDecrement.notify(this.currentValue);
+History.prototype.setBookId = function(bookId) {
+    this.bookId = bookId;
+};
+
+History.prototype.setFilter = function(filterName) {
+    this.filter = filterName;
+};
+
+History.prototype.setAction = function(action) {
+    this.action = action;
+};
+
+History.prototype.getBookId = function() {
+    return this.bookId;
+};
+
+History.prototype.getFilter = function() {
+    return this.filter;
+};
+
+History.prototype.getAction = function() {
+    return this.action;
+};
+
+History.prototype.getDateAdd = function() {
+    return this.dateAdd;
+};
+
+History.prototype.getAction = function() {
+    return this.action;
+};
+
+// Add history mark add new book
+Model.prototype.addHistoryAddBook = function(bookId) {
+    const historyItem = new History();
+    historyItem.setBookId(bookId);
+    historyItem.setAction(this.historyActions.addNewBook);
+    this.allHistory.unshift(historyItem);
+    console.log(this.allHistory);
 }
 
-Model.prototype.setInitialValue = function (initialValue) {
-    this.currentValue = initialValue;
-    this.onIncrement.notify(this.currentValue);
-}*/
+// Add history mark when user used filter
+Model.prototype.addHistoryFilter = function(filterName) {
+    const historyItem = new History();
+    historyItem.setFilter(filterName);
+    historyItem.setAction(this.historyActions.filter);
+    this.allHistory.unshift(historyItem);
+}
+
+// Add history mark when user changed rating
+Model.prototype.addHistoryChangeRating = function(bookId) {
+    const historyItem = new History();
+    historyItem.setBookId(bookId);
+    historyItem.setAction(this.historyActions.rating);
+    this.allHistory.unshift(historyItem);
+}
