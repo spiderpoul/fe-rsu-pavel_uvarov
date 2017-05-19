@@ -8,42 +8,58 @@ function Model() {
     this.historyActions = {
         "addNewBook": "add new book", 
         "filter": "filter", 
-        "rating": "rating"};
+        "rating": "rating",
+        "search": "search"};
     //Create default tags
-    this.allBooksTags = new TagsClass(["Must Read Titles","Best Of List","Classic Novels","Non Fiction"]);
-    
+    this.allBooksTags = new TagsClass(["Must Read Titles","Best Of List","Classic Novels","Non Fiction"]);  
 }
 
-Model.prototype.loadBooksData = function () {
-    const that = this;    
-    let xmlRequest = new XMLHttpRequest();
-    let booksData = [];
+// Create books from JSON dataset
+Model.prototype.createBooks = function (booksData) {     
+    let i=0;        
+    for (i; i < booksData.length; i += 1) {              
+        let title = booksData[i].title;
+        let author = booksData[i].author;
+        let rating = booksData[i].rating;
+        let image = this.imagePath + booksData[i].image;                                    
+        let bookTags = booksData[i].tags.split(",");                    
 
-    xmlRequest.onreadystatechange = function() {
-        if(xmlRequest.readyState === 4) {
-            let i=0;
-            booksData = JSON.parse(xmlRequest.responseText); 
-            for (i; i < booksData.length; i += 1) {              
-                let title = booksData[i].title;
-                let author = booksData[i].author;
-                let rating = booksData[i].rating;
-                let image = that.imagePath + booksData[i].image;                                    
-                let bookTags = booksData[i].tags.split(",");                    
+        this.books[i] = new Book(i, title, author, rating, image);
 
-                that.books[i] = new Book(i, title, author, rating, image);
+        this.bookTags = uniqueArray(bookTags);
 
-                that.bookTags = uniqueArray(bookTags);
+        this.allBooksTags.addTag(bookTags);                                    
 
-                that.allBooksTags.addTag(bookTags);                                    
+        this.books[i].setTags(bookTags);  
+    }                          
+    return this.books;
+}
 
-                that.books[i].setTags(bookTags);                            
-            }                        
+// Load JSON file from server
+Model.prototype.httpGetJson = function(url) {
+    return new Promise(function(resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        let jsonData = [];
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4) {
+                jsonData = JSON.parse(xhr.responseText);
+            }                                    
         };
-    };
     
-    xmlRequest.open("GET", this.booksDataFile, false);
-    xmlRequest.send();   
-    return that.books;
+        xhr.onload = function () {
+            if (this.status == 200) {
+                console.log(jsonData);
+                resolve(jsonData);
+            }
+            else {
+                var error = new Error(this.statusText);
+                error.code = this.status;
+                reject(error);
+            }
+        }
+        xhr.open("GET", url, true);
+        xhr.send();  
+    });
 }
 
 // Tags class constructor
@@ -215,6 +231,14 @@ Model.prototype.addHistoryFilter = function(filterName) {
     const historyItem = new History();
     historyItem.setFilter(filterName);
     historyItem.setAction(this.historyActions.filter);
+    this.allHistory.unshift(historyItem);
+}
+
+// Add history mark when user used filter
+Model.prototype.addHistorySearch = function(searchFilter) {
+    const historyItem = new History();
+    historyItem.setFilter(searchFilter);
+    historyItem.setAction(this.historyActions.search);
     this.allHistory.unshift(historyItem);
 }
 
