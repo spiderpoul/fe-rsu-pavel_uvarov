@@ -4,17 +4,17 @@ function Controller() {
 }
 
 // Load all books from JSON file
-Controller.prototype.loadBooksData = function() {
-    const that = this;    
+Controller.prototype.loadBooksData = function () {
+    const that = this;
     this.model.httpGetJson(this.model.booksDataFile)
         .then(
-            booksData => {
-                return that.model.createBooks(booksData);
-            },
-            error => {
-                console.log("Something went wrong: " + error);
-                return;
-            }
+        booksData => {
+            return that.model.createBooks(booksData);
+        },
+        error => {
+            console.log("Something went wrong: " + error);
+            return;
+        }
         )
         .then(books => {
             that.view.showBooks(books);
@@ -23,53 +23,53 @@ Controller.prototype.loadBooksData = function() {
 };
 
 //Event for star rating on click
-Controller.prototype.changeRatingHandler = function(bookId, rating) {
+Controller.prototype.changeRatingHandler = function (bookId, rating) {
     this.model.setRating(bookId, rating);
     this.view.changeRating(bookId, rating);
     this.historyChangeRating(bookId)
 };
 
 //Create new book
-Controller.prototype.createNewBook = function(bookTitle, bookAuthor, bookCover) {
+Controller.prototype.createNewBook = function (bookTitle, bookAuthor, bookCover) {
     return this.model.addNewBook(bookTitle, bookAuthor, bookCover);
 };
 
 // Add new tag to a book
-Controller.prototype.addNewTag = function(bookId, tagName) {
+Controller.prototype.addNewTag = function (bookId, tagName) {
     this.model.addNewTagToBook(bookId, tagName);
     this.model.allBooksTags.addTag(tagName);
 };
 
 // Remove tag from a book
-Controller.prototype.removeTag = function(bookId, tagName) {
+Controller.prototype.removeTag = function (bookId, tagName) {
     this.model.removeTagFromBook(bookId, tagName);
 };
 
 // Add history mark add book
-Controller.prototype.historyAddBook = function(bookId) {
+Controller.prototype.historyAddBook = function (bookId) {
     this.model.addHistoryAddBook(bookId);
-    this.view.showNotificationAddBook(bookId);
+    this.view.showNotifications(this.model.allHistory);
 };
 
 // Add history mark when user used filter
-Controller.prototype.historyFilter = function(filterName) {
+Controller.prototype.historyFilter = function (filterName) {
     this.model.addHistoryFilter(filterName);
-    this.view.showNotificationFilter(filterName);
+    this.view.showNotifications(this.model.allHistory);
 };
 
 // Add history mark when user used search
-Controller.prototype.historySearch = function(searchFilter) {
+Controller.prototype.historySearch = function (searchFilter) {
     this.model.addHistorySearch(searchFilter);
-    this.view.showNotificationSearch(searchFilter);
+    this.view.showNotifications(this.model.allHistory);
 };
 
 // Add history mark when user changed rating
-Controller.prototype.historyChangeRating = function(bookId) {
+Controller.prototype.historyChangeRating = function (bookId) {
     this.model.addHistoryChangeRating(bookId);
-    this.view.showNotificationChangeRating(bookId);
+    this.view.showNotifications(this.model.allHistory);
 };
 
 Controller.prototype.start = function () {
     this.loadBooksData();
-    this.view.init();    
+    this.view.init();
 };
