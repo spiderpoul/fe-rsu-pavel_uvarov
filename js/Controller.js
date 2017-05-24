@@ -41,7 +41,7 @@ Controller.prototype.changeRatingHandler = function (bookId, rating) {
         })
         .then((books) => {
             this.model.books = books;
-            this.view.changeRating(bookId, rating);
+            //this.view.changeRating(bookId, rating);
             this.historyChangeRating(bookId)
         })
         .catch(err => {

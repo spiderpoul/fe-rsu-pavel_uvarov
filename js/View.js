@@ -28,19 +28,19 @@ View.prototype.init = function () {
     const that = this;
 
     // Show most popular books event
-    this.mostPopularElement.addEventListener('click', function (event) {
+    this.mostPopularElement.addEventListener('click', event => {
         if (that.isBookPageActive())
             that.mostPopularFilter(event);
     });
 
     // Search book event on input
-    this.searchInput.addEventListener('input', function () {
+    this.searchInput.addEventListener('input', () => {
         if (that.isBookPageActive())
             that.searchBook(that.model.books);
     });
 
     // Search book event
-    this.searchInput.addEventListener('blur', function () {
+    this.searchInput.addEventListener('blur', () => {
         let search = that.searchInput.value;
         if (that.isBookPageActive() && search !== "") {
             that.ctrl.historySearch(search);
@@ -48,34 +48,34 @@ View.prototype.init = function () {
     });
 
     // Add new book event
-    this.formAddBook.addEventListener('submit', function (event) {
+    this.formAddBook.addEventListener('submit', event => {
         that.addNewBookForm(event);
     }, false);
 
     // Show add book window
-    addBookButton.addEventListener('click', function () {
+    addBookButton.addEventListener('click', () => {
         that.bookAddSuccess.style.display = "none";
         that.bookAddError.style.display = "none";
         that.addBookWindow.style.display = "block";
     });
 
     // Close add book window by close button
-    addBookWindowClose.addEventListener('click', function () {
+    addBookWindowClose.addEventListener('click', () => {
         that.addBookWindow.style.display = "none";
     });
 
     // Close book info window by close button
-    bookInfoWindowClose.addEventListener('click', function () {
+    bookInfoWindowClose.addEventListener('click', () => {
         that.bookInfoWindow.style.display = "none";
     });
 
     // Close modal window by clicking around
-    window.addEventListener('click', function (event) {
-        if (event.target == that.addBookWindow) {
-            that.addBookWindow.style.display = "none";
+    window.addEventListener('click', event => {
+        if (event.target == this.addBookWindow) {
+            this.addBookWindow.style.display = "none";
         }
-        if (event.target == that.bookInfoWindow) {
-            that.bookInfoWindow.style.display = "none";
+        if (event.target == this.bookInfoWindow) {
+            this.bookInfoWindow.style.display = "none";
         }
     });
 
@@ -83,19 +83,19 @@ View.prototype.init = function () {
     addTagButton.addEventListener('click', this.AddTagHandler.bind(this));
 
     //Add tag on press Enter
-    inputTagElement.addEventListener('keypress', function (event) {
+    inputTagElement.addEventListener('keypress', event => {
         if (event.keyCode == 13) {
             that.AddTagHandler();
         }
     });
 
-    this.historyPage.addEventListener('click', function () {
-        that.showHistoryPage(that.model.allHistory);
-    }.bind(this));
+    this.historyPage.addEventListener('click', () => {
+        this.showHistoryPage(this.model.allHistory);
+    });
 
-    this.browseBookPage.addEventListener('click', function () {
-        that.showBooks(that.model.books);
-    }.bind(this));
+    this.browseBookPage.addEventListener('click', () => {
+        this.showBooks(this.model.books);
+    });
 };
 
 // Show all book
@@ -323,8 +323,10 @@ View.prototype.starMouseOut = function (star) {
 View.prototype.starClick = function (star) {
     const that = this;
     const bookId = star.parentNode.parentElement.getAttribute("book-id");
-    star.addEventListener("click", function () {
-        that.ctrl.changeRatingHandler(bookId, star.getAttribute("data-index"));
+    star.addEventListener("click", () => {
+        let rating = star.getAttribute("data-index");
+        this.changeRating(bookId, rating);
+        this.ctrl.changeRatingHandler(bookId, rating);
     });
 };
 
