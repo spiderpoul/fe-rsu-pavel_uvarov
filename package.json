@@ -10,12 +10,12 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test",
+    "test": "echo 'test'",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spiderpoul/fe-rsu-pavel-uvarov.git"
+    "url": "https://github.com/spiderpoul/fe-rsu-pavel_uvarov/tree/css_layout"
   },
   "keywords": [
     "node"
