@@ -5,6 +5,8 @@ let bodyParser = require('body-parser');
 let app = express();
 const port = 8080;
 
+app.set('port', (process.env.PORT || port));
+
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
@@ -58,8 +60,7 @@ app.post('/setRating', function(req, res) {
 });
 
 app.use(express.static(__dirname));
-app.listen(port);
 
-
-
-console.log('Сервер стартовал на http://localhost:'+port);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});

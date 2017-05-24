@@ -63,7 +63,6 @@ Controller.prototype.createNewBook = function (bookData) {
             return res.json();
         })
         .then(newBook => {
-            debugger;
             console.log(newBook);            
             this.view.bookAddSuccessMsg();            
             this.view.showNewBook(newBook);      
