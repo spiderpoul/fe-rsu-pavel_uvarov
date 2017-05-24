@@ -340,51 +340,38 @@ View.prototype.isHistoryPageActive = function () {
 
 // Add new book
 View.prototype.addNewBookForm = function (event) {
-    const that = this;
-    const bookTitle = document.getElementById("bookTitle").value;
-    const bookAuthor = document.getElementById("bookAuthor").value;
+    const that = this;    
+    const url = "/upload";
     const formFiles = document.getElementById('bookCover').files;
-    let bookCover = "";
+    let bookData = {};
+    let bookCover = "";    
+
+    bookData.bookTitle = document.getElementById("bookTitle").value;
+    bookData.bookAuthor = document.getElementById("bookAuthor").value;    
 
     event.preventDefault();
 
     if (formFiles.length !== 0) {
-        bookCover = formFiles[0].name;
         let formData = new FormData(this.formAddBook);
-        let xmlRequest = new XMLHttpRequest();
-
-        xmlRequest.open("POST", "/upload", true);
-
-        xmlRequest.onload = function (event) {
-            if (xmlRequest.status == 200) {
-                createNewBook();
-            }
-            else {
-                console.log("error " + xmlRequest.status);
-                that.bookAddErrorMsg();
-            }
-        };
-        xmlRequest.send(formData);
+        bookData.bookCover = formFiles[0].name;                
+        this.ctrl.addNewBookWithCover(formData, url, bookData);        
     }
     else {
-        bookCover = this.defaultCover;
-        createNewBook();
-    }
-
-    // Create new book
-    function createNewBook() {
-        const newBook = that.ctrl.createNewBook(bookTitle, bookAuthor, bookCover);
-        if (that.isBookPageActive()) {
-            that.showBook(newBook);
-            that.updateViewIfFilters();
-        }
-        that.bookAddSuccessMsg();
-        that.ctrl.historyAddBook(newBook.getId(), bookTitle, bookAuthor);
-        if (that.isHistoryPageActive()) {
-            that.showHistoryPage(that.model.allHistory);
-        }
+        bookData.bookCover = this.defaultCover;
+        this.ctrl.createNewBook(bookData);                
     }
 };
+
+    // Show book considering filters and current page 
+View.prototype.showNewBook = function (newBook) {        
+        if (this.isBookPageActive()) {
+            this.showBook(newBook);
+            this.updateViewIfFilters();
+        }                
+        if (this.isHistoryPageActive()) {
+            this.showHistoryPage(that.model.allHistory);
+        }
+    }
 
 // Show message if book was added successfully
 View.prototype.bookAddSuccessMsg = function () {

@@ -1,0 +1,8 @@
+{
+  "name": "Book libary",
+  "description": "Book libary | Epam external course",
+  "repository": "https://github.com/spiderpoul/fe-rsu-pavel_uvarov/tree/css_layout",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}

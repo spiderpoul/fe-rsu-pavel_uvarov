@@ -1,0 +1,29 @@
+{
+  "name": "css_layout",
+  "version": "1.0.0",
+  "description": "Book libary",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2",
+    "multer": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiderpoul/fe-rsu-pavel-uvarov.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Pavel Uvarov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spiderpoul/fe-rsu-pavel-uvarov/issues"
+  },
+  "homepage": "https://github.com/spiderpoul/fe-rsu-pavel-uvarov#readme"
+}

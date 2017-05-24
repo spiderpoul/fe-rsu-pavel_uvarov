@@ -15,7 +15,7 @@ function Model() {
     this.allBooksTags = new TagsClass(["Must Read Titles", "Best Of List", "Classic Novels", "Non Fiction"]);
 }
 
-// Create books from JSON dataset
+/*// Create books from JSON dataset
 Model.prototype.createBooks = function (booksData) {
     let i = 0;
     for (i; i < booksData.length; i += 1) {
@@ -34,6 +34,16 @@ Model.prototype.createBooks = function (booksData) {
         this.books[i].setTags(bookTags);
     }
     return this.books;
+};*/
+
+// Create books from JSON dataset
+Model.prototype.createTags = function (books) {
+    let i = 0;
+    books.forEach(item => {
+        this.allBooksTags.addTag(item.tags);
+    });
+
+    return this.allBooksTags;
 };
 
 // Load JSON file from server
@@ -61,6 +71,25 @@ Model.prototype.httpGetJson = function (url) {
         xhr.open("GET", url, true);
         xhr.send();
     });
+};
+
+// Upload books cover
+Model.prototype.httpPostForm = function (formData, url) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url, true);
+
+        xhr.onload = function (event) {
+            if (xhr.status == 200) {
+                resolve();
+            }
+            else {                
+                reject(xhr.status)
+            }
+        };
+        xhr.send(formData);
+    })
 };
 
 // Tags class constructor
@@ -156,7 +185,7 @@ Model.prototype.getBookById = function (bookId) {
 };
 
 // Get name of the book by id
-Model.prototype.getBookTitle = function (bookId) {
+Model.prototype.getBookTitle = function (bookId) {    
     return this.books[bookId].title;
 };
 

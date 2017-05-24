@@ -5,34 +5,96 @@ function Controller() {
 
 // Load all books from JSON file
 Controller.prototype.loadBooksData = function () {
-    const that = this;
-    this.model.httpGetJson(this.model.booksDataFile)
-        .then(
-        booksData => {
-            return that.model.createBooks(booksData);
-        },
+    this.model.httpGetJson("/getBooks")
+        .then(books => {
+            console.log("Server books");
+            console.log(books);
+            this.model.createTags(books);
+            this.model.books = books;            
+            return books;
+        }, 
         error => {
             console.log("Something went wrong: " + error);
             return;
-        }
-        )
+        })
         .then(books => {
-            that.view.showBooks(books);
-            that.view.updateTagsList(that.model.allBooksTags.tags);
+            this.view.showBooks(books);
+            this.view.updateTagsList(this.model.allBooksTags.tags);
         });
 };
 
 //Event for star rating on click
 Controller.prototype.changeRatingHandler = function (bookId, rating) {
-    this.model.setRating(bookId, rating);
-    this.view.changeRating(bookId, rating);
-    this.historyChangeRating(bookId)
+    let data = {
+        "bookId": bookId,
+        "rating": rating
+    };    
+    fetch('/setRating', {
+        method: "POST", 
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'}
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then((books) => {
+            this.model.books = books;
+            this.view.changeRating(bookId, rating);
+            this.historyChangeRating(bookId)
+        })
+        .catch(err => {
+            console.log("Something went wrong: " + error);
+        })
 };
 
-//Create new book
-Controller.prototype.createNewBook = function (bookTitle, bookAuthor, bookCover) {
-    return this.model.addNewBook(bookTitle, bookAuthor, bookCover);
+// Create new book
+Controller.prototype.createNewBook = function (bookData) {
+
+    fetch('/addNewBook', {
+        method: "POST", 
+        body: JSON.stringify(bookData),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'}
+    }) 
+        .then(res => {
+            return res.json();
+        })
+        .then(newBook => {
+            debugger;
+            console.log(newBook);            
+            this.view.bookAddSuccessMsg();            
+            this.view.showNewBook(newBook);      
+            return newBook;                
+        },
+        err => {
+            console.log("Error upload file: " + err);                
+            this.view.bookAddErrorMsg();
+        })
+        .then(newBook => {
+            fetch("/getBooks")
+                .then(res => {
+                    return res.json();
+                })
+                .then(books => {
+                    this.model.books = books;
+                    this.historyAddBook(newBook.id, bookTitle, bookAuthor);
+            });            
+        })
 };
+
+// Add new book and upload cover
+Controller.prototype.addNewBookWithCover = function (formData, url, bookData) {
+    this.model.httpPostForm(formData, url)
+        .then(() => {
+            this.createNewBook(bookData);
+        }, err => {
+            console.log("Error upload file: " + err);                
+            this.view.bookAddErrorMsg();
+        });
+}
 
 // Add new tag to a book
 Controller.prototype.addNewTag = function (bookId, tagName) {
