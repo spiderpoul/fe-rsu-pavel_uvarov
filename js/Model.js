@@ -106,8 +106,8 @@ TagsClass.prototype.addTag = function (newTags) {
     this.tags = uniqueArray(this.tags);
 };
 
-// Book constructor
-function Book(id, title, author, rating, image) {
+/*// Book constructor
+function Book (id, title, author, rating, image) {
     this.id = id;
     this.title = title;
     this.author = author;
@@ -124,7 +124,7 @@ Book.prototype.setTags = function (arrTags) {
 // Set tags
 Book.prototype.getId = function (arrTags) {
     return this.id;
-};
+};*/
 
 // Add new tag to a book
 Model.prototype.addNewTagToBook = function (bookId, newTag) {
@@ -210,8 +210,10 @@ function uniqueArray(arr) {
 // HISTORY
 
 // History item consructor
-function History() {
+function History(id) {
+    this.id = id;
     this.dateAdd = new Date();
+    this.display = true;
 }
 
 History.prototype.setBookId = function (bookId) {
@@ -224,6 +226,10 @@ History.prototype.setFilter = function (filterName) {
 
 History.prototype.setAction = function (action) {
     this.action = action;
+};
+
+History.prototype.getHistoryId = function (bookId) {
+    return this.id;
 };
 
 History.prototype.getBookId = function () {
@@ -279,7 +285,8 @@ History.prototype.getAction = function () {
 
 // Add history mark add new book
 Model.prototype.addHistoryAddBook = function (bookId) {
-    const historyItem = new History();
+    const id = this.allHistory.length;
+    const historyItem = new History(id);
     historyItem.setBookId(bookId);
     historyItem.setAction(this.historyActions.addNewBook);
     this.allHistory.unshift(historyItem);
@@ -287,15 +294,18 @@ Model.prototype.addHistoryAddBook = function (bookId) {
 
 // Add history mark when user used filter
 Model.prototype.addHistoryFilter = function (filterName) {
-    const historyItem = new History();
+    const id = this.allHistory.length;
+    const historyItem = new History(id);
     historyItem.setFilter(filterName);
     historyItem.setAction(this.historyActions.filter);
     this.allHistory.unshift(historyItem);
+    console.log(this.allHistory);
 };
 
 // Add history mark when user used filter
 Model.prototype.addHistorySearch = function (searchFilter) {
-    const historyItem = new History();
+    const id = this.allHistory.length;
+    const historyItem = new History(id);
     historyItem.setFilter(searchFilter);
     historyItem.setAction(this.historyActions.search);
     this.allHistory.unshift(historyItem);
@@ -303,7 +313,8 @@ Model.prototype.addHistorySearch = function (searchFilter) {
 
 // Add history mark when user changed rating
 Model.prototype.addHistoryChangeRating = function (bookId) {
-    const historyItem = new History();
+    const id = this.allHistory.length;
+    const historyItem = new History(id);
     historyItem.setBookId(bookId);
     historyItem.setAction(this.historyActions.rating);
     this.allHistory.unshift(historyItem);

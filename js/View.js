@@ -17,6 +17,8 @@ function View(model, controller) {
     this.defaultCover = "defaultCover.jpg";
 
     this.bookInfoWindow = document.getElementById("book-info");
+
+    this.notificationIdMask = "notification-";
 }
 
 View.prototype.init = function () {
@@ -512,14 +514,22 @@ View.prototype.showNotifications = function (history) {
         notificationBar.removeChild(notificationBar.firstChild);
     }
 
-    if (history.length < 4)
+    if (history.length < maxNumberOfNotifications)
         maxNumberOfNotifications = history.length;
 
     let i = 0;
     for (i; i < maxNumberOfNotifications; i += 1) {
-        this.showHistoryItem(history[i], notificationBar, elementsClasses);
+        if (history[i].display) {
+            this.showHistoryItem(history[i], notificationBar, elementsClasses);
+        }
     }
 };
+
+// Hide notification
+View.prototype.hideNotification = function (historyId) {    
+    const notificationItem = document.getElementById(this.notificationIdMask + historyId);
+    notificationItem.style.display = "none";
+}
 
 // HISTORY PAGE 
 
@@ -543,8 +553,8 @@ View.prototype.showHistoryPage = function (history) {
     notificationElement.classList.add("history");
     this.booksElement.appendChild(notificationElement);
 
-    for (i; i < history.length; i += 1) {
-        this.showHistoryItem(history[i], notificationElement, elementsClasses);
+    for (i; i < history.length; i += 1) {        
+            this.showHistoryItem(history[i], notificationElement, elementsClasses);
     }
 };
 
@@ -557,13 +567,21 @@ View.prototype.showHistoryItem = function (historyItem, notificationElement, ele
     const notificationParagraph = document.createElement("p");
     const notificationTime = document.createElement("p");
 
-    notificationItem.classList.add(elementsClasses.item);
+    notificationItem.classList.add(elementsClasses.item);    
     notificationParagraph.classList.add(elementsClasses.paragraph);
-    notificationTime.classList.add(elementsClasses.time);
+    notificationTime.classList.add(elementsClasses.time);        
 
     notificationElement.appendChild(notificationItem);
     notificationItem.appendChild(notificationParagraph);
     notificationItem.appendChild(notificationTime);
+
+    if (elementsClasses.item === "notification__item") {
+        notificationItem.setAttribute("id", this.notificationIdMask + historyItem.getHistoryId());        
+        setTimeout( () => {
+            this.hideNotification(historyItem.getHistoryId());            
+            historyItem.display = false;
+        }, 3000);
+    }
 
     if (historyItem.getAction() === historyActions.addNewBook) {
         notificationParagraph.innerHTML = 'You added <span class="' +
@@ -582,7 +600,7 @@ View.prototype.showHistoryItem = function (historyItem, notificationElement, ele
     }
     else if (historyItem.getAction() === historyActions.rating) {
         const rating = parseInt(this.model.getRating(bookId)) + 1;
-        notificationParagraph.innerHTML = 'You change rating of the book <span class="' +
+        notificationParagraph.innerHTML = 'You changed rating of the book <span class="' +
             elementsClasses.action + '">' +
             this.model.getBookTitle(bookId) + "</span>" + " by " +
             '<span class="' + elementsClasses.action + '">' +
@@ -596,6 +614,6 @@ View.prototype.showHistoryItem = function (historyItem, notificationElement, ele
             elementsClasses.action + '">' +
             historyItem.getFilter() + "</span>";
     }
-    notificationTime.innerHTML = historyItem.getDateAdd();
+    notificationTime.innerHTML = historyItem.getDateAdd();    
 };
 

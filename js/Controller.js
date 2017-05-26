@@ -51,7 +51,6 @@ Controller.prototype.changeRatingHandler = function (bookId, rating) {
 
 // Create new book
 Controller.prototype.createNewBook = function (bookData) {
-
     fetch('/addNewBook', {
         method: "POST", 
         body: JSON.stringify(bookData),

@@ -137,8 +137,8 @@
 }
 .notification__item {
     position: relative;
-    padding: 35px 20px 0 40px;
-}
+    padding: 35px 20px 0 40px;    
+}      
 .notification__item:before {    
     position: absolute;
     left: 20px;
