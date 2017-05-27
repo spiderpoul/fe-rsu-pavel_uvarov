@@ -88,14 +88,12 @@
     cursor: pointer;
 }
 .books__name {
-    height: 20px;
     margin-top: 15px;
     font-family: Proxima Nova, Arial, sans-serif; 
     font-size: 1em;
     color: #444c63;    
 }
 .books__author {
-    height: 20px;
     font-family: Proxima Nova, Arial, sans-serif; 
     text-transform: capitalize;
     font-size: 1em;
