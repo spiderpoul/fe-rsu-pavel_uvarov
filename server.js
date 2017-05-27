@@ -19,10 +19,10 @@ app.get('/', function(req, res) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './img')
+    cb(null, './img');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname) //'-' + Date.now() + 
+    cb(null, file.originalname); //'-' + Date.now() + 
   }
 });
 
@@ -41,7 +41,7 @@ app.get('/getBooks', (req, res) => {
 
 app.post('/addNewBook', (req, res) => {
   console.log(req.body);
-  let newBook = books.addNewBook(req.body.bookTitle, req.body.bookAuthor, req.body.bookCover)
+  let newBook = books.addNewBook(req.body.bookTitle, req.body.bookAuthor, req.body.bookCover);
   res.setHeader("Content-Type", "application/json");
   res.statusCode = 200;
   console.log("New book " + newBook);

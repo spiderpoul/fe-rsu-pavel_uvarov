@@ -48,7 +48,7 @@ Controller.prototype.changeRatingHandler = function (bookId, rating) {
         })
         .catch(err => {
             console.log("Something went wrong: " + err);
-        })
+        });
 };
 
 // Create new book
@@ -80,9 +80,9 @@ Controller.prototype.createNewBook = function (bookData) {
                 })
                 .then(books => {
                     this.model.books = books;
-                    this.historyAddBook(newBook.id, bookTitle, bookAuthor);
+                    this.historyAddBook(newBook.id);
             });            
-        })
+        });
 };
 
 // Add new book and upload cover
@@ -94,7 +94,7 @@ Controller.prototype.addNewBookWithCover = function (formData, url, bookData) {
             console.log("Error upload file: " + err);                
             this.view.bookAddErrorMsg();
         });
-}
+};
 
 // Add new tag to a book
 Controller.prototype.addNewTag = function (bookId, tagName) {
@@ -132,15 +132,10 @@ Controller.prototype.historyChangeRating = function (bookId, rating) {
 };
 
 // Make notification disappear after 3 second using server
-Controller.prototype.notificationHide = function (notificationId) {  
-    const historyItem = this.model.allHistory[notificationId];
-       
+Controller.prototype.notificationHide = function (notificationId) {         
     this.socket.emit('hideNotificationRequest', notificationId);
     this.socket.on('allowHideNotification', res => {
-        //if (!historyItem.getIsTimerEnable()) {
             this.view.hideNotification(res);
-            //historyItem.timerEnable();
-        //}
     });
 };
 

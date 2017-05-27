@@ -117,6 +117,7 @@ View.prototype.showBooks = function (books) {
     this.updateViewIfFilters();
 };
 
+// Update rating
 View.prototype.updateRating = function (id, rating, maxRating) {
     const bookRating = document.getElementsByClassName("books__rating")[id].children;
     let i = 0;
@@ -323,7 +324,6 @@ View.prototype.starMouseOut = function (star) {
 
 //Event for star rating on click
 View.prototype.starClick = function (star) {
-    const that = this;
     const bookId = star.parentNode.parentElement.getAttribute("book-id");
     star.addEventListener("click", () => {
         let rating = star.getAttribute("data-index");
@@ -344,11 +344,9 @@ View.prototype.isHistoryPageActive = function () {
 
 // Add new book
 View.prototype.addNewBookForm = function (event) {
-    const that = this;    
     const url = "/upload";
     const formFiles = document.getElementById('bookCover').files;
-    let bookData = {};
-    let bookCover = "";    
+    let bookData = {};    
 
     bookData.bookTitle = document.getElementById("bookTitle").value;
     bookData.bookAuthor = document.getElementById("bookAuthor").value;    
@@ -366,16 +364,16 @@ View.prototype.addNewBookForm = function (event) {
     }
 };
 
-    // Show book considering filters and current page 
+// Show book considering filters and current page 
 View.prototype.showNewBook = function (newBook) {        
         if (this.isBookPageActive()) {
             this.showBook(newBook);
             this.updateViewIfFilters();
         }                
         if (this.isHistoryPageActive()) {
-            this.showHistoryPage(that.model.allHistory);
+            this.showHistoryPage(this.model.allHistory);
         }
-    }
+};
 
 // Show message if book was added successfully
 View.prototype.bookAddSuccessMsg = function () {
@@ -499,32 +497,6 @@ View.prototype.addNotifictionLitner = function (notificationAction, bookId) {
     }
 };
 
-/*// Show notifications
-View.prototype.showNotifications = function (history) {
-    const elementsClasses = {
-        "item": "notification__item",
-        "paragraph": "notification__paragraph",
-        "time": "notification__time",
-        "action": "notification__action"
-    };
-    const notificationBar = document.getElementById("notification");
-    let maxNumberOfNotifications = 4;
-
-    while (notificationBar.firstChild) {
-        notificationBar.removeChild(notificationBar.firstChild);
-    }
-
-    if (history.length < maxNumberOfNotifications)
-        maxNumberOfNotifications = history.length;
-
-    let i = 0;
-    for (i; i < maxNumberOfNotifications; i += 1) {
-        if (history[i].isDisplayed()) {
-            this.showHistoryItem(history[i], notificationBar, elementsClasses);
-        }
-    }
-};*/
-
 // Add new notification to notification bar
 View.prototype.showNotification = function (notificationId) {
     const elementsClasses = {
@@ -535,27 +507,18 @@ View.prototype.showNotification = function (notificationId) {
     };
     const notificationBar = document.getElementById("notification");
 
-    /*let maxNumberOfNotifications = 4;
-
-    while (notificationBar.children.length > maxNumberOfNotifications - 1) {
-        notificationBar.removeChild(notificationBar.lastChild);
-    }
-
-    if (history.length < maxNumberOfNotifications)
-        maxNumberOfNotifications = history.length;*/
-
     this.showHistoryItem(this.model.allHistory[notificationId], notificationBar, elementsClasses);
 };
 
 // Hide notification
 View.prototype.hideNotification = function (historyId) {    
     const notificationItem = document.getElementById(this.notificationIdMask + historyId);
-    if (notificationItem != null) {
+    if (notificationItem !== null) {
         //notificationItem.style.display = "none";
         notificationItem.parentNode.removeChild(notificationItem);
     } else 
         return;
-}
+};
 
 // HISTORY PAGE 
 
@@ -639,4 +602,3 @@ View.prototype.showHistoryItem = function (historyItem, notificationElement, ele
     }
     notificationTime.innerHTML = historyItem.getDateAdd();    
 };
-

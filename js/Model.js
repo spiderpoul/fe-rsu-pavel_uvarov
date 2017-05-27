@@ -15,27 +15,6 @@ function Model() {
     this.allBooksTags = new TagsClass(["Must Read Titles", "Best Of List", "Classic Novels", "Non Fiction"]);
 }
 
-/*// Create books from JSON dataset
-Model.prototype.createBooks = function (booksData) {
-    let i = 0;
-    for (i; i < booksData.length; i += 1) {
-        let title = booksData[i].title;
-        let author = booksData[i].author;
-        let rating = booksData[i].rating;
-        let image = this.imagePath + booksData[i].image;
-        let bookTags = booksData[i].tags.split(",");
-
-        this.books[i] = new Book(i, title, author, rating, image);
-
-        this.bookTags = uniqueArray(bookTags);
-
-        this.allBooksTags.addTag(bookTags);
-
-        this.books[i].setTags(bookTags);
-    }
-    return this.books;
-};*/
-
 // Create books from JSON dataset
 Model.prototype.createTags = function (books) {
     let i = 0;
@@ -85,11 +64,11 @@ Model.prototype.httpPostForm = function (formData, url) {
                 resolve();
             }
             else {                
-                reject(xhr.status)
+                reject(xhr.status);
             }
         };
         xhr.send(formData);
-    })
+    });
 };
 
 // Tags class constructor
@@ -106,25 +85,6 @@ TagsClass.prototype.addTag = function (newTags) {
     this.tags = uniqueArray(this.tags);
 };
 
-/*// Book constructor
-function Book (id, title, author, rating, image) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.rating = rating;
-    this.image = image;
-    this.tags = [];
-}
-
-// Set tags
-Book.prototype.setTags = function (arrTags) {
-    this.tags = arrTags;
-};
-
-// Set tags
-Book.prototype.getId = function (arrTags) {
-    return this.id;
-};*/
 
 // Add new tag to a book
 Model.prototype.addNewTagToBook = function (bookId, newTag) {
@@ -169,14 +129,14 @@ Model.prototype.setRating = function (bookId, rating) {
     }
 };
 
-// Add new book
+/*// Add new book
 Model.prototype.addNewBook = function (bookTitle, bookAuthor, bookCover) {
     const that = this;
     this.books.push(new Book(that.books.length, bookTitle, bookAuthor, -1, this.imagePath + bookCover));
     console.log(that.books[that.books.length - 1]);
 
     return this.books[that.books.length - 1];
-};
+};*/
 
 // Get book object by id
 Model.prototype.getBookById = function (bookId) {
