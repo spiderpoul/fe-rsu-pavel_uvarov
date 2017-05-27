@@ -1,8 +1,11 @@
-let express = require('express');
-let multer = require('multer');
-let books = require('./books');
-let bodyParser = require('body-parser');
-let app = express();
+const http = require('http');
+const express = require('express');
+const multer = require('multer');
+const books = require('./books');
+const bodyParser = require('body-parser');
+const app = express();
+const server = http.createServer(app);
+var io = require('socket.io').listen(server);
 const port = 8080;
 
 app.set('port', (process.env.PORT || port));
@@ -14,7 +17,7 @@ app.get('/', function(req, res) {
   res.sendfile('libary.html');
 });
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './img')
   },
@@ -29,29 +32,27 @@ app.post('/upload', multer({ storage: storage }).single('bookCover'), function(r
 	res.status(200).end();
 });
 
-app.get('/getBooks', function(req, res) {
+app.get('/getBooks', (req, res) => {
   let allBooks = books.getBooks();
   res.setHeader("Content-Type", "application/json");
   res.statusCode = 200;
   res.end(allBooks);
 });
 
-app.post('/addNewBook', function(req, res) {
+app.post('/addNewBook', (req, res) => {
   console.log(req.body);
   let newBook = books.addNewBook(req.body.bookTitle, req.body.bookAuthor, req.body.bookCover)
   res.setHeader("Content-Type", "application/json");
   res.statusCode = 200;
   console.log("New book " + newBook);
-  //let allBooks = books.getBooks();
   res.send(newBook);
   res.end(newBook);
 });
 
-app.post('/setRating', function(req, res) {
+app.post('/setRating', (req, res) => {
   console.log(req.body);  
   const data = req.body;  
   let allBooks;
-
   books.setRating(data.bookId, data.rating);
   allBooks = books.getBooks();
   res.setHeader("Content-Type", "application/json");
@@ -61,6 +62,15 @@ app.post('/setRating', function(req, res) {
 
 app.use(express.static(__dirname));
 
-app.listen(app.get('port'), function() {
+server.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
+});
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('hideNotificationRequest', notificationId => {
+    console.log(notificationId);
+    setTimeout(() => io.emit('allowHideNotification', notificationId), 3000);
+  });  
+  socket.on('disconnect', () => console.log('Client disconnected'));
 });

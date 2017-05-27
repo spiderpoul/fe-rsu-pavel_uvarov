@@ -499,7 +499,7 @@ View.prototype.addNotifictionLitner = function (notificationAction, bookId) {
     }
 };
 
-// Show notifications
+/*// Show notifications
 View.prototype.showNotifications = function (history) {
     const elementsClasses = {
         "item": "notification__item",
@@ -519,16 +519,42 @@ View.prototype.showNotifications = function (history) {
 
     let i = 0;
     for (i; i < maxNumberOfNotifications; i += 1) {
-        if (history[i].display) {
+        if (history[i].isDisplayed()) {
             this.showHistoryItem(history[i], notificationBar, elementsClasses);
         }
     }
+};*/
+
+// Add new notification to notification bar
+View.prototype.showNotification = function (notificationId) {
+    const elementsClasses = {
+        "item": "notification__item",
+        "paragraph": "notification__paragraph",
+        "time": "notification__time",
+        "action": "notification__action"
+    };
+    const notificationBar = document.getElementById("notification");
+
+    /*let maxNumberOfNotifications = 4;
+
+    while (notificationBar.children.length > maxNumberOfNotifications - 1) {
+        notificationBar.removeChild(notificationBar.lastChild);
+    }
+
+    if (history.length < maxNumberOfNotifications)
+        maxNumberOfNotifications = history.length;*/
+
+    this.showHistoryItem(this.model.allHistory[notificationId], notificationBar, elementsClasses);
 };
 
 // Hide notification
 View.prototype.hideNotification = function (historyId) {    
     const notificationItem = document.getElementById(this.notificationIdMask + historyId);
-    notificationItem.style.display = "none";
+    if (notificationItem != null) {
+        //notificationItem.style.display = "none";
+        notificationItem.parentNode.removeChild(notificationItem);
+    } else 
+        return;
 }
 
 // HISTORY PAGE 
@@ -570,17 +596,14 @@ View.prototype.showHistoryItem = function (historyItem, notificationElement, ele
     notificationItem.classList.add(elementsClasses.item);    
     notificationParagraph.classList.add(elementsClasses.paragraph);
     notificationTime.classList.add(elementsClasses.time);        
+    notificationElement.insertBefore(notificationItem, notificationElement.firstChild);
 
-    notificationElement.appendChild(notificationItem);
     notificationItem.appendChild(notificationParagraph);
     notificationItem.appendChild(notificationTime);
 
     if (elementsClasses.item === "notification__item") {
         notificationItem.setAttribute("id", this.notificationIdMask + historyItem.getHistoryId());        
-        setTimeout( () => {
-            this.hideNotification(historyItem.getHistoryId());            
-            historyItem.display = false;
-        }, 3000);
+        this.ctrl.notificationHide(historyItem.getHistoryId());        
     }
 
     if (historyItem.getAction() === historyActions.addNewBook) {
@@ -599,7 +622,7 @@ View.prototype.showHistoryItem = function (historyItem, notificationElement, ele
             historyItem.getFilter() + "</span>" + " filter";
     }
     else if (historyItem.getAction() === historyActions.rating) {
-        const rating = parseInt(this.model.getRating(bookId)) + 1;
+        const rating = parseInt(historyItem.getRating()) + 1;
         notificationParagraph.innerHTML = 'You changed rating of the book <span class="' +
             elementsClasses.action + '">' +
             this.model.getBookTitle(bookId) + "</span>" + " by " +

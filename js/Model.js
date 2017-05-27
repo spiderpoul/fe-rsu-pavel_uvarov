@@ -167,7 +167,6 @@ Model.prototype.setRating = function (bookId, rating) {
     if (rating > -2) {
         this.books[bookId].rating = rating;
     }
-    console.log(this.books[bookId]);
 };
 
 // Add new book
@@ -210,14 +209,31 @@ function uniqueArray(arr) {
 // HISTORY
 
 // History item consructor
-function History(id) {
-    this.id = id;
+function History(historyId) {
+    this.historyId = historyId;
     this.dateAdd = new Date();
     this.display = true;
+    this.isTimerEnable = false;
 }
 
 History.prototype.setBookId = function (bookId) {
     this.bookId = bookId;
+};
+
+History.prototype.isDisplayed = function () {
+    return this.display;
+};
+
+History.prototype.hide = function () {
+    this.display = false;
+};
+
+History.prototype.getIsTimerEnable = function () {
+    return this.isTimerEnable;
+};
+
+History.prototype.timerEnable = function () {
+    this.isTimerEnable = true;
 };
 
 History.prototype.setFilter = function (filterName) {
@@ -228,8 +244,13 @@ History.prototype.setAction = function (action) {
     this.action = action;
 };
 
-History.prototype.getHistoryId = function (bookId) {
-    return this.id;
+
+History.prototype.setRating = function (rating) {
+    this.rating = rating;
+};
+
+History.prototype.getHistoryId = function () {
+    return this.historyId;
 };
 
 History.prototype.getBookId = function () {
@@ -244,6 +265,11 @@ History.prototype.getAction = function () {
     return this.action;
 };
 
+History.prototype.getRating = function () {
+    return this.rating;
+};
+
+// Get a formatted date of history 
 History.prototype.getDateAdd = function () {
     let diff = new Date() - this.dateAdd;
     if (diff < 1000) {
@@ -274,7 +300,6 @@ History.prototype.getDateAdd = function () {
         '0' + d.getHours(),
         '0' + d.getMinutes()
     ].map(component => component.slice(-2));
-    console.log(d);
 
     return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
 };
@@ -285,37 +310,41 @@ History.prototype.getAction = function () {
 
 // Add history mark add new book
 Model.prototype.addHistoryAddBook = function (bookId) {
-    const id = this.allHistory.length;
-    const historyItem = new History(id);
+    const historyId = this.allHistory.length;
+    const historyItem = new History(historyId);
     historyItem.setBookId(bookId);
     historyItem.setAction(this.historyActions.addNewBook);
-    this.allHistory.unshift(historyItem);
+    this.allHistory.push(historyItem);
+    return historyId;
 };
 
 // Add history mark when user used filter
 Model.prototype.addHistoryFilter = function (filterName) {
-    const id = this.allHistory.length;
-    const historyItem = new History(id);
+    const historyId = this.allHistory.length;
+    const historyItem = new History(historyId);
     historyItem.setFilter(filterName);
     historyItem.setAction(this.historyActions.filter);
-    this.allHistory.unshift(historyItem);
-    console.log(this.allHistory);
+    this.allHistory.push(historyItem);  
+    return historyId;
 };
 
 // Add history mark when user used filter
 Model.prototype.addHistorySearch = function (searchFilter) {
-    const id = this.allHistory.length;
-    const historyItem = new History(id);
+    const historyId = this.allHistory.length;
+    const historyItem = new History(historyId);
     historyItem.setFilter(searchFilter);
     historyItem.setAction(this.historyActions.search);
-    this.allHistory.unshift(historyItem);
+    this.allHistory.push(historyItem);
+    return historyId;
 };
 
 // Add history mark when user changed rating
-Model.prototype.addHistoryChangeRating = function (bookId) {
-    const id = this.allHistory.length;
-    const historyItem = new History(id);
+Model.prototype.addHistoryChangeRating = function (bookId, rating) {
+    const historyId = this.allHistory.length;
+    const historyItem = new History(historyId);
     historyItem.setBookId(bookId);
     historyItem.setAction(this.historyActions.rating);
-    this.allHistory.unshift(historyItem);
+    historyItem.setRating(rating);
+    this.allHistory.push(historyItem);
+    return historyId;
 };

@@ -1,6 +1,7 @@
 function Controller() {
     this.model = new Model();
     this.view = new View(this.model, this);
+    this.socket = io();
 }
 
 // Load all books from JSON file
@@ -37,15 +38,16 @@ Controller.prototype.changeRatingHandler = function (bookId, rating) {
             'Content-Type': 'application/json'}
         })
         .then(res => {
+            this.view.changeRating(bookId, rating);
             return res.json();
         })
         .then((books) => {
             this.model.books = books;
-            this.view.changeRating(bookId, rating);
-            this.historyChangeRating(bookId)
+            this.view.changeRating(bookId, rating);            
+            this.historyChangeRating(bookId, rating);
         })
         .catch(err => {
-            console.log("Something went wrong: " + error);
+            console.log("Something went wrong: " + err);
         })
 };
 
@@ -107,26 +109,39 @@ Controller.prototype.removeTag = function (bookId, tagName) {
 
 // Add history mark add book
 Controller.prototype.historyAddBook = function (bookId) {
-    this.model.addHistoryAddBook(bookId);
-    this.view.showNotifications(this.model.allHistory);
+    const notificationId = this.model.addHistoryAddBook(bookId);
+    this.view.showNotification(notificationId);
 };
 
 // Add history mark when user used filter
 Controller.prototype.historyFilter = function (filterName) {
-    this.model.addHistoryFilter(filterName);
-    this.view.showNotifications(this.model.allHistory);
+    const notificationId = this.model.addHistoryFilter(filterName);
+    this.view.showNotification(notificationId);
 };
 
 // Add history mark when user used search
 Controller.prototype.historySearch = function (searchFilter) {
-    this.model.addHistorySearch(searchFilter);
-    this.view.showNotifications(this.model.allHistory);
+    const notificationId = this.model.addHistorySearch(searchFilter);    
+    this.view.showNotification(notificationId);
 };
 
 // Add history mark when user changed rating
-Controller.prototype.historyChangeRating = function (bookId) {
-    this.model.addHistoryChangeRating(bookId);
-    this.view.showNotifications(this.model.allHistory);
+Controller.prototype.historyChangeRating = function (bookId, rating) {
+    const notificationId = this.model.addHistoryChangeRating(bookId, rating);
+    this.view.showNotification(notificationId);
+};
+
+// Make notification disappear after 3 second using server
+Controller.prototype.notificationHide = function (notificationId) {  
+    const historyItem = this.model.allHistory[notificationId];
+       
+    this.socket.emit('hideNotificationRequest', notificationId);
+    this.socket.on('allowHideNotification', res => {
+        //if (!historyItem.getIsTimerEnable()) {
+            this.view.hideNotification(res);
+            //historyItem.timerEnable();
+        //}
+    });
 };
 
 Controller.prototype.start = function () {
